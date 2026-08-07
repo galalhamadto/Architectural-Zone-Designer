@@ -1,0 +1,973 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Architectural Zone Designer v35</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:14px Segoe UI,Arial,sans-serif;background:#eef2f7;color:#172033}button,input,select{font:inherit}.top{height:58px;flex:0 0 58px;background:#fff;border-bottom:1px solid #d8dee8;display:flex;align-items:center;gap:8px;padding:0 14px}.brand{font-size:18px;font-weight:700}.spacer{flex:1}.btn{border:1px solid #cbd5e1;background:#fff;padding:8px 11px;border-radius:7px;cursor:pointer}.btn:hover{background:#f1f5f9}.primary{background:#2563eb;color:#fff;border-color:#2563eb}.danger{color:#b91c1c}.app{height:100vh;min-height:0;display:flex;flex-direction:column;overflow:hidden}.setup{width:min(1100px,calc(100% - 32px));max-height:calc(100vh - 90px);margin:16px auto;background:#fff;border:1px solid #d8dee8;border-radius:12px;overflow:auto;min-height:0;overscroll-behavior:contain}.setupHead{padding:20px;border-bottom:1px solid #e2e8f0}.setupGrid{display:grid;grid-template-columns:360px minmax(520px,1fr);min-width:880px}.panel{padding:18px;min-width:0}.formPanel{border-right:1px solid #e2e8f0}.field{margin-bottom:10px}.field label{display:block;font-size:12px;color:#475569;margin-bottom:4px}.field input,.field select{width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.check{display:flex;gap:7px;align-items:center;margin:8px 0}.notice{background:#eff6ff;color:#1e40af;padding:9px;border-radius:6px;margin:10px 0}.table{width:100%;border-collapse:collapse}.table thead th{position:sticky;top:0;background:#f8fafc;z-index:2}.table th,.table td{padding:9px;border-bottom:1px solid #e2e8f0;text-align:left}.toolbar{height:48px;flex:0 0 48px;background:#f8fafc;border-bottom:1px solid #d8dee8;display:flex;align-items:center;gap:6px;padding:6px 10px;overflow-x:auto}.toolbar .group{display:flex;gap:5px;padding-right:8px;margin-right:3px;border-right:1px solid #d8dee8}.toolbar .group:last-child{border-right:0}.workspace{flex:1;min-height:0;display:grid;grid-template-columns:var(--leftW,240px) 6px 1fr 6px var(--rightW,285px)}.side{background:#fff;overflow:auto;min-height:0;overscroll-behavior:contain;scrollbar-gutter:stable}.left{border-right:1px solid #d8dee8}.right{border-left:1px solid #d8dee8}.resizer{background:#d8dee8;cursor:col-resize;position:relative}.resizer:hover{background:#93c5fd}.collapsed{display:none!important}.panelToggle{padding:5px 8px}.warning{background:#fef2f2;color:#991b1b;border:1px solid #fecaca;padding:8px;border-radius:6px;margin:8px 0}.ok{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;padding:8px;border-radius:6px;margin:8px 0}.section{padding:13px;border-bottom:1px solid #edf0f4}.section h3{font-size:12px;text-transform:uppercase;color:#475569;letter-spacing:.05em;margin:0 0 9px}.roomBtn{width:100%;text-align:left;background:#fff;border:1px solid #cbd5e1;border-radius:7px;padding:8px;margin-bottom:6px;cursor:pointer}.roomBtn.active{outline:2px solid #93c5fd}.swatch{display:inline-block;width:12px;height:12px;border:1px solid #64748b;border-radius:3px;margin-right:6px}.small{font-size:11px;color:#64748b;margin-top:3px}.tools{display:grid;grid-template-columns:1fr 1fr;gap:6px}.tool{width:36px;height:36px;padding:6px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 36px}.tool svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.tool.active{background:#dbeafe;border-color:#60a5fa;color:#1d4ed8}.grip{cursor:pointer}.hint{font-size:11px;color:#475569;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:7px;margin-top:7px}.canvasWrap{position:relative;overflow:hidden;min-width:0;min-height:0;background:#cbd5e1}.canvas{width:100%;height:100%;display:block;background:#fff;touch-action:none}.status{position:absolute;left:9px;bottom:9px;background:#0f172acc;color:#fff;border-radius:5px;padding:5px 8px;font-size:11px;pointer-events:none}.tagEditor{position:absolute;z-index:20;min-width:140px;padding:6px 8px;border:2px solid #2563eb;border-radius:6px;background:#fff;box-shadow:0 6px 18px rgba(15,23,42,.2);text-align:center;font:600 13px Segoe UI,Arial,sans-serif;transform:translate(-50%,-50%)}.muted{color:#64748b}.contextMenu{position:fixed;z-index:9999;min-width:180px;background:#fff;border:1px solid #cbd5e1;border-radius:8px;box-shadow:0 12px 30px rgba(15,23,42,.18);padding:6px}.contextMenu button{display:block;width:100%;text-align:left;border:0;background:transparent;padding:8px 10px;border-radius:5px;cursor:pointer}.contextMenu button:hover{background:#f1f5f9}.contextMenu button:disabled{opacity:.45;cursor:not-allowed;background:transparent}.contextMenu .sep{height:1px;background:#e2e8f0;margin:5px 0}@media(max-width:900px){.workspace{grid-template-columns:210px 1fr}.right{display:none}.setup{width:calc(100% - 16px);margin:8px}.setupGrid{grid-template-columns:1fr;min-width:0}.formPanel{border-right:0;border-bottom:1px solid #e2e8f0}.top{overflow-x:auto}.toolbar{overflow-x:auto}}
+@media print{
+body>*:not(#printSheet){display:none!important}
+#printSheet{display:block!important;position:fixed;inset:0;background:#fff}
+#printSheet svg{display:block;width:100%;height:100%;max-width:100%;max-height:100%}
+@page{margin:0}
+}
+.startScreen{height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#eef2ff,#f8fafc)}
+.startCard{width:min(560px,calc(100% - 32px));background:#fff;border:1px solid #d8dee8;border-radius:16px;box-shadow:0 20px 50px rgba(15,23,42,.12);padding:28px}
+.startCard h1{margin:0 0 8px}.startActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.modalBackdrop{position:fixed;inset:0;background:rgba(15,23,42,.45);display:grid;place-items:center;z-index:10000}
+.modalCard{width:min(520px,calc(100% - 28px));max-height:calc(100vh - 40px);overflow:auto;background:#fff;border-radius:12px;padding:20px;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.printAreaLabel{font-size:10px;color:#7c3aed}
+#printSheet{display:none}
+
+</style></head><body><div id="app"></div>
+<script>
+(function(){'use strict';
+const SCALE=50;let state={mode:'start',rooms:[],selected:null,selectedIds:[],selectedBoundary:null,selectedShapes:[],snapMarker:null,chainCloseHint:null,clipboardRooms:[],contextPoint:null,stories:[{id:'story-1',name:'Ground Floor',elevation:0}],activeStoryId:'story-1',showLowerStory:true,snapToUnderlay:true,lowerStorySingleColor:false,lowerStoryColor:'#94a3b8',lowerStoryOpacity:.18,autoCloseChain:true,snapPriority:'geometry',showOrigin:true,showAxes:true,tool:'select',grid:true,snap:true,gridM:.5,zoom:1,pan:{x:50,y:50},style:{color:'#111827',weight:2,pattern:'solid'},history:[],future:[],project:{maxArea:0},print:{showArea:true,paper:'A3',orientation:'landscape',mode:'fit',scale:100,originX:0,originY:0,marginMm:10},guides:[],freeShapes:[],leftW:240,rightW:285,leftOpen:true,rightOpen:true};
+const CUSTOM_PRESETS_KEY='azd_custom_room_presets_v1';
+function getCustomPresets(){try{return JSON.parse(localStorage.getItem(CUSTOM_PRESETS_KEY)||'{}')}catch(e){return {}}}
+function setCustomPresets(v){localStorage.setItem(CUSTOM_PRESETS_KEY,JSON.stringify(v))}
+function presetOptions(){return Object.keys(getCustomPresets()).sort((a,b)=>a.localeCompare(b)).map(n=>`<option value="custom:${esc(n)}">${esc(n)} (custom)</option>`).join('')}
+function saveRoomsAsPreset(){if(!state.rooms.length)return alert('Add at least one room before saving a preset.');const name=(prompt('Preset name:')||'').trim();if(!name)return;const all=getCustomPresets();if(all[name]&&!confirm(`Replace the existing preset “${name}”?`))return;all[name]=state.rooms.map(r=>({name:r.name,number:r.number,width:r.width,length:r.length,color:r.color,floor:r.floor,parentUnit:r.parentUnit,wetArea:!!r.wetArea,isRegular:r.isRegular!==false,boundaryOpacity:r.boundaryOpacity??1,boundaryPrintable:r.boundaryPrintable!==false,vertices:r.isRegular===false&&r.vertices?r.vertices.map(v=>({x:v.x-r.x,y:v.y-r.y})):null}));setCustomPresets(all);alert(`Preset “${name}” saved with ${state.rooms.length} rooms.`);render()}
+function deleteCustomPreset(key){if(!key.startsWith('custom:'))return alert('Built-in presets cannot be deleted.');const name=key.slice(7),all=getCustomPresets();if(!all[name])return;if(!confirm(`Delete preset “${name}”?`))return;delete all[name];setCustomPresets(all);render()}
+function normalizePresetRoom(x,index){
+  if(!x||typeof x!=='object')throw new Error('Room '+(index+1)+' is not a valid object.');
+  const name=String(x.name||'').trim(),width=Number(x.width),length=Number(x.length);
+  if(!name)throw new Error('Room '+(index+1)+' has no name.');
+  if(!(width>0)||!(length>0))throw new Error('Room “'+name+'” must have positive width and length.');
+  return {name,number:String(x.number||'').trim(),width,length,color:/^#[0-9a-f]{6}$/i.test(String(x.color||''))?x.color:(x.wetArea?'#bfdbfe':'#dcfce7'),floor:String(x.floor||activeStory()?.name||'Ground Floor'),parentUnit:String(x.parentUnit||'Imported Preset'),wetArea:!!x.wetArea,isRegular:x.isRegular!==false,boundaryOpacity:Number.isFinite(+x.boundaryOpacity)?Math.max(.1,Math.min(1,+x.boundaryOpacity)):1,boundaryPrintable:x.boundaryPrintable!==false,vertices:Array.isArray(x.vertices)?x.vertices.map(v=>({x:+v.x||0,y:+v.y||0})):null,notes:String(x.notes||'')};
+}
+function parsePresetConfig(data){
+  let presets=[];
+  if(Array.isArray(data))presets=[{name:'Imported Rooms',rooms:data}];
+  else if(Array.isArray(data?.presets))presets=data.presets;
+  else if(Array.isArray(data?.rooms))presets=[data];
+  else throw new Error('The file must contain a “presets” array or a “rooms” array.');
+  return presets.map((p,i)=>{const name=String(p.name||p.id||('Imported Preset '+(i+1))).trim();if(!Array.isArray(p.rooms)||!p.rooms.length)throw new Error('Preset “'+name+'” contains no rooms.');return{name,description:String(p.description||''),rooms:p.rooms.map(normalizePresetRoom)}});
+}
+function insertConfiguredRooms(items,presetName){
+  const story=activeStory(),startCount=state.rooms.length;
+  commit(rs=>{const out=[...rs];items.forEach((x,i)=>{const idx=startCount+i,px=(idx%4)*6,py=Math.floor(idx/4)*5;let number=x.number||'R-'+String(idx+1).padStart(2,'0');if(out.some(r=>r.number===number))number=nextRoomNumber(number);const room={...x,id:uid(),storyId:state.activeStoryId,number,x:px,y:py,shapes:[],tagOffsetX:0,tagOffsetY:0};if(room.isRegular===false&&Array.isArray(room.vertices)&&room.vertices.length>=3)room.vertices=room.vertices.map(v=>({x:px+v.x,y:py+v.y}));else{room.isRegular=true;delete room.vertices}out.push(room)});return out});
+  alert('Inserted '+items.length+' rooms from “'+presetName+'” into '+(story?.name||'the active story')+'.');
+}
+function importPresetConfig(e){
+  const input=e.target,file=input.files&&input.files[0];if(!file)return;
+  const rd=new FileReader();rd.onload=()=>{try{const parsed=parsePresetConfig(JSON.parse(rd.result));const all=getCustomPresets();parsed.forEach(p=>all[p.name]=p.rooms);setCustomPresets(all);let chosen=parsed[0];if(parsed.length>1){const menu=parsed.map((p,i)=>(i+1)+'. '+p.name+' ('+p.rooms.length+' rooms)').join('\n');const answer=prompt('The file contains multiple presets. Enter the number to insert:\n\n'+menu,'1');if(answer===null){alert('Preset library imported. No rooms were inserted.');render();return}const n=parseInt(answer,10);if(!(n>=1&&n<=parsed.length))throw new Error('Invalid preset selection.');chosen=parsed[n-1]}insertConfiguredRooms(chosen.rooms,chosen.name)}catch(err){alert('Could not import preset configuration:\n'+err.message)}finally{input.value=''}};rd.onerror=()=>{alert('Could not read the selected file.');input.value=''};rd.readAsText(file);
+}
+let canvas,ctx,action=null,cursor={x:0,y:0},snapGuides=[],snapClearTimer=null; const $=s=>document.querySelector(s); const uid=()=>Date.now()+'-'+Math.random().toString(36).slice(2,7); const snap=(v)=>state.snap?Math.round(v/state.gridM)*state.gridM:v; function polygonArea(v){if(!v||v.length<3)return 0;let a=0;for(let i=0;i<v.length;i++){const j=(i+1)%v.length;a+=v[i].x*v[j].y-v[j].x*v[i].y}return Math.abs(a)/2} const area=r=>(r&&r.isRegular===false&&Array.isArray(r.vertices)&&r.vertices.length>=3)?polygonArea(r.vertices):(+r.width||0)*(+r.length||0);
+const blank=()=>({name:'Living Room',number:'R-'+String(state.rooms.length+1).padStart(2,'0'),width:5,length:4,color:'#dbeafe',floor:'Ground Floor',parentUnit:'Apartment A',wetArea:false,isRegular:true,boundaryOpacity:1,boundaryPrintable:true}); let draft=blank();
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function persistRecovery(){try{localStorage.setItem('azd_recovery_v35',JSON.stringify({savedAt:new Date().toISOString(),rooms:state.rooms,project:state.project,guides:state.guides,freeShapes:state.freeShapes,stories:state.stories,activeStoryId:state.activeStoryId}))}catch(e){}}
+function commit(fn){state.history.push(JSON.parse(JSON.stringify(state.rooms)));if(state.history.length>200)state.history.shift();state.future=[];state.rooms=fn(state.rooms);persistRecovery();render()}
+function download(content,name,type){const b=new Blob([content],{type:type||'text/plain'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),500)}
+function clearSnapVisuals(delay=450){
+  if(snapClearTimer)clearTimeout(snapClearTimer);
+  snapClearTimer=setTimeout(()=>{
+    state.snapMarker=null;state.chainCloseHint=null;
+    snapGuides=[];
+    if(canvas&&ctx)draw();
+  },delay);
+}
+function keepSnapVisuals(){
+  if(snapClearTimer){clearTimeout(snapClearTimer);snapClearTimer=null}
+}
+
+function formHtml(o,prefix){return `<div class="row"><div class="field"><label>Room name</label><input id="${prefix}name" value="${esc(o.name)}"></div><div class="field"><label>Room number</label><input id="${prefix}number" value="${esc(o.number)}"></div></div><div class="row"><div class="field"><label>Width (m)</label><input id="${prefix}width" type="number" min="0.1" step="0.1" value="${o.width}"></div><div class="field"><label>Length (m)</label><input id="${prefix}length" type="number" min="0.1" step="0.1" value="${o.length}"></div></div><div class="field"><label>Parent unit / section</label><input id="${prefix}parentUnit" value="${esc(o.parentUnit)}"></div><div class="row"><div class="field"><label>Floor / Story</label>${prefix==='s_'?`<select id="${prefix}storyId">${state.stories.map(s=>`<option value="${s.id}" ${(o.storyId||'story-1')===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select>`:`<input id="${prefix}floor" value="${esc(o.floor)}">`}</div><div class="field"><label>Color</label><input id="${prefix}color" type="color" value="${o.color}"></div></div><label class="check"><input id="${prefix}wetArea" type="checkbox" ${o.wetArea?'checked':''}> Wet area</label><label class="check"><input id="${prefix}isRegular" type="checkbox" ${o.isRegular?'checked':''}> Regular rectangle</label>${o.isRegular===false?'<div class="hint">Irregular room: drag blue vertex grips to reshape it. Use Add Vertex or Remove Vertex to change the number of corners. Draw a closed loop with Line/Chain Line, then use Lines → Room to replace the complete boundary.</div>':''}<div class="notice">Calculated area: ${area(o).toFixed(2)} m²</div>`}
+function readForm(prefix){return {name:$('#'+prefix+'name').value.trim(),number:$('#'+prefix+'number').value.trim(),width:+$('#'+prefix+'width').value,length:+$('#'+prefix+'length').value,parentUnit:$('#'+prefix+'parentUnit').value.trim(),floor:$('#'+prefix+'floor')?$('#'+prefix+'floor').value.trim():(activeStory()?.name||''),storyId:$('#'+prefix+'storyId')?$('#'+prefix+'storyId').value:undefined,color:$('#'+prefix+'color').value,wetArea:$('#'+prefix+'wetArea').checked,isRegular:$('#'+prefix+'isRegular').checked}}
+function captureScroll(){const out={windowX:window.scrollX,windowY:window.scrollY,elements:{}};document.querySelectorAll('[data-scroll-key]').forEach(el=>out.elements[el.dataset.scrollKey]={top:el.scrollTop,left:el.scrollLeft});return out}function restoreScroll(out){if(!out)return;requestAnimationFrame(()=>{window.scrollTo(out.windowX||0,out.windowY||0);document.querySelectorAll('[data-scroll-key]').forEach(el=>{const v=out.elements[el.dataset.scrollKey];if(v){el.scrollTop=v.top;el.scrollLeft=v.left}})})}function render(){const scroll=captureScroll();state.mode==='start'?renderStart():state.mode==='setup'?renderSetup():renderDesign();restoreScroll(scroll)}
+
+function resetProject(){
+  state.rooms=[];state.guides=[];state.freeShapes=[];state.history=[];state.future=[];
+  state.selected=null;state.selectedIds=[];state.stories=[{id:'story-1',name:'Ground Floor',elevation:0}];
+  state.activeStoryId='story-1';state.project={maxArea:0};
+  state.print={showArea:true,paper:'A3',orientation:'landscape',mode:'fit',scale:100,originX:0,originY:0,marginMm:10};
+  draft=blank();
+}
+function renderStart(){
+  document.getElementById('app').innerHTML=`<div class="startScreen"><div class="startCard">
+  <h1>Architectural Zone Designer</h1><p class="muted">Start a new zoning project or open a saved project.</p>
+  <label class="check" style="margin-top:18px"><input id="startBlank" type="checkbox" checked> Start with a blank canvas</label>
+  <div class="small">Uncheck to open the Room Setup form before entering the canvas.</div>
+  <div class="startActions"><button id="newProject" class="btn primary">New Project</button><label class="btn">Open Project<input id="startOpen" hidden type="file" accept=".json"></label></div>
+  </div></div>`;
+  $('#newProject').onclick=()=>{resetProject();state.mode=$('#startBlank').checked?'design':'setup';render()};
+  $('#startOpen').onchange=openJSON;
+}
+
+function renderSetup(){document.getElementById('app').innerHTML=`<div class="app"><div class="top"><div class="brand">Architectural Zone Designer</div><span class="muted">Room setup</span><div class="spacer"></div><button id="start" class="btn primary">Start Designing</button></div><div class="setup" data-scroll-key="setup-main"><div class="setupHead"><h2 style="margin:0 0 5px">Create the room schedule</h2><div class="muted">Add rooms and dimensions, then arrange them on the canvas.</div><div class="row" style="margin-top:12px"><div class="field"><label>Stories</label><select id="setupStorySelect">${state.stories.map(s=>`<option value="${s.id}" ${s.id===state.activeStoryId?'selected':''}>${esc(s.name)}</option>`).join('')}</select></div><div class="field"><label>Story actions</label><div style="display:flex;gap:6px;flex-wrap:wrap"><button id="setupAddStory" class="btn">+ Story</button><button id="setupRenameStory" class="btn">Rename</button><button id="setupDeleteStory" class="btn danger">Delete</button></div></div></div><div class="row" style="margin-top:12px"><div class="field"><label>Maximum project area (m², 0 = unlimited)</label><input id="maxArea" type="number" min="0" step="1" value="${state.project.maxArea||0}"></div><div class="field"><label>Residential room preset</label><select id="preset"><option value="">Choose preset...</option><option value="studio">Studio apartment</option><option value="onebed">1-bedroom apartment</option><option value="twobed">2-bedroom apartment</option><option value="villa">Typical villa ground floor</option>${presetOptions()}</select></div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button id="addPreset" class="btn">Add Preset Rooms</button><label class="btn primary">Import Preset Config<input id="importPresetConfig" hidden type="file" accept=".json,application/json"></label><button id="savePreset" class="btn">Save Current Rooms as Preset</button><button id="deletePreset" class="btn danger">Delete Selected Custom Preset</button></div><div class="${state.project.maxArea&&state.rooms.reduce((a,r)=>a+area(r),0)>state.project.maxArea?'warning':'ok'}">Total scheduled area: ${state.rooms.reduce((a,r)=>a+area(r),0).toFixed(2)} m²${state.project.maxArea?' / Max '+state.project.maxArea+' m²':''}</div></div><div class="setupGrid"><div class="panel formPanel">${formHtml(draft,'d_')}<button id="add" class="btn primary" style="width:100%">Add Room</button></div><div class="panel" data-scroll-key="setup-table" style="overflow:auto;max-height:calc(100vh - 285px);scrollbar-gutter:stable"><table class="table"><thead><tr><th>No.</th><th>Room</th><th>Dimensions</th><th>Area</th><th>Unit / Floor</th><th>Story</th><th></th></tr></thead><tbody>${state.rooms.map(r=>`<tr draggable="true" class="setupRoomRow" data-id="${r.id}"><td>${esc(r.number)}</td><td><span class="swatch" style="background:${r.color}"></span>${esc(r.name)}</td><td>${r.width} × ${r.length} m</td><td>${area(r).toFixed(2)} m²</td><td>${esc(r.parentUnit)}<div class="small">${esc(r.floor)}</div></td><td><select class="roomStorySelect" data-id="${r.id}">${state.stories.map(s=>`<option value="${s.id}" ${(r.storyId||'story-1')===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select></td><td><button class="btn danger remove" data-id="${r.id}">Remove</button></td></tr>`).join('')}</tbody></table>${state.rooms.length?'':'<p class="muted">No rooms added yet.</p>'}<div class="section" style="padding:12px 0 0"><h3>Drag Rooms to Story</h3><div style="display:flex;gap:8px;flex-wrap:wrap">${state.stories.map(s=>`<div class="storyDropZone" data-story="${s.id}" style="min-width:150px;padding:12px;border:2px dashed #94a3b8;border-radius:8px;background:#f8fafc"><strong>${esc(s.name)}</strong><div class="small">Drop to move<br>Shift-drop to duplicate</div></div>`).join('')}</div></div></div></div></div></div>`;
+const addRoomButton=$('#add');if(addRoomButton)addRoomButton.addEventListener('click',e=>{e.preventDefault();const values=readForm('d_');if(!values.name||!Number.isFinite(values.width)||!Number.isFinite(values.length)||values.width<=0||values.length<=0)return alert('Enter a room name and positive dimensions.');const px=(state.rooms.length%4)*6,py=Math.floor(state.rooms.length/4)*5;const room={...values,id:uid(),storyId:state.activeStoryId,x:px,y:py,shapes:[],boundaryOpacity:1,boundaryPrintable:true};if(values.isRegular===false)room.vertices=[{x:px,y:py},{x:px+values.width,y:py},{x:px+values.width,y:py+values.length},{x:px,y:py+values.length}];state.rooms.push(room);draft=blank();warnArea();render()});$('#start').onclick=()=>{if(state.rooms.length)setSingleSelection(state.rooms[0].id);else setSingleSelection(null);state.mode='design';render()};document.querySelectorAll('.remove').forEach(b=>b.onclick=()=>{state.rooms=state.rooms.filter(r=>r.id!==b.dataset.id);render()});$('#setupStorySelect').onchange=e=>{state.activeStoryId=e.target.value;render()};
+$('#setupAddStory').onclick=addStory;
+$('#setupRenameStory').onclick=renameStory;
+$('#setupDeleteStory').onclick=deleteStory;
+document.querySelectorAll('.roomStorySelect').forEach(s=>s.onchange=e=>{
+  const r=state.rooms.find(x=>x.id===e.target.dataset.id);
+  if(r){r.storyId=e.target.value;render()}
+});
+document.querySelectorAll('.setupRoomRow').forEach(row=>{
+  row.ondragstart=e=>{
+    e.dataTransfer.setData('text/plain',row.dataset.id);
+    e.dataTransfer.effectAllowed='copyMove';
+  };
+});
+document.querySelectorAll('.storyDropZone').forEach(zone=>{
+  zone.ondragover=e=>{e.preventDefault();zone.style.background='#dbeafe';e.dataTransfer.dropEffect=e.shiftKey?'copy':'move'};
+  zone.ondragleave=()=>zone.style.background='#f8fafc';
+  zone.ondrop=e=>{
+    e.preventDefault();zone.style.background='#f8fafc';
+    const id=e.dataTransfer.getData('text/plain');
+    const r=state.rooms.find(x=>x.id===id);
+    if(!r)return;
+    if(e.shiftKey){
+      const cp=JSON.parse(JSON.stringify(r));
+      cp.id=uid();cp.storyId=zone.dataset.story;cp.name=nextCopyName(cp.name);cp.number=nextRoomNumber(cp.number);
+      state.rooms.push(cp);
+    }else{
+      r.storyId=zone.dataset.story;
+    }
+    render();
+  };
+});
+$('#maxArea').onchange=e=>{state.project.maxArea=Math.max(0,+e.target.value||0);render()};$('#addPreset').onclick=()=>{const key=$('#preset').value;if(!key)return;addPreset(key);warnArea();persistRecovery();render()};$('#importPresetConfig').onchange=importPresetConfig;$('#savePreset').onclick=saveRoomsAsPreset;$('#deletePreset').onclick=()=>deleteCustomPreset($('#preset').value)}
+const TOOL_ICONS={select:'<svg viewBox="0 0 24 24"><path d="M5 3l13 9-6 1 3 6-2 1-3-6-5 4z"/></svg>',moveRooms:'<svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><path d="M12 2l-3 3M12 2l3 3M12 22l-3-3M12 22l3-3M2 12l3-3M2 12l3 3M22 12l-3-3M22 12l-3 3"/></svg>',line:'<svg viewBox="0 0 24 24"><path d="M4 19L20 5"/><circle cx="4" cy="19" r="1.5"/><circle cx="20" cy="5" r="1.5"/></svg>',chain:'<svg viewBox="0 0 24 24"><path d="M3 18l6-8 5 4 7-9"/><circle cx="3" cy="18" r="1.3"/><circle cx="9" cy="10" r="1.3"/><circle cx="14" cy="14" r="1.3"/><circle cx="21" cy="5" r="1.3"/></svg>',rect:'<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14"/></svg>',circle:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>',makeIrregular:'<svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M12 5v5l4 3"/></svg>',addVertex:'<svg viewBox="0 0 24 24"><path d="M4 18L10 6l10 12z"/><path d="M12 10v6M9 13h6"/></svg>',removeVertex:'<svg viewBox="0 0 24 24"><path d="M4 18L10 6l10 12z"/><path d="M9 13h6"/></svg>',convert:'<svg viewBox="0 0 24 24"><path d="M4 18L8 6l7 2 5 10z"/><path d="M7 18h10"/></svg>',fillet:'<svg viewBox="0 0 24 24"><path d="M4 19h5a10 10 0 0 0 10-10V4"/></svg>',chamfer:'<svg viewBox="0 0 24 24"><path d="M4 19h8l7-7V4"/></svg>',property:'<svg viewBox="0 0 24 24"><path d="M5 20V4h14v16"/><path d="M3 20h18"/></svg>',limit:'<svg viewBox="0 0 24 24"><path d="M5 4v16M19 4v16"/><path d="M8 12h8"/><path d="M10 9l-3 3 3 3M14 9l3 3-3 3"/></svg>',undo:'<svg viewBox="0 0 24 24"><path d="M9 7H4v-5"/><path d="M4 7c3-4 9-5 13-1s4 10 0 14"/></svg>',redo:'<svg viewBox="0 0 24 24"><path d="M15 7h5v-5"/><path d="M20 7c-3-4-9-5-13-1s-4 10 0 14"/></svg>',print:'<svg viewBox="0 0 24 24"><path d="M7 8V3h10v5"/><rect x="6" y="14" width="12" height="7"/><path d="M6 17H4V9h16v8h-2"/><circle cx="17" cy="11" r=".7"/></svg>',zoomIn:'<svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L21 21M7 10h6M10 7v6"/></svg>',zoomOut:'<svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5L21 21M7 10h6"/></svg>',zoomFit:'<svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><rect x="7" y="7" width="10" height="10"/></svg>',roomByArea:'<svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M12 8v8M8 12h8"/></svg>',subtractRoom:'<svg viewBox="0 0 24 24"><rect x="4" y="4" width="12" height="12"/><rect x="10" y="10" width="10" height="10"/><path d="M13 15h4"/></svg>',mergeRooms:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="11" height="11"/><rect x="10" y="8" width="11" height="11"/><path d="M13 13h5M15.5 10.5v5"/></svg>',edgeStyle:'<svg viewBox="0 0 24 24"><path d="M4 18L20 6"/><path d="M5 8h8M11 16h8"/></svg>',selectLines:'<svg viewBox="0 0 24 24"><path d="M4 18L20 6"/><rect x="2.5" y="16.5" width="3" height="3"/><rect x="18.5" y="4.5" width="3" height="3"/></svg>'};
+function toolbarButton(id,label){return `<button class="btn tool ${state.tool===id?'active':''}" data-tool="${id}" title="${label}" aria-label="${label}">${TOOL_ICONS[id]||label}</button>`}function actionButton(id,label){return `<button id="${id}" class="btn tool" title="${label}" aria-label="${label}">${TOOL_ICONS[id]||label}</button>`}
+function addPreset(key){if(key.startsWith('custom:')){const name=key.slice(7),items=getCustomPresets()[name]||[];items.forEach((x,i)=>state.rooms.push({...x,id:uid(),storyId:state.activeStoryId,number:x.number||'R-'+String(state.rooms.length+1).padStart(2,'0'),x:(state.rooms.length%4)*6,y:Math.floor(state.rooms.length/4)*5,shapes:[]}));return}const presets={studio:[['Living / Sleeping',5,4,false],['Kitchen',2.6,2.4,true],['Bathroom',2.4,1.8,true]],onebed:[['Living / Dining',5.5,4.2,false],['Kitchen',3,2.6,true],['Bedroom',4,3.6,false],['Bathroom',2.5,2,true],['Entry',2.2,1.8,false]],twobed:[['Living / Dining',6,4.5,false],['Kitchen',3.2,2.8,true],['Primary Bedroom',4.4,3.8,false],['Bedroom 2',3.8,3.4,false],['Primary Bathroom',2.8,2.2,true],['Common Bathroom',2.5,2,true],['Corridor',4,1.4,false]],villa:[['Majlis',6,5,false],['Living Room',6,5,false],['Dining Room',5,4,false],['Kitchen',5,4,true],['Guest Bedroom',4.5,4,false],['Guest Bathroom',2.5,2,true],['Powder Room',2,1.6,true],['Entrance Lobby',4,3,false]]};(presets[key]||[]).forEach((x,i)=>state.rooms.push({id:uid(),storyId:state.activeStoryId,name:x[0],number:'R-'+String(state.rooms.length+1).padStart(2,'0'),width:x[1],length:x[2],color:x[3]?'#bfdbfe':'#dcfce7',floor:'Ground Floor',parentUnit:'Apartment A',wetArea:x[3],isRegular:true,boundaryOpacity:1,boundaryPrintable:true,x:(state.rooms.length%4)*6,y:Math.floor(state.rooms.length/4)*5,shapes:[]}))}
+function renderDesign(){const sel=state.rooms.find(r=>r.id===state.selected);document.getElementById('app').innerHTML=`<div class="app"><div class="top"><div class="brand">Architectural Zone Designer</div><button id="home" class="btn">Home</button><button id="setup" class="btn">Manage Rooms</button><select id="storySelect" class="btn">${state.stories.map(s=>`<option value="${s.id}" ${s.id===state.activeStoryId?'selected':''}>${esc(s.name)}</option>`).join('')}</select><button id="addStory" class="btn">+ Story</button><button id="renameStory" class="btn">Rename Story</button><button id="deleteStory" class="btn danger">Delete Story</button><div class="spacer"></div><button id="save" class="btn">Save Project</button><label class="btn">Open Project<input id="open" hidden type="file" accept=".json"></label></div><div class="toolbar"><div class="group">${toolbarButton('select','Select Rooms')}${toolbarButton('moveRooms','Move Selected Rooms')}${toolbarButton('selectLines','Select Drafting Lines')}${toolbarButton('line','Line')}${toolbarButton('chain','Chain Line')}${toolbarButton('rect','Rectangle')}${toolbarButton('circle','Circle')}</div><div class="group">${toolbarButton('makeIrregular','Make Irregular')}${toolbarButton('addVertex','Add Vertex')}${toolbarButton('removeVertex','Remove Vertex')}${toolbarButton('edgeStyle','Select Boundary Edge')}${toolbarButton('convert','Lines → Room')}${toolbarButton('roomByArea','Room from Enclosed Area')}${toolbarButton('subtractRoom','Subtract Room')}${toolbarButton('mergeRooms','Merge Rooms')}${toolbarButton('fillet','Fillet')}${toolbarButton('chamfer','Chamfer')}${toolbarButton('property','Property Line')}${toolbarButton('limit','Limit Line')}</div><div class="group">${actionButton('undo','Undo')}${actionButton('redo','Redo')}${actionButton('print','Print / Save PDF')}</div><div class="group"><button id="toggleLeft" class="btn panelToggle">☰ Rooms</button><button id="toggleRight" class="btn panelToggle">Properties ☰</button></div><div class="group">${actionButton('zoomIn','Zoom In')}${actionButton('zoomOut','Zoom Out')}${actionButton('zoomFit','Zoom to Fit')}</div></div><div class="workspace" id="workspace" style="--leftW:${state.leftOpen?state.leftW:0}px;--rightW:${state.rightOpen?state.rightW:0}px"><aside data-scroll-key="design-left" class="side left ${state.leftOpen?'':'collapsed'}"><div class="section"><h3>Rooms</h3>${roomsOnStory().map(r=>`<button class="roomBtn ${isRoomSelected(r.id)?'active':''}" data-room="${r.id}"><span class="swatch" style="background:${r.color}"></span>${esc(r.name)}<div class="small">${esc(r.number)} • ${area(r).toFixed(2)} m² • ${esc(r.floor)}</div></button>`).join('')}</div><div class="section"><h3>View</h3><label class="check"><input id="grid" type="checkbox" ${state.grid?'checked':''}> Show grid</label><label class="check"><input id="showOrigin" type="checkbox" ${state.showOrigin?'checked':''}> Show origin</label><label class="check"><input id="showAxes" type="checkbox" ${state.showAxes?'checked':''}> Show X/Y axes</label><label class="check"><input id="showLowerStory" type="checkbox" ${state.showLowerStory?'checked':''}> Show lower-story underlay</label><label class="check"><input id="snapToUnderlay" type="checkbox" ${state.snapToUnderlay?'checked':''}> Snap to lower-story underlay</label><label class="check"><input id="lowerStorySingleColor" type="checkbox" ${state.lowerStorySingleColor?'checked':''}> Use one color for lower story</label><div class="field"><label>Lower-story color</label><input id="lowerStoryColor" type="color" value="${state.lowerStoryColor||'#94a3b8'}"></div><div class="field"><label>Lower-story transparency</label><input id="lowerStoryOpacity" type="range" min="0.05" max="0.8" step="0.05" value="${state.lowerStoryOpacity??0.18}"><div class="small">${Math.round((state.lowerStoryOpacity??0.18)*100)}% opacity</div></div><label class="check"><input id="snap" type="checkbox" ${state.snap?'checked':''}> Enable snapping</label><label class="check"><input id="autoCloseChain" type="checkbox" ${state.autoCloseChain?'checked':''}> Auto-close chain near start</label><div class="field"><label>Snap priority</label><select id="snapPriority"><option value="geometry">Existing geometry first</option><option value="grid">Grid first</option></select></div><div class="field"><label>Grid spacing</label><select id="gridM"><option value="0.1">0.10 m</option><option value="0.25">0.25 m</option><option value="0.5">0.50 m</option><option value="1">1.00 m</option></select></div><div class="hint">Story selector: switch floors; optional lower-story underlay supports snapping<br>Mouse wheel: zoom at cursor<br>Hold middle mouse button: pan<br>Double-middle-click: zoom to fit<br>Line/Chain: draw freely without selecting a room first; vertices/endpoints snap automatically according to Snap Priority<br>Chain: approaching the first point highlights it; click the highlighted point to close and finish<br>Select Drafting Lines: click/Shift-click or drag window/crossing selection, then Delete<br>Room from Area: click inside a closed line loop<br>Boundary Edge: click an edge, then change its color/pattern in Properties<br>Subtract / Merge: click first room, then second room<br>Move Rooms: select room(s), click Move, pick a base point, then pick the destination<br>Shift-drag: duplicate selected room(s)<br>Ctrl+C / Ctrl+V: copy and paste rooms<br>Ctrl+Shift+V: paste rooms in the same location on the active story<br>Right-click: copy, paste, duplicate, delete, or copy rooms to another story<br>Drag left→right: window selection<br>Drag right→left: crossing selection<br>Esc: cancel current tool action</div></div></aside><div id="leftResize" class="resizer"></div><main class="canvasWrap"><canvas id="canvas" class="canvas"></canvas><div id="status" class="status">X 0.00 m Y 0.00 m</div></main><div id="rightResize" class="resizer"></div><aside data-scroll-key="design-right" class="side right ${state.rightOpen?'':'collapsed'}">${sel?`<div class="section"><h3>Room Properties</h3>${formHtml(sel,'s_')}<button id="applyRoomChanges" class="btn primary" style="width:100%;margin-bottom:6px">Apply Changes</button><div class="hint" style="margin-bottom:8px">Edit any fields, then press Enter or click Apply Changes. The panel will not refresh while you type.</div><button id="delete" class="btn danger" style="width:100%">Delete Room</button><div class="field" style="margin-top:10px"><label>Room boundary visibility</label><input id="boundaryOpacity" type="range" min="0.1" max="1" step="0.1" value="${sel.boundaryOpacity??1}"></div><label class="check"><input id="boundaryPrintable" type="checkbox" ${sel.boundaryPrintable!==false?'checked':''}> Print room boundary</label>
+${state.selectedBoundary&&state.selectedBoundary.roomId===sel.id?`<div class="field" style="margin-top:10px"><label>Selected edge color</label><input id="edgeColor" type="color" value="${((sel.boundaryStyles||[])[state.selectedBoundary.edgeIndex]||{}).color||'#334155'}"></div><div class="field"><label>Selected edge pattern</label><select id="edgePattern"><option value="solid">Solid</option><option value="dashed">Dashed</option><option value="dotted">Dotted</option></select></div><button id="clearEdgeStyle" class="btn" style="width:100%;margin-bottom:8px">Reset Selected Edge Style</button>`:'<div class="hint">Use the boundary-edge tool, then click a room edge to change its color or pattern.</div>'}</div><div class="section"><h3>Project / Limits</h3><div class="field"><label>Maximum project area (m²)</label><input id="maxProjectArea" type="number" min="0" step="1" value="${state.project.maxArea||0}"></div><div class="${state.project.maxArea&&state.rooms.reduce((a,r)=>a+area(r),0)>state.project.maxArea?'warning':'ok'}">Total: ${state.rooms.reduce((a,r)=>a+area(r),0).toFixed(2)} m²${state.project.maxArea?' / '+state.project.maxArea+' m²':''}</div><div class="field"><label>Property line color</label><input id="propertyColor" type="color" value="${state.propertyColor||'#dc2626'}"></div><div class="field"><label>Limit line color</label><input id="limitColor" type="color" value="${state.limitColor||'#7c3aed'}"></div></div><div class="section"><h3>Drawing Style</h3><div class="field"><label>Color</label><input id="lineColor" type="color" value="${state.style.color}"></div><div class="field"><label>Line weight</label><select id="lineWeight"><option value="1">Thin</option><option value="2">Medium</option><option value="4">Heavy</option></select></div><div class="field"><label>Pattern</label><select id="linePattern"><option value="solid">Solid</option><option value="dashed">Dashed</option><option value="dotted">Dotted</option></select></div><div class="field"><label>Fillet radius / chamfer distance (m)</label><input id="cornerSize" type="number" min="0.05" step="0.05" value="${state.cornerSize||0.3}"></div><button id="clear" class="btn danger" style="width:100%">Clear Room Drawings</button></div>`:'<div class="section"><div class="notice">Select a room.</div></div>'}<div class="section"><h3>Print Layout</h3>
+<label class="check"><input id="showPrintArea" type="checkbox" ${state.print.showArea?'checked':''}> Show printable area on canvas</label>
+<div class="row"><div class="field"><label>Paper size</label><select id="printPaper"><option>A4</option><option>A3</option><option>A2</option><option>A1</option><option>A0</option></select></div>
+<div class="field"><label>Orientation</label><select id="printOrientation"><option value="landscape">Landscape</option><option value="portrait">Portrait</option></select></div></div>
+<div class="field"><label>Print mode</label><select id="printMode"><option value="fit">Scale to fit page</option><option value="scale">Specified drawing scale</option></select></div>
+<div class="field"><label>Drawing scale 1:</label><input id="printScale" type="number" min="1" step="10" value="${state.print.scale||100}"></div>
+<div class="row"><div class="field"><label>Page origin X (m)</label><input id="printOriginX" type="number" step=".1" value="${state.print.originX||0}"></div>
+<div class="field"><label>Page origin Y (m)</label><input id="printOriginY" type="number" step=".1" value="${state.print.originY||0}"></div></div>
+<button id="fitPrintArea" class="btn" style="width:100%;margin-bottom:6px">Fit Page Around Current Story</button>
+<button id="printPreview" class="btn primary" style="width:100%">Print / Save PDF</button>
+</div><div class="section"><h3>Export</h3><button id="svg" class="btn" style="width:100%;margin-bottom:6px">Export SVG</button><button id="dxf" class="btn" style="width:100%;margin-bottom:6px">Export DXF</button><button id="csv" class="btn" style="width:100%">Export Room Table CSV</button></div></aside></div></div>`;
+canvas=$('#canvas');ctx=canvas.getContext('2d');resize();draw();$('#gridM').value=state.gridM;if($('#lineWeight'))$('#lineWeight').value=state.style.weight;if($('#linePattern'))$('#linePattern').value=state.style.pattern;
+$('#home').onclick=()=>{state.mode='start';render()};$('#setup').onclick=()=>{state.mode='setup';render()};
+$('#storySelect').onchange=e=>switchStory(e.target.value);
+$('#addStory').onclick=addStory;
+$('#renameStory').onclick=renameStory;
+$('#deleteStory').onclick=deleteStory;$('#toggleLeft').onclick=()=>{state.leftOpen=!state.leftOpen;render()};$('#toggleRight').onclick=()=>{state.rightOpen=!state.rightOpen;render()};bindResizers();$('#undo').onclick=undo;$('#redo').onclick=redo;$('#print').onclick=openPrintSettings;$('#save').onclick=saveJSON;$('#open').onchange=openJSON;$('#grid').onchange=e=>{state.grid=e.target.checked;draw()};$('#showOrigin').onchange=e=>{state.showOrigin=e.target.checked;draw()};$('#showAxes').onchange=e=>{state.showAxes=e.target.checked;draw()};$('#showLowerStory').onchange=e=>{state.showLowerStory=e.target.checked;draw()};$('#snapToUnderlay').onchange=e=>{state.snapToUnderlay=e.target.checked;draw()};$('#lowerStorySingleColor').onchange=e=>{state.lowerStorySingleColor=e.target.checked;draw()};$('#lowerStoryColor').oninput=e=>{state.lowerStoryColor=e.target.value;draw()};$('#lowerStoryOpacity').oninput=e=>{
+  state.lowerStoryOpacity=+e.target.value;
+  const label=e.target.parentElement.querySelector('.small');
+  if(label)label.textContent=Math.round(state.lowerStoryOpacity*100)+'% opacity';
+  draw();
+};$('#snap').onchange=e=>state.snap=e.target.checked;$('#autoCloseChain').onchange=e=>state.autoCloseChain=e.target.checked;$('#snapPriority').value=state.snapPriority;$('#snapPriority').onchange=e=>state.snapPriority=e.target.value;$('#gridM').onchange=e=>{state.gridM=+e.target.value;draw()};document.querySelectorAll('[data-room]').forEach(b=>b.onclick=e=>{if(e.shiftKey)toggleSelection(b.dataset.room);else setSingleSelection(b.dataset.room);render()});document.querySelectorAll('[data-tool]').forEach(b=>b.onclick=()=>{state.tool=b.dataset.tool;action=null;toolPoints=[];state.snapMarker=null;state.chainCloseHint=null;snapGuides=[];if(snapClearTimer)clearTimeout(snapClearTimer);if(state.tool!=='edgeStyle')state.selectedBoundary=null;if(state.tool!=='selectLines')state.selectedShapes=[];render()});
+$('#zoomIn').onclick=()=>zoomAt(canvas.clientWidth/2,canvas.clientHeight/2,state.zoom*1.2);$('#zoomOut').onclick=()=>zoomAt(canvas.clientWidth/2,canvas.clientHeight/2,state.zoom/1.2);$('#zoomFit').onclick=zoomFit;
+if(sel){
+const editingRoomId=sel.id;
+const applyRoomEdit=()=>{
+  const current=state.rooms.find(r=>r.id===editingRoomId);
+  if(!current)return;
+  const p=readForm('s_');
+  if(!p.name)return alert('Room name cannot be empty.');
+  if(!Number.isFinite(p.width)||!Number.isFinite(p.length)||p.width<=0||p.length<=0)return alert('Width and length must be positive numbers.');
+  commit(rs=>rs.map(r=>{
+    if(r.id!==editingRoomId)return r;
+    let nr={...r,...p};
+    if(p.storyId){nr.storyId=p.storyId;const st=state.stories.find(s=>s.id===p.storyId);if(st)nr.floor=st.name;}
+    if(p.isRegular===false&&(!Array.isArray(r.vertices)||r.vertices.length<3))
+      nr.vertices=[{x:r.x,y:r.y},{x:r.x+p.width,y:r.y},{x:r.x+p.width,y:r.y+p.length},{x:r.x,y:r.y+p.length}];
+    if(p.isRegular!==false){
+      const v=roomVertices(r);
+      nr.x=Math.min(...v.map(q=>q.x));nr.y=Math.min(...v.map(q=>q.y));nr.width=p.width;nr.length=p.length;
+    }
+    return nr;
+  }));
+  warnArea();
+};
+$('#applyRoomChanges').onclick=applyRoomEdit;
+document.querySelectorAll('[id^="s_"]').forEach(el=>{
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){
+      e.preventDefault();e.stopPropagation();applyRoomEdit();
+    }
+  });
+});
+$('#delete').onclick=()=>{commit(rs=>rs.filter(r=>r.id!==sel.id));state.selected=null;state.selectedIds=[]};$('#clear').onclick=()=>commit(rs=>rs.map(r=>r.id===sel.id?{...r,shapes:[]}:r));$('#lineColor').onchange=e=>state.style.color=e.target.value;$('#lineWeight').onchange=e=>state.style.weight=+e.target.value;$('#linePattern').onchange=e=>state.style.pattern=e.target.value;$('#cornerSize').onchange=e=>state.cornerSize=Math.max(.01,+e.target.value||.3);$('#boundaryOpacity').oninput=e=>{sel.boundaryOpacity=+e.target.value;draw()};$('#boundaryPrintable').onchange=e=>sel.boundaryPrintable=e.target.checked;
+if($('#edgePattern'))$('#edgePattern').value=(((sel.boundaryStyles||[])[state.selectedBoundary.edgeIndex]||{}).pattern||'solid');
+if($('#edgeColor'))$('#edgeColor').oninput=e=>{const i=state.selectedBoundary.edgeIndex;sel.boundaryStyles=sel.boundaryStyles||[];sel.boundaryStyles[i]={...(sel.boundaryStyles[i]||{}),color:e.target.value};draw()};
+if($('#edgePattern'))$('#edgePattern').onchange=e=>{const i=state.selectedBoundary.edgeIndex;sel.boundaryStyles=sel.boundaryStyles||[];sel.boundaryStyles[i]={...(sel.boundaryStyles[i]||{}),pattern:e.target.value};draw()};
+if($('#clearEdgeStyle'))$('#clearEdgeStyle').onclick=()=>{const i=state.selectedBoundary.edgeIndex;sel.boundaryStyles=sel.boundaryStyles||[];sel.boundaryStyles[i]={};render()}
+}
+if($('#maxProjectArea'))$('#maxProjectArea').onchange=e=>{state.project.maxArea=Math.max(0,+e.target.value||0);render()};if($('#propertyColor'))$('#propertyColor').onchange=e=>state.propertyColor=e.target.value;if($('#limitColor'))$('#limitColor').onchange=e=>state.limitColor=e.target.value;
+$('#printPaper').value=state.print.paper;$('#printOrientation').value=state.print.orientation;$('#printMode').value=state.print.mode;
+$('#showPrintArea').onchange=e=>{state.print.showArea=e.target.checked;draw()};
+$('#printPaper').onchange=e=>{state.print.paper=e.target.value;draw()};
+$('#printOrientation').onchange=e=>{state.print.orientation=e.target.value;draw()};
+$('#printMode').onchange=e=>{state.print.mode=e.target.value;draw()};
+$('#printScale').oninput=e=>{state.print.scale=Math.max(1,+e.target.value||100);draw()};
+$('#printOriginX').oninput=e=>{state.print.originX=+e.target.value||0;draw()};
+$('#printOriginY').oninput=e=>{state.print.originY=+e.target.value||0;draw()};
+$('#fitPrintArea').onclick=fitPrintAreaToStory;
+$('#printPreview').onclick=printProject;
+$('#svg').onclick=exportSVG;$('#dxf').onclick=exportDXF;$('#csv').onclick=exportCSV;canvas.onpointerdown=down;canvas.onpointermove=move;canvas.onpointerup=up;canvas.onpointercancel=up;canvas.ondblclick=e=>{if(state.tool!=='select')return;const h=hitRoomTag(e);if(h){e.preventDefault();e.stopPropagation();action=null;setSingleSelection(h.room.id);startRoomNameEditor(h.room)}};canvas.onwheel=wheel;canvas.oncontextmenu=e=>{
+  e.preventDefault();
+  const p=world(e),r=hit(p);
+  if(r&&!isRoomSelected(r.id)){setSingleSelection(r.id);draw()}
+  showContextMenu(e,p);
+};window.onkeydown=keyDown;window.onresize=()=>{resize();draw()}}
+function bindResizers(){const ws=$('#workspace');const bind=(el,side)=>{if(!el)return;el.onpointerdown=e=>{el.setPointerCapture(e.pointerId);const start=e.clientX,base=side==='left'?state.leftW:state.rightW;el.onpointermove=ev=>{const delta=ev.clientX-start;const val=Math.max(150,Math.min(500,base+(side==='left'?delta:-delta)));if(side==='left')state.leftW=val;else state.rightW=val;ws.style.setProperty(side==='left'?'--leftW':'--rightW',val+'px');resize();draw()};el.onpointerup=()=>{el.onpointermove=null;el.onpointerup=null}}};bind($('#leftResize'),'left');bind($('#rightResize'),'right')}
+function resize(){if(!canvas)return;const r=canvas.getBoundingClientRect(),d=devicePixelRatio||1;canvas.width=Math.max(1,r.width*d);canvas.height=Math.max(1,r.height*d);ctx.setTransform(d,0,0,d,0,0)}
+const screen=p=>({x:p.x*SCALE*state.zoom+state.pan.x,y:p.y*SCALE*state.zoom+state.pan.y});function world(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left-state.pan.x)/(SCALE*state.zoom),y:(e.clientY-r.top-state.pan.y)/(SCALE*state.zoom)}}
+function roomTagWorld(r){const v=roomVertices(r),cx=v.reduce((a,p)=>a+p.x,0)/v.length,cy=v.reduce((a,p)=>a+p.y,0)/v.length,o=r.tagOffset||{x:0,y:0};return{x:cx+(+o.x||0),y:cy+(+o.y||0)}}
+function roomTagBox(r){const c=screen(roomTagWorld(r));ctx.save();ctx.font='600 13px Segoe UI,Arial';const nw=ctx.measureText(r.name||'Room').width;ctx.font='11px Segoe UI,Arial';const aw=ctx.measureText(area(r).toFixed(2)+' m²').width;ctx.restore();const w=Math.max(nw,aw)+18,h=42;return{room:r,left:c.x-w/2,right:c.x+w/2,top:c.y-h/2,bottom:c.y+h/2,cx:c.x,cy:c.y}}
+function hitRoomTag(e){if(!canvas||!ctx)return null;const b=canvas.getBoundingClientRect(),x=e.clientX-b.left,y=e.clientY-b.top,rooms=roomsOnStory();for(let i=rooms.length-1;i>=0;i--){const box=roomTagBox(rooms[i]);if(x>=box.left&&x<=box.right&&y>=box.top&&y<=box.bottom)return box}return null}
+function startRoomNameEditor(r){document.querySelector('.tagEditor')?.remove();const wrap=canvas.parentElement,c=screen(roomTagWorld(r)),input=document.createElement('input');input.className='tagEditor';input.value=r.name||'';input.style.left=c.x+'px';input.style.top=(c.y-8)+'px';wrap.appendChild(input);let done=false;const finish=save=>{if(done)return;done=true;const value=input.value.trim();input.remove();if(save&&value&&value!==r.name)commit(rs=>rs.map(x=>x.id===r.id?{...x,name:value}:x));else draw()};input.onkeydown=e=>{e.stopPropagation();if(e.key==='Enter'){e.preventDefault();finish(true)}else if(e.key==='Escape'){e.preventDefault();finish(false)}};input.onblur=()=>finish(true);requestAnimationFrame(()=>{input.focus();input.select()})}
+function zoomAt(sx,sy,newZoom){newZoom=Math.max(.2,Math.min(5,newZoom));const wx=(sx-state.pan.x)/(SCALE*state.zoom),wy=(sy-state.pan.y)/(SCALE*state.zoom);state.zoom=newZoom;state.pan.x=sx-wx*SCALE*state.zoom;state.pan.y=sy-wy*SCALE*state.zoom;draw()}
+function wheel(e){e.preventDefault();const r=canvas.getBoundingClientRect();zoomAt(e.clientX-r.left,e.clientY-r.top,state.zoom*(e.deltaY<0?1.12:.89))}
+function zoomFit(){if(!state.rooms.length)return;const minX=Math.min(...state.rooms.map(r=>r.x)),minY=Math.min(...state.rooms.map(r=>r.y)),maxX=Math.max(...state.rooms.map(r=>r.x+r.width)),maxY=Math.max(...state.rooms.map(r=>r.y+r.length));const pad=60,w=maxX-minX,h=maxY-minY;state.zoom=Math.max(.2,Math.min(3,Math.min((canvas.clientWidth-pad*2)/(w*SCALE),(canvas.clientHeight-pad*2)/(h*SCALE))));state.pan={x:pad-minX*SCALE*state.zoom,y:pad-minY*SCALE*state.zoom};draw()}
+
+const PAPER_MM={A4:[210,297],A3:[297,420],A2:[420,594],A1:[594,841],A0:[841,1189]};
+function printPageWorldSize(){
+  let [a,b]=PAPER_MM[state.print.paper]||PAPER_MM.A3;
+  let w=state.print.orientation==='landscape'?b:a,h=state.print.orientation==='landscape'?a:b;
+  const margin=Math.max(0,state.print.marginMm||10);
+  w=Math.max(10,w-margin*2);h=Math.max(10,h-margin*2);
+  const scale=Math.max(1,state.print.scale||100);
+  return {w:w*scale/1000,h:h*scale/1000,paperW:state.print.orientation==='landscape'?b:a,paperH:state.print.orientation==='landscape'?a:b};
+}
+function activeStoryBounds(){
+  const rs=roomsOnStory();
+  if(!rs.length)return {left:0,top:0,right:10,bottom:7};
+  const bs=rs.map(roomBounds);
+  return {left:Math.min(...bs.map(b=>b.left)),top:Math.min(...bs.map(b=>b.top)),right:Math.max(...bs.map(b=>b.right)),bottom:Math.max(...bs.map(b=>b.bottom))};
+}
+function fitPrintAreaToStory(){
+  const b=activeStoryBounds(),pad=.5,w=Math.max(.1,b.right-b.left+pad*2),h=Math.max(.1,b.bottom-b.top+pad*2);
+  let [a,c]=PAPER_MM[state.print.paper]||PAPER_MM.A3;
+  const paperW=state.print.orientation==='landscape'?c:a,paperH=state.print.orientation==='landscape'?a:c;
+  const usableW=paperW-20,usableH=paperH-20;
+  state.print.scale=Math.max(1,Math.ceil(Math.max(w*1000/usableW,h*1000/usableH)));
+  state.print.originX=b.left-pad;state.print.originY=b.top-pad;
+  render();
+}
+function printViewBox(){
+  if(state.print.mode==='fit'){
+    const b=activeStoryBounds(),pad=.5;
+    return {x:b.left-pad,y:b.top-pad,w:Math.max(1,b.right-b.left+pad*2),h:Math.max(1,b.bottom-b.top+pad*2)};
+  }
+  const p=printPageWorldSize();
+  return {x:state.print.originX||0,y:state.print.originY||0,w:p.w,h:p.h};
+}
+function buildPrintSVG(){
+  const vb=printViewBox(),p=printPageWorldSize(),rs=roomsOnStory();
+  let s=`<svg xmlns="http://www.w3.org/2000/svg" width="${p.paperW}mm" height="${p.paperH}mm" viewBox="${vb.x} ${vb.y} ${vb.w} ${vb.h}" preserveAspectRatio="xMidYMid meet"><rect x="${vb.x}" y="${vb.y}" width="${vb.w}" height="${vb.h}" fill="white"/>`;
+  state.guides.filter(g=>g.printable!==false).forEach(g=>{s+=`<line x1="${g.a.x}" y1="${g.a.y}" x2="${g.b.x}" y2="${g.b.y}" stroke="${g.color||'#555'}" stroke-width="${vb.w/1200}" stroke-dasharray="${vb.w/250} ${vb.w/350}"/>`});
+  rs.forEach(r=>{
+    const v=roomVertices(r),pts=v.map(q=>`${q.x},${q.y}`).join(' '),cx=v.reduce((a,q)=>a+q.x,0)/v.length,cy=v.reduce((a,q)=>a+q.y,0)/v.length;
+    s+=`<polygon points="${pts}" fill="${r.color||'#dbeafe'}" fill-opacity=".55" stroke="#334155" stroke-width="${vb.w/900}"/>`;
+    s+=`<text x="${cx}" y="${cy-vb.h/100}" text-anchor="middle" font-family="Arial" font-size="${vb.h/45}" fill="#172033">${esc(r.name)}</text>`;
+    s+=`<text x="${cx}" y="${cy+vb.h/70}" text-anchor="middle" font-family="Arial" font-size="${vb.h/58}" fill="#475569">${area(r).toFixed(2)} m²</text>`;
+  });
+  s+='</svg>';return s;
+}
+function printProject(){
+  let sheet=document.getElementById('printSheet');
+  if(!sheet){sheet=document.createElement('div');sheet.id='printSheet';document.body.appendChild(sheet)}
+  sheet.innerHTML=buildPrintSVG();
+  const p=printPageWorldSize();
+  let style=document.getElementById('dynamicPrintPage');
+  if(!style){style=document.createElement('style');style.id='dynamicPrintPage';document.head.appendChild(style)}
+  style.textContent=`@media print{@page{size:${p.paperW}mm ${p.paperH}mm;margin:0}}`;
+  setTimeout(()=>window.print(),50);
+}
+function openPrintSettings(){
+  const el=$('#printPreview');if(el){el.scrollIntoView({behavior:'smooth',block:'center'});return}
+  printProject();
+}
+
+function dash(p){ctx.setLineDash(p==='dashed'?[10,6]:p==='dotted'?[2,5]:[])}
+function roomVertices(r){if(r.isRegular===false&&Array.isArray(r.vertices)&&r.vertices.length>=3)return r.vertices;return [{x:r.x,y:r.y},{x:r.x+r.width,y:r.y},{x:r.x+r.width,y:r.y+r.length},{x:r.x,y:r.y+r.length}]}function syncBounds(r){const v=roomVertices(r);r.x=Math.min(...v.map(p=>p.x));r.y=Math.min(...v.map(p=>p.y));r.width=Math.max(...v.map(p=>p.x))-r.x;r.length=Math.max(...v.map(p=>p.y))-r.y;return r}function grips(r){const v=roomVertices(r);const mids=v.map((a,i)=>{const b=v[(i+1)%v.length];return{x:(a.x+b.x)/2,y:(a.y+b.y)/2,edge:i}});return v.map((p,i)=>({...p,kind:'vertex',vertex:i})).concat(mids.map(p=>({...p,kind:'edge'})))}
+function drawGrips(r){grips(r).forEach((g,i)=>{const p=screen(g);ctx.fillStyle=g.kind==='vertex'?'#fff':'#2563eb';ctx.strokeStyle='#2563eb';ctx.lineWidth=2;ctx.fillRect(p.x-5,p.y-5,10,10);ctx.strokeRect(p.x-5,p.y-5,10,10)})}
+function drawGuide(g){ctx.save();ctx.strokeStyle=g.color;ctx.lineWidth=g.weight||3;ctx.setLineDash(g.type==='limit'?[12,7]:[5,5]);const a=screen(g.a),b=screen(g.b);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.restore()}
+function drawShape(s){ctx.save();ctx.strokeStyle=s.__selected?'#f59e0b':(s.color||state.style.color);ctx.lineWidth=s.__selected?4:(s.weight||state.style.weight);dash(s.pattern||state.style.pattern);ctx.beginPath();if(s.type==='arc'){const c=screen(s.center);ctx.arc(c.x,c.y,s.radius*SCALE*state.zoom,s.startAngle,s.endAngle,s.ccw||false)}else{const a=screen(s.a),b=screen(s.b);if(s.type==='line'){ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y)}else if(s.type==='rect'){ctx.rect(a.x,a.y,b.x-a.x,b.y-a.y)}else if(s.type==='circle'){ctx.arc(a.x,a.y,s.radius*SCALE*state.zoom,0,Math.PI*2)}}ctx.stroke();ctx.restore()}
+function pointInPolygon(p,v){let inside=false;for(let i=0,j=v.length-1;i<v.length;j=i++){const a=v[i],b=v[j];if(((a.y>p.y)!==(b.y>p.y))&&(p.x<(b.x-a.x)*(p.y-a.y)/((b.y-a.y)||1e-12)+a.x))inside=!inside}return inside}function hit(p){return [...roomsOnStory()].reverse().find(r=>pointInPolygon(p,roomVertices(r)))}
+function allSnapPoints(){
+  const pts=[];
+  roomsOnStory().forEach(r=>{
+    roomVertices(r).forEach((p,i)=>pts.push({x:p.x,y:p.y,kind:'room',roomId:r.id,index:i}));
+    (r.shapes||[]).forEach((s,i)=>{
+      if(s.a)pts.push({x:s.a.x,y:s.a.y,kind:'shape',roomId:r.id,index:i});
+      if(s.b)pts.push({x:s.b.x,y:s.b.y,kind:'shape',roomId:r.id,index:i});
+    });
+  });
+  if(state.snapToUnderlay&&state.showLowerStory){
+    const ls=lowerStory();
+    if(ls)roomsOnStory(ls.id).forEach(r=>roomVertices(r).forEach((p,i)=>pts.push({x:p.x,y:p.y,kind:'underlay',roomId:r.id,index:i})));
+  }
+  (state.freeShapes||[]).forEach((s,i)=>{
+    if(s.storyId&&s.storyId!==state.activeStoryId)return;
+    if(s.a)pts.push({x:s.a.x,y:s.a.y,kind:'freeShape',index:i});
+    if(s.b)pts.push({x:s.b.x,y:s.b.y,kind:'freeShape',index:i});
+  });
+  return pts;
+}
+function snapDrawingPoint(raw){
+  keepSnapVisuals();state.snapMarker=null;state.chainCloseHint=null;
+  if(!state.snap)return raw;
+  const tol=Math.max(.12,12/(SCALE*state.zoom));
+  const gridPoint={x:snap(raw.x),y:snap(raw.y)};
+  if(state.tool==='chain'&&action&&action.kind==='twoClick'&&action.chainStart){
+    const d0=Math.hypot(raw.x-action.chainStart.x,raw.y-action.chainStart.y);
+    if(d0<=tol){
+      state.snapMarker={x:action.chainStart.x,y:action.chainStart.y};
+      state.chainCloseHint={x:action.chainStart.x,y:action.chainStart.y};
+      return{x:action.chainStart.x,y:action.chainStart.y};
+    }
+  }
+  let best=null,bd=Infinity;
+  allSnapPoints().forEach(q=>{
+    const d=Math.hypot(raw.x-q.x,raw.y-q.y);
+    if(d<=tol&&d<bd){best=q;bd=d}
+  });
+  if(state.snapPriority==='geometry'){
+    if(best){state.snapMarker={x:best.x,y:best.y};return{x:best.x,y:best.y}}
+    return gridPoint;
+  }
+  const gridDist=Math.hypot(raw.x-gridPoint.x,raw.y-gridPoint.y);
+  if(gridDist<=tol){state.snapMarker={x:gridPoint.x,y:gridPoint.y,kind:'grid'};return gridPoint}
+  if(best){state.snapMarker={x:best.x,y:best.y};return{x:best.x,y:best.y}}
+  return gridPoint;
+}
+
+function snapResizePoint(raw,roomId){
+  keepSnapVisuals();if(!state.snap)return raw;
+  const tol=Math.max(.12,12/(SCALE*state.zoom));
+  const candidates=[];
+  roomsOnStory().forEach(r=>{
+    if(r.id===roomId)return;
+    roomVertices(r).forEach(p=>candidates.push({x:p.x,y:p.y}));
+  });
+  let bestX=null,bestY=null,dx=Infinity,dy=Infinity;
+  candidates.forEach(p=>{
+    const ddx=Math.abs(raw.x-p.x),ddy=Math.abs(raw.y-p.y);
+    if(ddx<=tol&&ddx<dx){dx=ddx;bestX=p.x}
+    if(ddy<=tol&&ddy<dy){dy=ddy;bestY=p.y}
+  });
+  let out={...raw};
+  if(state.snapPriority==='geometry'){
+    if(bestX!==null)out.x=bestX;else out.x=snap(out.x);
+    if(bestY!==null)out.y=bestY;else out.y=snap(out.y);
+  }else{
+    out={x:snap(out.x),y:snap(out.y)};
+    if(bestX!==null&&Math.abs(raw.x-bestX)<Math.abs(raw.x-out.x))out.x=bestX;
+    if(bestY!==null&&Math.abs(raw.y-bestY)<Math.abs(raw.y-out.y))out.y=bestY;
+  }
+  state.snapMarker=(bestX!==null||bestY!==null)?{x:bestX!==null?bestX:out.x,y:bestY!==null?bestY:out.y}:null;
+  return out;
+}
+function nearestDraftShape(p){
+  let best=null;
+  roomsOnStory().forEach(r=>(r.shapes||[]).forEach((s,i)=>{
+    if(s.type!=='line')return;
+    const vx=s.b.x-s.a.x,vy=s.b.y-s.a.y,len2=vx*vx+vy*vy;
+    const t=Math.max(0,Math.min(1,((p.x-s.a.x)*vx+(p.y-s.a.y)*vy)/(len2||1)));
+    const q={x:s.a.x+t*vx,y:s.a.y+t*vy},d=Math.hypot(p.x-q.x,p.y-q.y);
+    if(!best||d<best.d)best={roomId:r.id,index:i,d,q};
+  }));
+  (state.freeShapes||[]).forEach((s,i)=>{
+    if(s.storyId&&s.storyId!==state.activeStoryId)return;
+    if(s.type!=='line')return;
+    const vx=s.b.x-s.a.x,vy=s.b.y-s.a.y,len2=vx*vx+vy*vy;
+    const t=Math.max(0,Math.min(1,((p.x-s.a.x)*vx+(p.y-s.a.y)*vy)/(len2||1)));
+    const q={x:s.a.x+t*vx,y:s.a.y+t*vy},d=Math.hypot(p.x-q.x,p.y-q.y);
+    if(!best||d<best.d)best={roomId:'__free__',index:i,d,q};
+  });
+  return best&&best.d<Math.max(.18,10/(SCALE*state.zoom))?best:null;
+}
+function isShapeSelected(roomId,index){return state.selectedShapes.some(s=>s.roomId===roomId&&s.index===index)}
+function toggleShapeSelection(roomId,index){
+  const k=state.selectedShapes.findIndex(s=>s.roomId===roomId&&s.index===index);
+  if(k>=0)state.selectedShapes.splice(k,1);else state.selectedShapes.push({roomId,index});
+}
+function deleteSelectedShapes(){
+  if(!state.selectedShapes.length)return;
+  state.history.push(JSON.parse(JSON.stringify(state.rooms)));state.future=[];
+  const byRoom={};state.selectedShapes.forEach(s=>(byRoom[s.roomId]||(byRoom[s.roomId]=new Set())).add(s.index));
+  state.rooms.forEach(r=>{if(byRoom[r.id])r.shapes=(r.shapes||[]).filter((_,i)=>!byRoom[r.id].has(i))});
+  if(byRoom['__free__'])state.freeShapes=(state.freeShapes||[]).filter((_,i)=>!byRoom['__free__'].has(i));
+  state.selectedShapes=[];render();
+}
+
+function selectedRoomIds(){return state.selectedIds&&state.selectedIds.length?state.selectedIds:(state.selected?[state.selected]:[])}
+function activeStory(){return state.stories.find(s=>s.id===state.activeStoryId)||state.stories[0]}
+function storyIndex(id){return state.stories.findIndex(s=>s.id===id)}
+function roomsOnStory(id=state.activeStoryId){return state.rooms.filter(r=>(r.storyId||'story-1')===id)}
+function lowerStory(){
+  const i=storyIndex(state.activeStoryId);
+  return i>0?state.stories[i-1]:null;
+}
+function addStory(){
+  const name=(prompt('Story name',`Story ${state.stories.length+1}`)||'').trim();
+  if(!name)return;
+  const id='story-'+Date.now();
+  const prev=state.stories[state.stories.length-1];
+  const elevation=+(prompt('Elevation (m)',String((prev?.elevation||0)+3))||((prev?.elevation||0)+3));
+  state.stories.push({id,name,elevation:Number.isFinite(elevation)?elevation:0});
+  state.activeStoryId=id;state.selected=null;state.selectedIds=[];render();
+}
+function renameStory(){
+  const s=activeStory();if(!s)return;
+  const name=(prompt('Story name',s.name)||'').trim();
+  if(name){s.name=name;render()}
+}
+function deleteStory(){
+  if(state.stories.length<=1)return alert('At least one story must remain.');
+  const s=activeStory();
+  if(roomsOnStory(s.id).length&&!confirm(`Delete ${s.name} and all rooms on it?`))return;
+  state.rooms=state.rooms.filter(r=>(r.storyId||'story-1')!==s.id);
+  const i=storyIndex(s.id);state.stories.splice(i,1);
+  state.activeStoryId=state.stories[Math.max(0,i-1)].id;
+  state.selected=null;state.selectedIds=[];render();
+}
+function switchStory(id){
+  state.activeStoryId=id;
+  state.selected=null;state.selectedIds=[];
+  state.selectedShapes=[];state.selectedBoundary=null;
+  render();
+}
+
+function isRoomSelected(id){return selectedRoomIds().includes(id)}
+function setSingleSelection(id){state.selected=id||null;state.selectedIds=id?[id]:[]}
+function nextCopyName(name){return (name||'Room')+' Copy'}
+function copySelectedRooms(){
+  const ids=selectedRoomIds();
+  state.clipboardRooms=ids.map(id=>{
+    const r=state.rooms.find(x=>x.id===id);
+    return r?JSON.parse(JSON.stringify(r)):null;
+  }).filter(Boolean);
+  return state.clipboardRooms.length>0;
+}
+function pasteRooms(atPoint){
+  if(!state.clipboardRooms||!state.clipboardRooms.length)return false;
+  state.history.push(JSON.parse(JSON.stringify(state.rooms)));if(state.history.length>50)state.history.shift();state.future=[];
+  const src=state.clipboardRooms.map(r=>JSON.parse(JSON.stringify(r)));
+  const bounds=src.map(roomBounds);
+  const minX=Math.min(...bounds.map(b=>b.left)),minY=Math.min(...bounds.map(b=>b.top));
+  const offset=atPoint?{x:atPoint.x-minX,y:atPoint.y-minY}:{x:.5,y:.5};
+  const newIds=[];
+  src.forEach(r=>{
+    const id=uid(),dx=offset.x,dy=offset.y;
+    r.id=id;r.storyId=state.activeStoryId;r.name=nextCopyName(r.name);r.number=nextRoomNumber(r.number);
+    r.x+=dx;r.y+=dy;
+    if(r.isRegular===false&&Array.isArray(r.vertices))r.vertices=r.vertices.map(v=>({x:v.x+dx,y:v.y+dy}));
+    state.rooms.push(r);newIds.push(id);
+  });
+  state.selectedIds=newIds;state.selected=newIds[newIds.length-1]||null;
+  render();return true;
+}
+function pasteRoomsInPlace(){
+  if(!state.clipboardRooms||!state.clipboardRooms.length)return false;
+  state.history.push(JSON.parse(JSON.stringify(state.rooms)));if(state.history.length>50)state.history.shift();state.future=[];
+  const newIds=[];
+  state.clipboardRooms.map(r=>JSON.parse(JSON.stringify(r))).forEach(r=>{
+    const id=uid();
+    r.id=id;
+    r.storyId=state.activeStoryId;
+    r.name=nextCopyName(r.name);
+    r.number=nextRoomNumber(r.number);
+    state.rooms.push(r);
+    newIds.push(id);
+  });
+  state.selectedIds=newIds;
+  state.selected=newIds[newIds.length-1]||null;
+  render();
+  return true;
+}
+
+function duplicateSelectedRooms(){
+  if(!copySelectedRooms())return false;
+  return pasteRooms();
+}
+function deleteSelectedRooms(){
+  const ids=new Set(selectedRoomIds());
+  if(!ids.size)return false;
+  state.history.push(JSON.parse(JSON.stringify(state.rooms)));if(state.history.length>50)state.history.shift();state.future=[];
+  state.rooms=state.rooms.filter(r=>!ids.has(r.id));
+  state.selected=null;state.selectedIds=[];
+  render();return true;
+}
+function showContextMenu(e,p){
+  document.querySelector('.contextMenu')?.remove();
+  state.contextPoint=p;
+  const hasSel=selectedRoomIds().length>0,hasClip=state.clipboardRooms&&state.clipboardRooms.length>0;
+  const m=document.createElement('div');
+  m.className='contextMenu';
+  m.style.left=Math.min(e.clientX,window.innerWidth-190)+'px';
+  m.style.top=Math.min(e.clientY,window.innerHeight-190)+'px';
+  m.innerHTML=`<button data-cmd="copy" ${hasSel?'':'disabled'}>Copy</button>
+  <button data-cmd="paste" ${hasClip?'':'disabled'}>Paste Here</button><button data-cmd="pasteInPlace" ${hasClip?'':'disabled'}>Paste in Same Location</button>
+  <button data-cmd="duplicate" ${hasSel?'':'disabled'}>Duplicate</button><button data-cmd="copyStory" ${hasSel?'':'disabled'}>Copy to Story...</button>
+  <div class="sep"></div>
+  <button data-cmd="delete" ${hasSel?'':'disabled'}>Delete</button>`;
+  document.body.appendChild(m);
+  m.addEventListener('pointerdown',ev=>ev.stopPropagation());
+  m.querySelectorAll('button').forEach(b=>b.onclick=ev=>{
+    ev.stopPropagation();
+    if(b.disabled)return;
+    const c=b.dataset.cmd;
+    if(c==='copy')copySelectedRooms();
+    else if(c==='paste')pasteRooms(state.contextPoint);else if(c==='pasteInPlace')pasteRoomsInPlace();
+    else if(c==='duplicate')duplicateSelectedRooms();
+    else if(c==='copyStory'){
+      const choices=state.stories.filter(s=>s.id!==state.activeStoryId);
+      if(!choices.length)return alert('Create another story first.');
+      const targetName=prompt('Target story name',choices[0].name);
+      const target=state.stories.find(s=>s.name===targetName);
+      if(!target)return alert('Story not found.');
+      const original=state.activeStoryId;copySelectedRooms();state.activeStoryId=target.id;pasteRooms();state.activeStoryId=original;render();
+    }
+    else if(c==='delete')deleteSelectedRooms();
+    m.remove();
+  });
+  const close=ev=>{
+    if(!m.contains(ev.target)){m.remove();document.removeEventListener('pointerdown',close,true)}
+  };
+  setTimeout(()=>document.addEventListener('pointerdown',close,true),0);
+}
+
+function toggleSelection(id){
+  const ids=new Set(selectedRoomIds());
+  if(ids.has(id))ids.delete(id);else ids.add(id);
+  state.selectedIds=[...ids];
+  state.selected=state.selectedIds[state.selectedIds.length-1]||null;
+}
+function roomBounds(r){
+  const v=roomVertices(r);
+  return {left:Math.min(...v.map(p=>p.x)),right:Math.max(...v.map(p=>p.x)),top:Math.min(...v.map(p=>p.y)),bottom:Math.max(...v.map(p=>p.y))};
+}
+function rectContainsBounds(rect,b){
+  return b.left>=rect.left&&b.right<=rect.right&&b.top>=rect.top&&b.bottom<=rect.bottom;
+}
+function rectTouchesBounds(rect,b){
+  return !(b.right<rect.left||b.left>rect.right||b.bottom<rect.top||b.top>rect.bottom);
+}
+function applySelectionWindow(a,b,additive){
+  const rect={left:Math.min(a.x,b.x),right:Math.max(a.x,b.x),top:Math.min(a.y,b.y),bottom:Math.max(a.y,b.y)};
+  const windowSelection=b.x>=a.x;
+  const hits=state.rooms.filter(r=>windowSelection?rectContainsBounds(rect,roomBounds(r)):rectTouchesBounds(rect,roomBounds(r))).map(r=>r.id);
+  const ids=additive?new Set(selectedRoomIds()):new Set();
+  hits.forEach(id=>ids.add(id));
+  state.selectedIds=[...ids];
+  state.selected=state.selectedIds[state.selectedIds.length-1]||null;
+}
+function applyLineSelectionWindow(a,b,additive){
+  const rect={left:Math.min(a.x,b.x),right:Math.max(a.x,b.x),top:Math.min(a.y,b.y),bottom:Math.max(a.y,b.y)};
+  const windowSelection=b.x>=a.x;
+  const picked=additive?[...state.selectedShapes]:[];
+  roomsOnStory().forEach(r=>(r.shapes||[]).forEach((s,i)=>{
+    if(s.type!=='line')return;
+    const ab={left:Math.min(s.a.x,s.b.x),right:Math.max(s.a.x,s.b.x),top:Math.min(s.a.y,s.b.y),bottom:Math.max(s.a.y,s.b.y)};
+    const ok=windowSelection?rectContainsBounds(rect,ab):rectTouchesBounds(rect,ab);
+    if(ok&&!picked.some(x=>x.roomId===r.id&&x.index===i))picked.push({roomId:r.id,index:i});
+  }));
+  (state.freeShapes||[]).forEach((s,i)=>{
+    if(s.storyId&&s.storyId!==state.activeStoryId)return;
+    if(s.type!=='line')return;
+    const ab={left:Math.min(s.a.x,s.b.x),right:Math.max(s.a.x,s.b.x),top:Math.min(s.a.y,s.b.y),bottom:Math.max(s.a.y,s.b.y)};
+    const ok=windowSelection?rectContainsBounds(rect,ab):rectTouchesBounds(rect,ab);
+    if(ok&&!picked.some(x=>x.roomId==='__free__'&&x.index===i))picked.push({roomId:'__free__',index:i});
+  });
+  state.selectedShapes=picked;
+}
+
+
+function hitGrip(p,r){const tol=8/(SCALE*state.zoom),gs=grips(r);let best=-1,bd=Infinity;gs.forEach((g,i)=>{const d=Math.hypot(g.x-p.x,g.y-p.y);if(d<=tol&&d<bd){best=i;bd=d}});return best}function gripCursor(i,r){const gs=grips(r),g=gs[i];if(!g)return 'default';if(g.kind==='vertex')return r.isRegular===false?'move':(i===0||i===2?'nwse-resize':'nesw-resize');const v=roomVertices(r),a=v[g.edge],b=v[(g.edge+1)%v.length],dx=Math.abs(b.x-a.x),dy=Math.abs(b.y-a.y);return dx>=dy?'ns-resize':'ew-resize'}
+function lineIntersectionInfinite(a,b){const x1=a.a.x,y1=a.a.y,x2=a.b.x,y2=a.b.y,x3=b.a.x,y3=b.a.y,x4=b.b.x,y4=b.b.y;const den=(x1-x2)*(y3-y4)-(y1-y2)*(x3-x4);if(Math.abs(den)<1e-9)return null;const t=((x1-x3)*(y3-y4)-(y1-y3)*(x3-x4))/den,u=-((x1-x2)*(y1-y3)-(y1-y2)*(x1-x3))/den;return{x:x1+t*(x2-x1),y:y1+t*(y2-y1),t,u}}
+function nearPoint(a,b,tol=.08){return Math.hypot(a.x-b.x,a.y-b.y)<=tol}
+function closedLoop(lines){if(lines.length<3)return null;const unused=lines.map((l,i)=>({i,a:l.a,b:l.b})),loop=[unused.shift()];while(unused.length){const end=loop[loop.length-1].b;const k=unused.findIndex(l=>nearPoint(l.a,end)||nearPoint(l.b,end));if(k<0)return null;let n=unused.splice(k,1)[0];if(nearPoint(n.b,end))n={...n,a:n.b,b:n.a};loop.push(n)}if(!nearPoint(loop[loop.length-1].b,loop[0].a))return null;return loop.map(l=>l.a)}
+
+
+
+function simplifyPolygon(v){if(!v||v.length<3)return v||[];const out=[];for(let i=0;i<v.length;i++){const a=v[(i-1+v.length)%v.length],b=v[i],c=v[(i+1)%v.length];const cross=(b.x-a.x)*(c.y-b.y)-(b.y-a.y)*(c.x-b.x);if(Math.abs(cross)>1e-8)out.push(b)}return out}
+function allDraftLines(){const lines=[];state.rooms.forEach(r=>(r.shapes||[]).forEach(s=>{if(s.type==='line')lines.push({a:s.a,b:s.b,roomId:r.id})}));(state.freeShapes||[]).forEach(s=>{if(s.type==='line')lines.push({a:s.a,b:s.b,roomId:'__free__'})});return lines}
+function extractClosedLoops(lines,tol=.08){const unused=lines.map(l=>({a:{...l.a},b:{...l.b}})),loops=[];while(unused.length){const first=unused.shift(),chain=[first.a,first.b];let guard=0;while(unused.length&&guard++<5000){const end=chain[chain.length-1];if(nearPoint(end,chain[0],tol)){chain.pop();break}let k=unused.findIndex(l=>nearPoint(l.a,end,tol)||nearPoint(l.b,end,tol));if(k<0)break;let n=unused.splice(k,1)[0];if(nearPoint(n.b,end,tol))n={a:n.b,b:n.a};chain.push(n.b)}if(chain.length>=3&&nearPoint(chain[chain.length-1],chain[0],tol))chain.pop();if(chain.length>=3&&nearPoint(chain[chain.length-1],chain[0],tol)===false){/* already closed by consumed last segment */}if(chain.length>=3)loops.push(simplifyPolygon(chain))}return loops.filter(v=>v.length>=3&&polygonArea(v)>.001)}
+function createRoomFromArea(p){const loops=extractClosedLoops(allDraftLines()).filter(v=>pointInPolygon(p,v));if(!loops.length)return alert('No closed boundary of connected lines was found around the clicked point.');loops.sort((a,b)=>polygonArea(a)-polygonArea(b));const verts=loops[0],name=prompt('Room name','New Room')||'New Room',number='R-'+String(state.rooms.length+1).padStart(2,'0'),id=uid();const base=state.rooms.find(r=>r.id===state.selected);commit(rs=>[...rs,syncBounds({id,name,number,x:0,y:0,width:0,length:0,color:'#fde68a',floor:base?.floor||'Ground Floor',parentUnit:base?.parentUnit||'Apartment A',wetArea:false,isRegular:false,vertices:verts,shapes:[],boundaryOpacity:1,boundaryPrintable:true})]);state.selected=id;state.tool='select';render();warnArea()}
+function isOrthogonal(v){return v.every((p,i)=>{const q=v[(i+1)%v.length];return Math.abs(p.x-q.x)<1e-8||Math.abs(p.y-q.y)<1e-8})}
+function booleanOrthogonal(a,b,op){const av=roomVertices(a),bv=roomVertices(b);if(!isOrthogonal(av)||!isOrthogonal(bv))return null;const xs=[...new Set([...av,...bv].map(p=>+p.x.toFixed(8)))].sort((x,y)=>x-y),ys=[...new Set([...av,...bv].map(p=>+p.y.toFixed(8)))].sort((x,y)=>x-y);const edges=new Map(),key=p=>p.x.toFixed(8)+','+p.y.toFixed(8),add=(p1,p2)=>{const k=key(p1)+'>'+key(p2),rk=key(p2)+'>'+key(p1);if(edges.has(rk))edges.delete(rk);else edges.set(k,{a:p1,b:p2})};for(let i=0;i<xs.length-1;i++)for(let j=0;j<ys.length-1;j++){const x1=xs[i],x2=xs[i+1],y1=ys[j],y2=ys[j+1];if(x2-x1<1e-9||y2-y1<1e-9)continue;const c={x:(x1+x2)/2,y:(y1+y2)/2},ina=pointInPolygon(c,av),inb=pointInPolygon(c,bv),inside=op==='union'?(ina||inb):(ina&&!inb);if(inside){add({x:x1,y:y1},{x:x2,y:y1});add({x:x2,y:y1},{x:x2,y:y2});add({x:x2,y:y2},{x:x1,y:y2});add({x:x1,y:y2},{x:x1,y:y1})}}const remaining=[...edges.values()],loops=[];while(remaining.length){const e=remaining.shift(),loop=[e.a,e.b];let guard=0;while(guard++<10000){const end=loop[loop.length-1];if(nearPoint(end,loop[0],1e-6)){loop.pop();break}const k=remaining.findIndex(x=>nearPoint(x.a,end,1e-6));if(k<0)break;loop.push(remaining.splice(k,1)[0].b)}if(loop.length>=3)loops.push(simplifyPolygon(loop))}loops.sort((x,y)=>polygonArea(y)-polygonArea(x));return loops}
+function beginRoomBoolean(kind,p){const r=hit(p);if(!r)return alert('Click inside a room.');if(!toolPoints.length){toolPoints=[{roomId:r.id,q:p}];state.selected=r.id;draw();return}const first=state.rooms.find(x=>x.id===toolPoints[0].roomId);if(!first||first.id===r.id){toolPoints=[];return alert('Select a different second room.')}const loops=booleanOrthogonal(first,r,kind==='mergeRooms'?'union':'difference');if(!loops)return alert('This operation currently supports rectangular and orthogonal irregular room boundaries.');if(!loops.length){toolPoints=[];return alert(kind==='subtractRoom'?'The subtraction removes the complete first room.':'The rooms do not produce a valid merged boundary.')}if(loops.length>1)alert('The operation produced multiple regions or a hole. The largest resulting region will be retained.');const verts=loops[0],newName=kind==='mergeRooms'?[first.name,r.name].filter(Boolean).join(' + '):first.name,newId=kind==='mergeRooms'?uid():first.id;commit(rs=>{const nr=syncBounds({...first,id:newId,name:newName,isRegular:false,vertices:verts,shapes:[]});return kind==='mergeRooms'?[...rs.filter(x=>x.id!==first.id&&x.id!==r.id),nr]:rs.map(x=>x.id===first.id?nr:x)});state.selected=newId;toolPoints=[];state.tool='select';render();warnArea()}
+
+let lastMiddleClick=0;
+function draw(){
+  if(!canvas||!ctx)return;
+  const w=canvas.clientWidth,h=canvas.clientHeight;
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle='#ffffff';ctx.fillRect(0,0,w,h);
+  if(state.grid){
+    const step=state.gridM*SCALE*state.zoom;
+    if(step>=4){
+      const ox=((state.pan.x%step)+step)%step,oy=((state.pan.y%step)+step)%step;
+      ctx.save();ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;ctx.beginPath();
+      for(let x=ox;x<=w;x+=step){ctx.moveTo(x,0);ctx.lineTo(x,h)}
+      for(let y=oy;y<=h;y+=step){ctx.moveTo(0,y);ctx.lineTo(w,y)}
+      ctx.stroke();ctx.restore();
+    }
+  }
+  const origin=screen({x:0,y:0});
+  if(state.showAxes){
+    ctx.save();
+    ctx.lineWidth=1.25;
+    ctx.setLineDash([]);
+    ctx.strokeStyle='rgba(220,38,38,.55)';
+    ctx.beginPath();ctx.moveTo(0,origin.y);ctx.lineTo(w,origin.y);ctx.stroke();
+    ctx.strokeStyle='rgba(22,163,74,.55)';
+    ctx.beginPath();ctx.moveTo(origin.x,0);ctx.lineTo(origin.x,h);ctx.stroke();
+    ctx.restore();
+  }
+
+  if(state.print.showArea){
+    const vb=printViewBox(),a=screen({x:vb.x,y:vb.y}),b=screen({x:vb.x+vb.w,y:vb.y+vb.h});
+    ctx.save();ctx.strokeStyle='#7c3aed';ctx.fillStyle='rgba(124,58,237,.035)';ctx.lineWidth=2;ctx.setLineDash([10,6]);
+    ctx.fillRect(a.x,a.y,b.x-a.x,b.y-a.y);ctx.strokeRect(a.x,a.y,b.x-a.x,b.y-a.y);
+    ctx.setLineDash([]);ctx.fillStyle='#6d28d9';ctx.font='600 11px Segoe UI,Arial';ctx.textAlign='left';ctx.fillText(`${state.print.paper} ${state.print.orientation} • ${state.print.mode==='fit'?'Fit':('1:'+state.print.scale)}`,a.x+6,a.y+15);ctx.restore();
+  }
+  if(state.showOrigin){
+    ctx.save();
+    ctx.strokeStyle='#dc2626';
+    ctx.fillStyle='#dc2626';
+    ctx.lineWidth=2;
+    ctx.setLineDash([]);
+    ctx.beginPath();
+    ctx.moveTo(origin.x-14,origin.y);ctx.lineTo(origin.x+14,origin.y);
+    ctx.moveTo(origin.x,origin.y-14);ctx.lineTo(origin.x,origin.y+14);
+    ctx.stroke();
+    ctx.beginPath();ctx.arc(origin.x,origin.y,4,0,Math.PI*2);ctx.fill();
+    ctx.font='600 11px Segoe UI,Arial';
+    ctx.textAlign='left';
+    ctx.textBaseline='bottom';
+    ctx.fillText('0,0',origin.x+8,origin.y-7);
+    ctx.restore();
+  }
+  state.guides.forEach(drawGuide);
+  if(state.showLowerStory){
+    const ls=lowerStory();
+    if(ls){
+      roomsOnStory(ls.id).forEach(r=>{
+        const pts=roomVertices(r).map(screen);
+        ctx.save();ctx.globalAlpha=state.lowerStoryOpacity??.18;ctx.fillStyle=state.lowerStorySingleColor?(state.lowerStoryColor||'#94a3b8'):(r.color||'#94a3b8');ctx.strokeStyle=state.lowerStorySingleColor?(state.lowerStoryColor||'#64748b'):'#64748b';ctx.lineWidth=1;ctx.setLineDash([8,5]);
+        ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i].x,pts[i].y);ctx.closePath();ctx.fill();ctx.stroke();
+        const cx=pts.reduce((a,p)=>a+p.x,0)/pts.length,cy=pts.reduce((a,p)=>a+p.y,0)/pts.length;
+        ctx.fillStyle=state.lowerStorySingleColor?(state.lowerStoryColor||'#475569'):'#475569';ctx.font='11px Segoe UI,Arial';ctx.textAlign='center';ctx.fillText(r.name||'Room',cx,cy);ctx.restore();
+      });
+    }
+  }
+  (state.freeShapes||[]).forEach((s,i)=>{
+    if(s.storyId&&s.storyId!==state.activeStoryId)return;
+    drawShape(isShapeSelected('__free__',i)?{...s,__selected:true}:s);
+  });
+  roomsOnStory().forEach(r=>{
+    const v=roomVertices(r),pts=v.map(screen);
+    ctx.save();
+    ctx.globalAlpha=Math.max(.1,Math.min(1,r.boundaryOpacity??1));
+    ctx.fillStyle=r.color||'#dbeafe';ctx.strokeStyle='#334155';ctx.lineWidth=isRoomSelected(r.id)?3:1.5;ctx.setLineDash([]);
+    ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i].x,pts[i].y);ctx.closePath();ctx.fill();ctx.restore();
+    const edgeStyles=r.boundaryStyles||[];
+    for(let i=0;i<pts.length;i++){
+      const a=pts[i],b=pts[(i+1)%pts.length],st=edgeStyles[i]||{};
+      ctx.save();ctx.strokeStyle=st.color||'#334155';ctx.lineWidth=isRoomSelected(r.id)?3:1.5;
+      ctx.setLineDash(st.pattern==='dashed'?[10,6]:st.pattern==='dotted'?[2,5]:[]);
+      if(state.selectedBoundary&&state.selectedBoundary.roomId===r.id&&state.selectedBoundary.edgeIndex===i){ctx.strokeStyle='#f59e0b';ctx.lineWidth=4}
+      ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.restore();
+    }
+    (r.shapes||[]).forEach((s,i)=>drawShape(isShapeSelected(r.id,i)?{...s,__selected:true}:s));
+    const tag=screen(roomTagWorld(r)),cx=tag.x,cy=tag.y;
+    ctx.save();ctx.fillStyle='#172033';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='600 13px Segoe UI,Arial';ctx.fillText(r.name||'Room',cx,cy-8);ctx.font='11px Segoe UI,Arial';ctx.fillStyle='#475569';ctx.fillText(area(r).toFixed(2)+' m²',cx,cy+9);ctx.restore();
+    if(r.id===state.selected&&state.tool==='select')drawGrips(r);
+  });
+  snapGuides.forEach(g=>{ctx.save();ctx.strokeStyle='#ef4444';ctx.lineWidth=1;ctx.setLineDash([6,4]);const a=screen(g.a),b=screen(g.b);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.restore()});
+  if(action&&(action.kind==='selectionRect'||action.kind==='lineSelectionRect')){
+    const a=screen(action.start),b=screen(action.current||action.start),left=Math.min(a.x,b.x),top=Math.min(a.y,b.y),w=Math.abs(b.x-a.x),h=Math.abs(b.y-a.y),cross=(action.current||action.start).x<action.start.x;
+    ctx.save();
+    ctx.fillStyle=cross?'rgba(34,197,94,.10)':'rgba(37,99,235,.10)';
+    ctx.strokeStyle=cross?'#16a34a':'#2563eb';
+    ctx.lineWidth=1.5;
+    ctx.setLineDash(cross?[8,5]:[]);
+    ctx.fillRect(left,top,w,h);ctx.strokeRect(left,top,w,h);
+    ctx.restore();
+  }
+
+  if(state.snapMarker){const sp=screen(state.snapMarker),isClose=!!state.chainCloseHint&&Math.hypot(state.chainCloseHint.x-state.snapMarker.x,state.chainCloseHint.y-state.snapMarker.y)<1e-8;ctx.save();ctx.strokeStyle=isClose?'#16a34a':'#e11d48';ctx.fillStyle=isClose?'rgba(22,163,74,.18)':'rgba(225,29,72,.12)';ctx.lineWidth=isClose?3:2;ctx.beginPath();ctx.arc(sp.x,sp.y,isClose?11:8,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(sp.x-(isClose?15:12),sp.y);ctx.lineTo(sp.x+(isClose?15:12),sp.y);ctx.moveTo(sp.x,sp.y-(isClose?15:12));ctx.lineTo(sp.x,sp.y+(isClose?15:12));ctx.stroke();if(isClose){ctx.fillStyle='#166534';ctx.font='600 11px Segoe UI,Arial';ctx.textAlign='left';ctx.fillText('Close chain',sp.x+14,sp.y-14)}ctx.restore()}
+  if(action&&action.preview)drawShape(action.preview);
+  if(toolPoints.length){ctx.save();ctx.fillStyle='#ef4444';toolPoints.forEach(t=>{const p=screen(t.q||t);ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fill()});ctx.restore()}
+}
+function down(e){
+  if(e.button===1){
+    e.preventDefault();
+    const now=performance.now();
+    if(now-lastMiddleClick<360){lastMiddleClick=0;action=null;zoomFit();return}
+    lastMiddleClick=now;
+    canvas.setPointerCapture?.(e.pointerId);
+    action={kind:'pan',sx:e.clientX,sy:e.clientY,pan:{...state.pan}};canvas.style.cursor='grabbing';return;
+  }
+  if(e.button!==0)return;
+  const raw=world(e);
+  const selected=state.rooms.find(r=>r.id===state.selected);
+  if(state.tool==='select'){
+    const tagHit=hitRoomTag(e);
+    if(tagHit){
+      const r=tagHit.room;if(!isRoomSelected(r.id))setSingleSelection(r.id);
+      state.history.push(JSON.parse(JSON.stringify(state.rooms)));state.future=[];
+      action={kind:'tagMove',id:r.id,start:raw,origin:{...(r.tagOffset||{x:0,y:0})}};
+      canvas.setPointerCapture?.(e.pointerId);draw();return;
+    }
+  }
+  if(state.tool==='select'&&selected&&selectedRoomIds().length===1){
+    const rawGrip=hitGrip(raw,selected);
+    if(rawGrip>=0){
+      state.history.push(JSON.parse(JSON.stringify(state.rooms)));state.future=[];
+      const gd=grips(selected)[rawGrip],origin=JSON.parse(JSON.stringify(selected));
+      action={kind:selected.isRegular===false?(gd.kind==='vertex'?'vertex':'edgeResize'):'rectResize',id:selected.id,grip:rawGrip,gripData:gd,origin};
+      canvas.setPointerCapture?.(e.pointerId);
+      return;
+    }
+  }
+  let p=(state.tool==='line'||state.tool==='chain'||state.tool==='property'||state.tool==='limit')?snapDrawingPoint(raw):{x:snap(raw.x),y:snap(raw.y)};
+  if(state.tool==='moveRooms'){
+    const ids=selectedRoomIds();
+    if(!ids.length){state.tool='select';render();return alert('Select one or more rooms before using Move Rooms.');}
+    if(!action||action.kind!=='commandMove'){
+      const origins=Object.fromEntries(ids.map(id=>{const r=state.rooms.find(x=>x.id===id);return [id,JSON.parse(JSON.stringify(r))]}));
+      action={kind:'commandMove',ids:[...ids],start:p,current:p,origins,before:JSON.parse(JSON.stringify(state.rooms))};
+      canvas.style.cursor='crosshair';draw();return;
+    }
+    state.history.push(action.before);if(state.history.length>50)state.history.shift();state.future=[];
+    action=null;state.tool='select';clearSnapVisuals();render();return;
+  }
+  if(state.tool==='makeIrregular'){makeSelectedIrregular();return}
+  if(state.tool==='addVertex'){addBoundaryVertex(p);return}
+  if(state.tool==='removeVertex'){removeBoundaryVertex(p);return}
+  if(state.tool==='edgeStyle'){
+    const edge=nearestBoundaryEdge(raw);
+    if(!edge)return alert('Click close to a room boundary edge.');
+    state.selectedBoundary={roomId:edge.roomId,edgeIndex:edge.edgeIndex};
+    setSingleSelection(edge.roomId);
+    render();return;
+  }
+  if(state.tool==='convert'){convertLinesToRoom();return}
+  if(state.tool==='roomByArea'){createRoomFromArea(p);return}
+  if(state.tool==='subtractRoom'||state.tool==='mergeRooms'){beginRoomBoolean(state.tool,p);return}
+  if(state.tool==='fillet'||state.tool==='chamfer'){
+    const n=nearestLine(p);if(!n)return alert('Click close to a line or room boundary edge.');toolPoints.push(n);if(toolPoints.length===2)applyCorner(state.tool);draw();return;
+  }
+  if(state.tool==='selectLines'){
+    const n=nearestDraftShape(raw);
+    if(n){
+      if(e.shiftKey)toggleShapeSelection(n.roomId,n.index);
+      else state.selectedShapes=[{roomId:n.roomId,index:n.index}];
+      draw();return;
+    }
+    if(!e.shiftKey)state.selectedShapes=[];
+    action={kind:'lineSelectionRect',start:raw,current:raw,additive:e.shiftKey,moved:false};draw();return;
+  }
+  if(state.tool==='select'){
+    const r=hit(p);
+    if(r){
+      if(e.shiftKey){
+        const sourceIds=isRoomSelected(r.id)?selectedRoomIds():[r.id];
+        state.history.push(JSON.parse(JSON.stringify(state.rooms)));state.future=[];
+        const newIds=[],origins={};
+        sourceIds.forEach(id=>{
+          const src=state.rooms.find(x=>x.id===id);if(!src)return;
+          const cp=JSON.parse(JSON.stringify(src));cp.id=uid();cp.name=nextCopyName(cp.name);cp.number=nextRoomNumber(cp.number);
+          state.rooms.push(cp);newIds.push(cp.id);origins[cp.id]=JSON.parse(JSON.stringify(cp));
+        });
+        state.selectedIds=newIds;state.selected=newIds[newIds.length-1]||null;
+        action={kind:newIds.length>1?'groupMove':'move',id:state.selected,ids:newIds,start:p,origins,origin:origins[state.selected]};
+        draw();return;
+      }
+      if(!isRoomSelected(r.id))setSingleSelection(r.id);
+      const ids=selectedRoomIds();
+      state.history.push(JSON.parse(JSON.stringify(state.rooms)));state.future=[];
+      action={kind:ids.length>1?'groupMove':'move',id:r.id,ids:[...ids],start:p,origins:Object.fromEntries(ids.map(id=>{const q=state.rooms.find(x=>x.id===id);return[id,JSON.parse(JSON.stringify(q))]})),origin:JSON.parse(JSON.stringify(r))};
+      draw();return;
+    }
+    action={kind:'selectionRect',start:raw,current:raw,additive:e.shiftKey,moved:false};
+    if(!e.shiftKey){state.selected=null;state.selectedIds=[]}
+    draw();return;
+  }
+  if(state.tool==='line'||state.tool==='chain'||state.tool==='property'||state.tool==='limit'){
+    if(!action||action.kind!=='twoClick'){
+      const type=(state.tool==='property'||state.tool==='limit')?'line':'line';
+      action={kind:'twoClick',start:p,chainStart:p,preview:{type,a:p,b:p,color:state.tool==='property'?(state.propertyColor||'#dc2626'):state.tool==='limit'?(state.limitColor||'#7c3aed'):state.style.color,weight:state.style.weight,pattern:state.tool==='property'||state.tool==='limit'?'dashed':state.style.pattern}};draw();return;
+    }
+    const previousAction=action;
+    const sh={...previousAction.preview,b:p};action=null;
+    if(state.tool==='property'||state.tool==='limit'){state.guides.push({type:state.tool,a:sh.a,b:sh.b,color:sh.color,weight:3,printable:true});draw();return}
+    const target=state.rooms.find(r=>r.id===state.selected);
+    state.history.push(JSON.parse(JSON.stringify(state.rooms)));if(state.history.length>50)state.history.shift();state.future=[];
+    if(target)target.shapes=[...(target.shapes||[]),sh];
+    else state.freeShapes=[...(state.freeShapes||[]),{...sh,storyId:state.activeStoryId}];
+    if(state.tool==='chain'){
+      const first=previousAction&&previousAction.chainStart?previousAction.chainStart:sh.a;
+      const snappedToStart=Math.hypot(p.x-first.x,p.y-first.y)<1e-8;
+      if(snappedToStart){
+        if(target)target.shapes[target.shapes.length-1]={...sh,b:{x:first.x,y:first.y}};
+        else state.freeShapes[state.freeShapes.length-1]={...sh,b:{x:first.x,y:first.y}};
+        action=null;state.snapMarker={x:first.x,y:first.y};state.chainCloseHint={x:first.x,y:first.y};draw();clearSnapVisuals();
+      }else{
+        action={kind:'twoClick',start:p,chainStart:first,preview:{type:'line',a:p,b:p,...state.style}};state.chainCloseHint=null;draw()
+      }
+    }
+    else{action=null;render();clearSnapVisuals()}
+    return;
+  }
+  if(state.tool==='rect'||state.tool==='circle'){
+    if(!selected)return alert('Select a room first.');
+    action={kind:'dragDraw',preview:state.tool==='circle'?{type:'circle',a:p,b:p,radius:0,...state.style}:{type:'rect',a:p,b:p,...state.style}};return;
+  }
+}
+
+function makeSelectedIrregular(){const r=state.rooms.find(x=>x.id===state.selected);if(!r)return alert('Select a room first.');if(r.isRegular===false)return alert('The selected room is already irregular.');commit(rs=>rs.map(room=>room.id!==r.id?room:{...room,isRegular:false,vertices:[{x:room.x,y:room.y},{x:room.x+room.width,y:room.y},{x:room.x+room.width,y:room.y+room.length},{x:room.x,y:room.y+room.length}]}));state.tool='select';render()}
+function addBoundaryVertex(p){const r=state.rooms.find(x=>x.id===state.selected);if(!r||r.isRegular!==false)return alert('Select an irregular room first. Use Make Irregular to convert a rectangular room.');const n=nearestLine(p);if(!n||n.source!=='boundary')return alert('Click close to the room boundary where the new vertex should be inserted.');commit(rs=>rs.map(room=>{if(room.id!==r.id)return room;const v=roomVertices(room),nv=[...v.slice(0,n.lineIndex+1),{x:snap(n.q.x),y:snap(n.q.y)},...v.slice(n.lineIndex+1)];return syncBounds({...room,vertices:nv})}));state.tool='select';render()}
+function removeBoundaryVertex(p){const r=state.rooms.find(x=>x.id===state.selected);if(!r||r.isRegular!==false)return alert('Select an irregular room first.');const v=roomVertices(r);if(v.length<=3)return alert('A room boundary must contain at least three vertices.');const tol=.25;let best=-1,dist=Infinity;v.forEach((q,i)=>{const d=Math.hypot(q.x-p.x,q.y-p.y);if(d<dist){dist=d;best=i}});if(best<0||dist>tol)return alert('Click close to the vertex you want to remove.');commit(rs=>rs.map(room=>room.id!==r.id?room:syncBounds({...room,vertices:v.filter((_,i)=>i!==best)})));state.tool='select';render()}
+
+function convertLinesToRoom(){
+  const base=state.rooms.find(r=>r.id===state.selected);
+  const sourceLines=base?(base.shapes||[]).filter(s=>s.type==='line'):(state.freeShapes||[]).filter(s=>s.type==='line');
+  const loops=extractClosedLoops(sourceLines,.12);
+  if(!loops.length)return alert('No closed connected loop was found. Make sure the last chain point snaps back to the first point.');
+  loops.sort((a,b)=>polygonArea(b)-polygonArea(a));
+  const verts=loops[0];
+
+  if(base&&base.isRegular===false){
+    commit(rs=>rs.map(r=>{
+      if(r.id!==base.id)return r;
+      return syncBounds({...r,vertices:verts,shapes:(r.shapes||[]).filter(s=>s.type!=='line'),boundaryStyles:[]});
+    }));
+    state.selectedBoundary=null;
+    return;
+  }
+
+  const name=prompt('New room name','Converted Room')||'Converted Room',id=uid();
+  const floor=base?.floor||'Ground Floor',parentUnit=base?.parentUnit||'Apartment A';
+  commit(rs=>[...rs,syncBounds({id,name,number:'R-'+String(rs.length+1).padStart(2,'0'),storyId:state.activeStoryId,x:0,y:0,width:0,length:0,color:'#fde68a',floor,parentUnit,wetArea:false,isRegular:false,vertices:verts,shapes:[],boundaryStyles:[],boundaryOpacity:1,boundaryPrintable:true})]);
+  if(!base)state.freeShapes=(state.freeShapes||[]).filter(s=>s.type!=='line');
+  setSingleSelection(id);state.selectedBoundary=null;
+}
+function applyCorner(kind){const r=state.rooms.find(x=>x.id===state.selected);if(!r)return alert('Select a room first.');if(toolPoints.length<2)return alert('Select two lines by clicking near each line.');const [pick1,pick2]=toolPoints;if(r.isRegular===false&&pick1.source==='boundary'&&pick2.source==='boundary'){const v=roomVertices(r),n=v.length,i1=pick1.lineIndex,i2=pick2.lineIndex;let corner=-1,prev=-1,next=-1;if((i1+1)%n===i2){corner=i2;prev=i1;next=(i2+1)%n}else if((i2+1)%n===i1){corner=i1;prev=i2;next=(i1+1)%n}else return alert('For an irregular room, select two adjacent boundary edges.');const c=v[corner],a=v[prev],b=v[next],d=Math.max(.01,state.cornerSize||.3);const la=Math.hypot(a.x-c.x,a.y-c.y),lb=Math.hypot(b.x-c.x,b.y-c.y);if(la<d||lb<d)return alert('Fillet/chamfer size is larger than an adjacent boundary edge.');const p1={x:c.x+(a.x-c.x)*d/la,y:c.y+(a.y-c.y)*d/la},p2={x:c.x+(b.x-c.x)*d/lb,y:c.y+(b.y-c.y)*d/lb};let replacement=[p1,p2];if(kind==='fillet'){const u1={x:(a.x-c.x)/la,y:(a.y-c.y)/la},u2={x:(b.x-c.x)/lb,y:(b.y-c.y)/lb},dot=Math.max(-.999999,Math.min(.999999,u1.x*u2.x+u1.y*u2.y)),theta=Math.acos(dot),radius=d*Math.tan(theta/2),bis={x:u1.x+u2.x,y:u1.y+u2.y},bl=Math.hypot(bis.x,bis.y);if(bl<1e-8)return alert('Cannot fillet a straight or reversed corner.');const centerDist=radius/Math.sin(theta/2),center={x:c.x+bis.x/bl*centerDist,y:c.y+bis.y/bl*centerDist};let a1=Math.atan2(p1.y-center.y,p1.x-center.x),a2=Math.atan2(p2.y-center.y,p2.x-center.x);const cross=u1.x*u2.y-u1.y*u2.x;let delta=a2-a1;if(cross>0&&delta<0)delta+=Math.PI*2;if(cross<0&&delta>0)delta-=Math.PI*2;const steps=Math.max(3,Math.ceil(Math.abs(delta)/(Math.PI/12)));replacement=[];for(let k=0;k<=steps;k++){const ang=a1+delta*k/steps;replacement.push({x:center.x+radius*Math.cos(ang),y:center.y+radius*Math.sin(ang)})}}commit(rs=>rs.map(room=>{if(room.id!==r.id)return room;const nv=[...v.slice(0,corner),...replacement,...v.slice(corner+1)];return syncBounds({...room,vertices:nv})}));toolPoints=[];return}const lines=(r.shapes||[]).filter(s=>s.type==='line');const [i1,i2]=toolPoints.map(x=>x.lineIndex);const l1=lines[i1],l2=lines[i2];if(!l1||!l2)return alert('Select two drawn lines, or two adjacent polygon boundary edges.');const ix=lineIntersectionInfinite(l1,l2);if(!ix)return alert('Selected lines are parallel.');const d=state.cornerSize||.3;const dir=(l)=>{const da=Math.hypot(l.a.x-ix.x,l.a.y-ix.y),db=Math.hypot(l.b.x-ix.x,l.b.y-ix.y),far=da>db?l.a:l.b,len=Math.hypot(far.x-ix.x,far.y-ix.y);return{x:(far.x-ix.x)/len,y:(far.y-ix.y)/len}};const u1=dir(l1),u2=dir(l2),p1={x:ix.x+u1.x*d,y:ix.y+u1.y*d},p2={x:ix.x+u2.x*d,y:ix.y+u2.y*d};commit(rs=>rs.map(room=>{if(room.id!==r.id)return room;let count=-1;const shapes=room.shapes.map(s=>{if(s.type!=='line')return s;count++;if(count===i1)return{...s,a:nearPoint(s.a,ix,.2)?p1:s.a,b:nearPoint(s.b,ix,.2)?p1:s.b};if(count===i2)return{...s,a:nearPoint(s.a,ix,.2)?p2:s.a,b:nearPoint(s.b,ix,.2)?p2:s.b};return s});if(kind==='chamfer')shapes.push({type:'line',a:p1,b:p2,...state.style});else{const bis={x:u1.x+u2.x,y:u1.y+u2.y},bl=Math.hypot(bis.x,bis.y);if(bl<1e-6)return room;const angle=Math.acos(Math.max(-1,Math.min(1,u1.x*u2.x+u1.y*u2.y))),centerDist=d/Math.cos(angle/2),center={x:ix.x+bis.x/bl*centerDist,y:ix.y+bis.y/bl*centerDist};shapes.push({type:'arc',center,radius:Math.hypot(p1.x-center.x,p1.y-center.y),startAngle:Math.atan2(p1.y-center.y,p1.x-center.x),endAngle:Math.atan2(p2.y-center.y,p2.x-center.x),...state.style})}return{...room,shapes}}));toolPoints=[]}
+let toolPoints=[];
+function nearestLine(p){const r=state.rooms.find(x=>x.id===state.selected);if(!r)return null;let lines=[],source='shape';if(r.isRegular===false){const v=roomVertices(r);lines=v.map((a,i)=>({type:'line',a,b:v[(i+1)%v.length]}));source='boundary'}else lines=(r.shapes||[]).filter(s=>s.type==='line');let best=null;lines.forEach((l,i)=>{const vx=l.b.x-l.a.x,vy=l.b.y-l.a.y,len2=vx*vx+vy*vy,t=Math.max(0,Math.min(1,((p.x-l.a.x)*vx+(p.y-l.a.y)*vy)/(len2||1))),q={x:l.a.x+t*vx,y:l.a.y+t*vy},d=Math.hypot(p.x-q.x,p.y-q.y);if(!best||d<best.d)best={lineIndex:i,d,q,source}});return best&&best.d<.25?best:null}
+function nearestBoundaryEdge(p){
+  let best=null;
+  state.rooms.forEach(r=>{
+    const v=roomVertices(r);
+    v.forEach((a,i)=>{
+      const b=v[(i+1)%v.length],vx=b.x-a.x,vy=b.y-a.y,len2=vx*vx+vy*vy;
+      const t=Math.max(0,Math.min(1,((p.x-a.x)*vx+(p.y-a.y)*vy)/(len2||1)));
+      const q={x:a.x+t*vx,y:a.y+t*vy},d=Math.hypot(p.x-q.x,p.y-q.y);
+      if(!best||d<best.d)best={roomId:r.id,edgeIndex:i,d,q};
+    });
+  });
+  return best&&best.d<Math.max(.18,10/(SCALE*state.zoom))?best:null;
+}
+
+function snapRoomPosition(room,nx,ny,id){keepSnapVisuals();const threshold=Math.max(0.08,12/(SCALE*state.zoom)),w=room.width,h=room.length;nx=state.snap?snap(nx):nx;ny=state.snap?snap(ny):ny;let bestX=nx,bestY=ny,dxBest=threshold+1,dyBest=threshold+1,xTarget=null,yTarget=null;const moving={left:nx,right:nx+w,top:ny,bottom:ny+h};state.rooms.forEach(o=>{if(o.id===id)return;const b={left:o.x,right:o.x+o.width,top:o.y,bottom:o.y+o.length};[[moving.left,b.left],[moving.left,b.right],[moving.right,b.left],[moving.right,b.right]].forEach(([a,t])=>{const d=Math.abs(a-t);if(d<dxBest&&d<=threshold){dxBest=d;bestX=nx+(t-a);xTarget=t}});[[moving.top,b.top],[moving.top,b.bottom],[moving.bottom,b.top],[moving.bottom,b.bottom]].forEach(([a,t])=>{const d=Math.abs(a-t);if(d<dyBest&&d<=threshold){dyBest=d;bestY=ny+(t-a);yTarget=t}})});snapGuides=[];if(xTarget!==null)snapGuides.push({a:{x:xTarget,y:-1000},b:{x:xTarget,y:1000}});if(yTarget!==null)snapGuides.push({a:{x:-1000,y:yTarget},b:{x:1000,y:yTarget}});return{x:bestX,y:bestY}}
+function move(e){let raw=world(e),p=(state.tool==='line'||state.tool==='chain'||state.tool==='property'||state.tool==='limit')?snapDrawingPoint(raw):((action&&['rectResize','edgeResize','vertex'].includes(action.kind))?snapResizePoint(raw,action.id):{x:snap(raw.x),y:snap(raw.y)});cursor=p;$('#status').textContent=`X ${p.x.toFixed(2)} m  Y ${p.y.toFixed(2)} m`;if(!action){if(state.tool==='select'){const rr=state.rooms.find(r=>r.id===state.selected),gi=rr?hitGrip(raw,rr):-1;canvas.style.cursor=gi>=0?gripCursor(gi,rr):hitRoomTag(e)?'grab':hit(raw)?'move':'default'}else canvas.style.cursor='crosshair';return}if(action.kind==='pan'){state.pan={x:action.pan.x+e.clientX-action.sx,y:action.pan.y+e.clientY-action.sy};draw();return}if(action.kind==='selectionRect'||action.kind==='lineSelectionRect'){if(Math.hypot(raw.x-action.start.x,raw.y-action.start.y)>.08)action.moved=true;action.current=raw;draw();return}if(action.kind==='tagMove'){const r=state.rooms.find(x=>x.id===action.id);if(r)r.tagOffset={x:action.origin.x+(raw.x-action.start.x),y:action.origin.y+(raw.y-action.start.y)};canvas.style.cursor='grabbing';draw();return}if(action.kind==='commandMove'){const dx=p.x-action.start.x,dy=p.y-action.start.y;action.current=p;action.ids.forEach(id=>{const r=state.rooms.find(x=>x.id===id),o=action.origins[id];if(!r||!o)return;r.x=o.x+dx;r.y=o.y+dy;if(o.vertices)r.vertices=o.vertices.map(v=>({x:v.x+dx,y:v.y+dy}))});canvas.style.cursor='crosshair';draw();return}if(action.kind==='groupMove'){const dx=p.x-action.start.x,dy=p.y-action.start.y;action.ids.forEach(id=>{const r=state.rooms.find(x=>x.id===id),o=action.origins[id];if(!r||!o)return;r.x=o.x+dx;r.y=o.y+dy;if(r.isRegular===false&&o.vertices)r.vertices=o.vertices.map(v=>({x:v.x+dx,y:v.y+dy}))});draw();return}if(action.kind==='move'){const dx=p.x-action.start.x,dy=p.y-action.start.y,r=state.rooms.find(x=>x.id===action.id);let nx=action.origin.x+dx,ny=action.origin.y+dy;const pos=snapRoomPosition(r,nx,ny,action.id);r.x=pos.x;r.y=pos.y;if(r.isRegular===false&&action.origin.vertices){const odx=pos.x-action.origin.x,ody=pos.y-action.origin.y;r.vertices=action.origin.vertices.map(v=>({x:v.x+odx,y:v.y+ody}))}draw();return}if(action.kind==='vertex'){const r=state.rooms.find(x=>x.id===action.id),gd=grips(action.origin)[action.grip];r.vertices[gd.vertex]={x:p.x,y:p.y};syncBounds(r);draw();return}if(action.kind==='edgeResize'){const r=state.rooms.find(x=>x.id===action.id),ov=roomVertices(action.origin),gd=grips(action.origin)[action.grip],i=gd.edge,j=(i+1)%ov.length,a=ov[i],b=ov[j];r.vertices=ov.map(v=>({...v}));if(Math.abs(a.y-b.y)<Math.abs(a.x-b.x)){r.vertices[i].y=p.y;r.vertices[j].y=p.y}else{r.vertices[i].x=p.x;r.vertices[j].x=p.x}syncBounds(r);draw();return}if(action.kind==='rectResize'){const r=state.rooms.find(x=>x.id===action.id),o=action.origin,gd=action.gripData,min=.1,L=o.x,R=o.x+o.width,T=o.y,B=o.y+o.length;if(gd.kind==='vertex'){const i=gd.vertex;if(i===0){r.x=Math.min(p.x,R-min);r.y=Math.min(p.y,B-min);r.width=R-r.x;r.length=B-r.y}else if(i===1){r.y=Math.min(p.y,B-min);r.width=Math.max(min,p.x-L);r.length=B-r.y}else if(i===2){r.width=Math.max(min,p.x-L);r.length=Math.max(min,p.y-T)}else{r.x=Math.min(p.x,R-min);r.width=R-r.x;r.length=Math.max(min,p.y-T)}}else{const edge=gd.edge;if(edge===0){r.y=Math.min(p.y,B-min);r.length=B-r.y}else if(edge===1){r.width=Math.max(min,p.x-L)}else if(edge===2){r.length=Math.max(min,p.y-T)}else if(edge===3){r.x=Math.min(p.x,R-min);r.width=R-r.x}}draw();return}if(action.preview){action.preview.b=p;if(action.preview.type==='circle')action.preview.radius=Math.hypot(p.x-action.preview.a.x,p.y-action.preview.a.y);draw()}}
+function up(e){if(!action)return;if(action.kind==='commandMove')return;if(action.kind==='pan'){action=null;canvas.style.cursor='grab';return}if(action.kind==='selectionRect'){const a=action.start,b=action.current||action.start,additive=action.additive,moved=action.moved;action=null;if(moved)applySelectionWindow(a,b,additive);render();clearSnapVisuals();return}if(action.kind==='lineSelectionRect'){const a=action.start,b=action.current||action.start,additive=action.additive,moved=action.moved;action=null;if(moved)applyLineSelectionWindow(a,b,additive);render();clearSnapVisuals();return}if(action.kind==='move'||action.kind==='groupMove'||action.kind==='tagMove'||action.kind==='rectResize'||action.kind==='vertex'||action.kind==='edgeResize'){action=null;canvas.style.cursor='default';render();warnArea();clearSnapVisuals();return}if(action.kind==='dragDraw'){const s=action.preview;action=null;if(s&&Math.hypot(s.b.x-s.a.x,s.b.y-s.a.y)>.01)commit(rs=>rs.map(r=>r.id===state.selected?{...r,shapes:[...(r.shapes||[]),s]}:r));else draw()}}
+function keyDown(e){
+  const tag=(e.target&&e.target.tagName||'').toLowerCase();
+  const editing=tag==='input'||tag==='textarea'||tag==='select';
+  if(!editing&&(e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='c'){e.preventDefault();copySelectedRooms();return}
+  if(!editing&&(e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==='v'){e.preventDefault();pasteRoomsInPlace();return}if(!editing&&(e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='v'){e.preventDefault();pasteRooms();return}
+  if(!editing&&(e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='d'){e.preventDefault();duplicateSelectedRooms();return}
+  if(!editing&&(e.key==='Delete'||e.key==='Backspace')&&selectedRoomIds().length){e.preventDefault();deleteSelectedRooms();return}
+  if((e.key==='Delete'||e.key==='Backspace')&&state.selectedShapes.length){e.preventDefault();deleteSelectedShapes();return}
+  if(e.key==='Escape'){if(action&&action.kind==='commandMove'){action.ids.forEach(id=>{const i=state.rooms.findIndex(r=>r.id===id),o=action.origins[id];if(i>=0&&o)state.rooms[i]=JSON.parse(JSON.stringify(o))});state.tool='select'}action=null;toolPoints=[];state.snapMarker=null;state.chainCloseHint=null;snapGuides=[];if(snapClearTimer)clearTimeout(snapClearTimer);render()}
+  if(e.key==='Enter'&&state.tool==='chain'){action=null;state.snapMarker=null;state.chainCloseHint=null;snapGuides=[];if(snapClearTimer)clearTimeout(snapClearTimer);draw()}
+}
+function nextRoomNumber(base){const m=String(base||'R-01').match(/^(.*?)(\d+)$/);if(!m)return base+'-COPY';let n=1;while(state.rooms.some(r=>r.number===m[1]+String(+m[2]+n).padStart(m[2].length,'0')))n++;return m[1]+String(+m[2]+n).padStart(m[2].length,'0')}function warnArea(){const total=state.rooms.reduce((a,r)=>a+area(r),0);if(state.project.maxArea&&total>state.project.maxArea)alert('Warning: total room area '+total.toFixed(2)+' m² exceeds the project maximum of '+state.project.maxArea.toFixed(2)+' m².')}
+function undo(){if(!state.history.length)return;state.future.unshift(JSON.parse(JSON.stringify(state.rooms)));state.rooms=state.history.pop();persistRecovery();render()}function redo(){if(!state.future.length)return;state.history.push(JSON.parse(JSON.stringify(state.rooms)));state.rooms=state.future.shift();persistRecovery();render()}
+function saveJSON(){download(JSON.stringify({version:11,rooms:state.rooms,project:state.project,guides:state.guides},null,2),'architectural-zoning.json','application/json')}function openJSON(e){const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const x=JSON.parse(rd.result);state.rooms=Array.isArray(x)?x:x.rooms||[];state.project=x.project||state.project;state.guides=x.guides||[];setSingleSelection(state.rooms[0]?.id||null);render()}catch(err){alert('Invalid project file')}};rd.readAsText(f)}
+function exportCSV(){const rows=[['Room Number','Room Name','Width (m)','Length (m)','Area (m²)','Floor','Parent Unit','Wet Area']];state.rooms.forEach(r=>rows.push([r.number,r.name,r.width,r.length,area(r).toFixed(2),r.floor,r.parentUnit,r.wetArea?'Yes':'No']));download('\ufeff'+rows.map(x=>x.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n'),'room-schedule.csv','text/csv;charset=utf-8')}
+function exportSVG(){let s='<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="-2 -2 32 20"><rect x="-2" y="-2" width="32" height="20" fill="white"/>';state.guides.filter(g=>g.printable!==false).forEach(g=>{s+=`<line x1="${g.a.x}" y1="${g.a.y}" x2="${g.b.x}" y2="${g.b.y}" stroke="${g.color}" stroke-width=".06" stroke-dasharray=".2 .12"/>`});state.rooms.forEach(r=>{const v=roomVertices(r),pts=v.map(p=>p.x+','+p.y).join(' '),cx=v.reduce((a,p)=>a+p.x,0)/v.length,cy=v.reduce((a,p)=>a+p.y,0)/v.length;s+=`${r.boundaryPrintable===false?'':`<polygon points="${pts}" fill="${r.color}" stroke="#334155" stroke-width=".04"/>`}<text x="${cx}" y="${cy}" text-anchor="middle" font-size=".32">${esc(r.name)}</text>`});s+='</svg>';download(s,'architectural-zoning.svg','image/svg+xml')}
+function exportDXF(){let d='0\nSECTION\n2\nENTITIES\n';const clean=t=>String(t??'').replace(/[\r\n]/g,' ').replace(/[^\x20-\x7E]/g,' '),ln=(a,b,l)=>`0\nLINE\n8\n${l}\n10\n${a.x}\n20\n${-a.y}\n30\n0\n11\n${b.x}\n21\n${-b.y}\n31\n0\n`,tx=(p,text,height,layer)=>`0\nTEXT\n8\n${layer}\n10\n${p.x}\n20\n${-p.y}\n30\n0\n40\n${height}\n1\n${clean(text)}\n7\nSTANDARD\n72\n1\n73\n2\n11\n${p.x}\n21\n${-p.y}\n31\n0\n`;state.guides.forEach((g,i)=>d+=ln(g.a,g.b,(g.type+'_'+i).toUpperCase()));state.rooms.forEach(r=>{const l=('ROOM_'+r.number).replace(/[^A-Za-z0-9_-]/g,'_'),v=roomVertices(r);for(let i=0;i<v.length;i++)d+=ln(v[i],v[(i+1)%v.length],l);const c={x:v.reduce((s,p)=>s+p.x,0)/v.length,y:v.reduce((s,p)=>s+p.y,0)/v.length};d+=tx({x:c.x,y:c.y-.16},r.name||r.number,.28,'ROOM_NAMES');d+=tx({x:c.x,y:c.y+.16},area(r).toFixed(2)+' sqm',.22,'ROOM_AREAS')});d+='0\nENDSEC\n0\nEOF\n';download(d,'architectural-zoning.dxf','application/dxf')}
+render();
+})();
+
+/* ---- AZD V10 Resize/Snap Patch ---- */
+(function(){
+  const oldMove = move;
+  const oldSnap = snapRoomPosition;
+  function edgeSnapResize(room, edge, value){
+    const tol=Math.max(0.08,12/(SCALE*state.zoom));
+    let best=value;
+    state.rooms.forEach(o=>{
+      if(o.id===room.id) return;
+      const vals={
+        left:o.x,right:o.x+o.width,
+        top:o.y,bottom:o.y+o.length
+      };
+      if(edge==='left'||edge==='right'){
+        [vals.left,vals.right].forEach(v=>{
+          if(Math.abs(value-v)<=tol) best=v;
+        });
+      }else{
+        [vals.top,vals.bottom].forEach(v=>{
+          if(Math.abs(value-v)<=tol) best=v;
+        });
+      }
+    });
+    return best;
+  }
+
+  move=function(e){
+    if(action && action.kind==='rectResize'){
+      const room=state.rooms.find(r=>r.id===action.id);
+      if(!room) return;
+      let p=world(e);
+      p={x:state.snap?snap(p.x):p.x,y:state.snap?snap(p.y):p.y};
+
+      const o=action.origin;
+      const left=o.x,right=o.x+o.width,top=o.y,bottom=o.y+o.length;
+
+      const g=action.gripData;
+      // side grips
+      if(g.kind==='edge'){
+        // top
+        if(Math.abs(g.y-top)<1e-6){
+          let ny=edgeSnapResize(room,'top',p.y);
+          room.y=Math.min(ny,bottom-0.2);
+          room.length=bottom-room.y;
+        }
+        // right
+        else if(Math.abs(g.x-right)<1e-6){
+          let nr=edgeSnapResize(room,'right',p.x);
+          room.width=Math.max(0.2,nr-left);
+        }
+        // bottom
+        else if(Math.abs(g.y-bottom)<1e-6){
+          let nb=edgeSnapResize(room,'bottom',p.y);
+          room.length=Math.max(0.2,nb-top);
+        }
+        // left
+        else{
+          let nl=edgeSnapResize(room,'left',p.x);
+          room.x=Math.min(nl,right-0.2);
+          room.width=right-room.x;
+        }
+      }
+      // corner grips
+      else{
+        if(g.vertex===0){
+          room.x=Math.min(p.x,right-0.2);
+          room.y=Math.min(p.y,bottom-0.2);
+          room.width=right-room.x;
+          room.length=bottom-room.y;
+        }else if(g.vertex===1){
+          room.y=Math.min(p.y,bottom-0.2);
+          room.width=Math.max(0.2,p.x-left);
+          room.length=bottom-room.y;
+        }else if(g.vertex===2){
+          room.width=Math.max(0.2,p.x-left);
+          room.length=Math.max(0.2,p.y-top);
+        }else if(g.vertex===3){
+          room.x=Math.min(p.x,right-0.2);
+          room.width=right-room.x;
+          room.length=Math.max(0.2,p.y-top);
+        }
+      }
+      draw();
+      return;
+    }
+    return oldMove(e);
+  };
+})();
+
+</script></body></html>
