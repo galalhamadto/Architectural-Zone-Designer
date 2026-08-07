@@ -2,11 +2,15 @@
 
 v36
 - Swap Width/Length
-- Color Swatches
-- Multi-room color editing
 
 v37
-- Reference Images
+- Color Swatches
 
 v38
+- Multi-room color editing
+
+v39
+- Reference Images
+
+v40
 - Image Scaling

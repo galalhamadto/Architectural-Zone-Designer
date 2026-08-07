@@ -1,9 +1,11 @@
 # CHANGELOG
 
-v35
-- Current baseline
+v36
+- Added Swap Width/Length for selected rectangular rooms
+- Supports multi-selection and Undo
 
-Planned v36
-- Swap Width/Length
+v35
+- Previous baseline
+
+Planned v37
 - Color Swatches
-- Multi-room color editing
