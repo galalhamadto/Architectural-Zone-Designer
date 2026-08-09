@@ -1,6 +1,14 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Architectural Zone Designer v37</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font:14px Segoe UI,Arial,sans-serif;background:#eef2f7;color:#172033}button,input,select{font:inherit}.top{height:58px;flex:0 0 58px;background:#fff;border-bottom:1px solid #d8dee8;display:flex;align-items:center;gap:8px;padding:0 14px}.brand{font-size:18px;font-weight:700}.spacer{flex:1}.btn{border:1px solid #cbd5e1;background:#fff;padding:8px 11px;border-radius:7px;cursor:pointer}.btn:hover{background:#f1f5f9}.primary{background:#2563eb;color:#fff;border-color:#2563eb}.danger{color:#b91c1c}.app{height:100vh;min-height:0;display:flex;flex-direction:column;overflow:hidden}.setup{width:min(1100px,calc(100% - 32px));max-height:calc(100vh - 90px);margin:16px auto;background:#fff;border:1px solid #d8dee8;border-radius:12px;overflow:auto;min-height:0;overscroll-behavior:contain}.setupHead{padding:20px;border-bottom:1px solid #e2e8f0}.setupGrid{display:grid;grid-template-columns:360px minmax(520px,1fr);min-width:880px}.panel{padding:18px;min-width:0}.formPanel{border-right:1px solid #e2e8f0}.field{margin-bottom:10px}.field label{display:block;font-size:12px;color:#475569;margin-bottom:4px}.field input,.field select{width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.check{display:flex;gap:7px;align-items:center;margin:8px 0}.notice{background:#eff6ff;color:#1e40af;padding:9px;border-radius:6px;margin:10px 0}.table{width:100%;border-collapse:collapse}.table thead th{position:sticky;top:0;background:#f8fafc;z-index:2}.table th,.table td{padding:9px;border-bottom:1px solid #e2e8f0;text-align:left}.toolbar{height:48px;flex:0 0 48px;background:#f8fafc;border-bottom:1px solid #d8dee8;display:flex;align-items:center;gap:6px;padding:6px 10px;overflow-x:auto}.toolbar .group{display:flex;gap:5px;padding-right:8px;margin-right:3px;border-right:1px solid #d8dee8}.toolbar .group:last-child{border-right:0}.workspace{flex:1;min-height:0;display:grid;grid-template-columns:var(--leftW,240px) 6px 1fr 6px var(--rightW,285px)}.side{background:#fff;overflow:auto;min-height:0;overscroll-behavior:contain;scrollbar-gutter:stable}.left{border-right:1px solid #d8dee8}.right{border-left:1px solid #d8dee8}.resizer{background:#d8dee8;cursor:col-resize;position:relative}.resizer:hover{background:#93c5fd}.collapsed{display:none!important}.panelToggle{padding:5px 8px}.warning{background:#fef2f2;color:#991b1b;border:1px solid #fecaca;padding:8px;border-radius:6px;margin:8px 0}.ok{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;padding:8px;border-radius:6px;margin:8px 0}.section{padding:13px;border-bottom:1px solid #edf0f4}.section h3{font-size:12px;text-transform:uppercase;color:#475569;letter-spacing:.05em;margin:0 0 9px}.roomBtn{width:100%;text-align:left;background:#fff;border:1px solid #cbd5e1;border-radius:7px;padding:8px;margin-bottom:6px;cursor:pointer}.roomBtn.active{outline:2px solid #93c5fd}.swatch{display:inline-block;width:12px;height:12px;border:1px solid #64748b;border-radius:3px;margin-right:6px}.small{font-size:11px;color:#64748b;margin-top:3px}.tools{display:grid;grid-template-columns:1fr 1fr;gap:6px}.tool{width:36px;height:36px;padding:6px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 36px}.tool svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.tool.active{background:#dbeafe;border-color:#60a5fa;color:#1d4ed8}.grip{cursor:pointer}.hint{font-size:11px;color:#475569;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:7px;margin-top:7px}.canvasWrap{position:relative;overflow:hidden;min-width:0;min-height:0;background:#cbd5e1}.canvas{width:100%;height:100%;display:block;background:#fff;touch-action:none}.status{position:absolute;left:9px;bottom:9px;background:#0f172acc;color:#fff;border-radius:5px;padding:5px 8px;font-size:11px;pointer-events:none}.tagEditor{position:absolute;z-index:20;min-width:140px;padding:6px 8px;border:2px solid #2563eb;border-radius:6px;background:#fff;box-shadow:0 6px 18px rgba(15,23,42,.2);text-align:center;font:600 13px Segoe UI,Arial,sans-serif;transform:translate(-50%,-50%)}.muted{color:#64748b}.contextMenu{position:fixed;z-index:9999;min-width:180px;background:#fff;border:1px solid #cbd5e1;border-radius:8px;box-shadow:0 12px 30px rgba(15,23,42,.18);padding:6px}.contextMenu button{display:block;width:100%;text-align:left;border:0;background:transparent;padding:8px 10px;border-radius:5px;cursor:pointer}.contextMenu button:hover{background:#f1f5f9}.contextMenu button:disabled{opacity:.45;cursor:not-allowed;background:transparent}.contextMenu .sep{height:1px;background:#e2e8f0;margin:5px 0}@media(max-width:900px){.workspace{grid-template-columns:210px 1fr}.right{display:none}.setup{width:calc(100% - 16px);margin:8px}.setupGrid{grid-template-columns:1fr;min-width:0}.formPanel{border-right:0;border-bottom:1px solid #e2e8f0}.top{overflow-x:auto}.toolbar{overflow-x:auto}}
+.roomBtn.active{background:#dbeafe;border-color:#2563eb;color:#1d4ed8;box-shadow:0 0 0 2px rgba(37,99,235,.18)}
+.colorTools{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-top:5px}.colorSwatch{width:20px;height:20px;border:1px solid #94a3b8;border-radius:4px;padding:0;cursor:pointer}.colorSwatch:hover{outline:2px solid #93c5fd}.colorMiniBtn{border:1px solid #cbd5e1;background:#fff;border-radius:4px;padding:2px 6px;font-size:11px;cursor:pointer}
+.sideFold{position:absolute;z-index:12;top:10px;width:28px;height:42px;border:1px solid #94a3b8;background:rgba(255,255,255,.94);color:#334155;box-shadow:0 3px 10px rgba(15,23,42,.16);cursor:pointer;font-size:20px;line-height:1}.sideFold:hover{background:#dbeafe;color:#1d4ed8}.sideFold.leftFold{left:0;border-left:0;border-radius:0 8px 8px 0}.sideFold.rightFold{right:0;border-right:0;border-radius:8px 0 0 8px}
+.side.collapsed{display:block!important;visibility:hidden;pointer-events:none;overflow:hidden;min-width:0;width:0;padding:0;border:0}
+.boundaryPropertiesPanel{position:sticky;top:0;z-index:8;background:#fff;border-bottom:3px solid #f59e0b;box-shadow:0 5px 14px rgba(15,23,42,.14)}.boundaryPropertiesPanel h3{color:#9a3412}.boundaryPropertiesPanel .boundarySelectionSummary{font-size:11px;color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:5px;padding:6px;margin-bottom:8px}
+.canvasLegend{position:absolute;z-index:11;min-width:180px;min-height:100px;max-width:70%;max-height:80%;background:transparent;resize:both;overflow:auto}.legendTable{width:100%;border-collapse:collapse;background:rgba(255,255,255,.96);font-size:12px}.legendTable th,.legendTable td{border:1px solid #64748b;padding:6px 8px;text-align:left}.legendTable thead th{background:#e2e8f0;color:#172033;font-weight:700;cursor:move;user-select:none}.legendTable .legendSectionRow th{background:#f8fafc;color:#475569;font-size:10px;text-transform:uppercase;letter-spacing:.06em}.legendSymbolCell{width:48px;text-align:center!important}.legendRoomSwatch{display:inline-block;width:24px;height:14px;border:1px solid #64748b}.legendLine{display:inline-block;width:32px;height:0;vertical-align:middle}.legendLine.wall{border-top:3px solid #334155}.legendLine.glazing{border-top:6px double #0284c7}.legendLine.virtual{border-top:3px dashed #16a34a}.legendLine.outdoor{border-top:5px solid #7c3aed}
+.legendRoomsGrid{display:grid;grid-template-columns:repeat(var(--legend-columns,1),minmax(0,1fr));background:rgba(255,255,255,.96)}.legendRoomItem{display:grid;grid-template-columns:48px minmax(0,1fr);align-items:center;border-right:1px solid #64748b;border-bottom:1px solid #64748b;min-height:29px}.legendRoomItem:nth-child(2n){border-right:0}.legendRoomSymbol,.legendRoomName{padding:6px 8px}.legendRoomSymbol{text-align:center;border-right:1px solid #64748b}.legendSplitBtn{float:right;border:1px solid #94a3b8;background:#fff;border-radius:4px;padding:1px 6px;cursor:pointer;font-size:14px;line-height:1.2}.legendSplitBtn:hover{background:#ede9fe;border-color:#8b5cf6}.legendTable .roomsContainerCell{padding:0;border-top:0}
+.legendRoomsGrid:not(.columns2) .legendRoomItem{border-right:0}
 @media print{
 body>*:not(#printSheet){display:none!important}
 #printSheet{display:block!important;position:fixed;inset:0;background:#fff}
@@ -18,7 +26,7 @@ body>*:not(#printSheet){display:none!important}
 </style></head><body><div id="app"></div>
 <script>
 (function(){'use strict';
-const SCALE=50;let state={mode:'start',rooms:[],selected:null,selectedIds:[],selectedBoundary:null,selectedShapes:[],snapMarker:null,chainCloseHint:null,clipboardRooms:[],contextPoint:null,stories:[{id:'story-1',name:'Ground Floor',elevation:0}],activeStoryId:'story-1',showLowerStory:true,snapToUnderlay:true,lowerStorySingleColor:false,lowerStoryColor:'#94a3b8',lowerStoryOpacity:.18,autoCloseChain:true,snapPriority:'geometry',showOrigin:true,showAxes:true,tool:'select',grid:true,snap:true,gridM:.5,zoom:1,pan:{x:50,y:50},style:{color:'#111827',weight:2,pattern:'solid'},history:[],future:[],project:{maxArea:0},print:{showArea:true,paper:'A3',orientation:'landscape',mode:'fit',scale:100,originX:0,originY:0,marginMm:10},guides:[],freeShapes:[],leftW:240,rightW:285,leftOpen:true,rightOpen:true};
+const SCALE=50;let state={mode:'start',rooms:[],selected:null,selectedIds:[],selectedBoundary:null,selectedBoundaries:[],selectedShapes:[],snapMarker:null,chainCloseHint:null,clipboardRooms:[],contextPoint:null,stories:[{id:'story-1',name:'Ground Floor',elevation:0}],activeStoryId:'story-1',showLowerStory:true,snapToUnderlay:true,lowerStorySingleColor:false,lowerStoryColor:'#94a3b8',lowerStoryOpacity:.18,autoCloseChain:true,snapPriority:'geometry',showOrigin:true,showAxes:true,tool:'select',grid:true,snap:true,gridM:.5,zoom:1,pan:{x:50,y:50},style:{color:'#111827',weight:2,pattern:'solid'},history:[],future:[],project:{maxArea:0},print:{showArea:true,paper:'A3',orientation:'landscape',mode:'fit',scale:100,originX:0,originY:0,marginMm:10},legend:{visible:true,x:18,y:62,width:230,height:280,roomColumns:1},guides:[],freeShapes:[],leftW:240,rightW:285,leftOpen:true,rightOpen:true};
 const CUSTOM_PRESETS_KEY='azd_custom_room_presets_v1';
 function getCustomPresets(){try{return JSON.parse(localStorage.getItem(CUSTOM_PRESETS_KEY)||'{}')}catch(e){return {}}}
 function setCustomPresets(v){localStorage.setItem(CUSTOM_PRESETS_KEY,JSON.stringify(v))}
@@ -49,10 +57,13 @@ function importPresetConfig(e){
   const input=e.target,file=input.files&&input.files[0];if(!file)return;
   const rd=new FileReader();rd.onload=()=>{try{const parsed=parsePresetConfig(JSON.parse(rd.result));const all=getCustomPresets();parsed.forEach(p=>all[p.name]=p.rooms);setCustomPresets(all);let chosen=parsed[0];if(parsed.length>1){const menu=parsed.map((p,i)=>(i+1)+'. '+p.name+' ('+p.rooms.length+' rooms)').join('\n');const answer=prompt('The file contains multiple presets. Enter the number to insert:\n\n'+menu,'1');if(answer===null){alert('Preset library imported. No rooms were inserted.');render();return}const n=parseInt(answer,10);if(!(n>=1&&n<=parsed.length))throw new Error('Invalid preset selection.');chosen=parsed[n-1]}insertConfiguredRooms(chosen.rooms,chosen.name)}catch(err){alert('Could not import preset configuration:\n'+err.message)}finally{input.value=''}};rd.onerror=()=>{alert('Could not read the selected file.');input.value=''};rd.readAsText(file);
 }
-let canvas,ctx,action=null,cursor={x:0,y:0},snapGuides=[],snapClearTimer=null; const $=s=>document.querySelector(s); const uid=()=>Date.now()+'-'+Math.random().toString(36).slice(2,7); const snap=(v)=>state.snap?Math.round(v/state.gridM)*state.gridM:v; function polygonArea(v){if(!v||v.length<3)return 0;let a=0;for(let i=0;i<v.length;i++){const j=(i+1)%v.length;a+=v[i].x*v[j].y-v[j].x*v[i].y}return Math.abs(a)/2} const area=r=>(r&&r.isRegular===false&&Array.isArray(r.vertices)&&r.vertices.length>=3)?polygonArea(r.vertices):(+r.width||0)*(+r.length||0);
+let canvas,ctx,action=null,cursor={x:0,y:0},snapGuides=[],snapClearTimer=null,lastTagClick={roomId:null,time:0},projectFileHandle=null; const $=s=>document.querySelector(s); const uid=()=>Date.now()+'-'+Math.random().toString(36).slice(2,7); const snap=(v)=>state.snap?Math.round(v/state.gridM)*state.gridM:v; function polygonArea(v){if(!v||v.length<3)return 0;let a=0;for(let i=0;i<v.length;i++){const j=(i+1)%v.length;a+=v[i].x*v[j].y-v[j].x*v[i].y}return Math.abs(a)/2} const area=r=>(r&&r.isRegular===false&&Array.isArray(r.vertices)&&r.vertices.length>=3)?polygonArea(r.vertices):(+r.width||0)*(+r.length||0);
+const roomNameKey=name=>String(name||'').trim().toLocaleLowerCase();
+function matchingRoomColor(name,excludeId=null){const key=roomNameKey(name),match=state.rooms.find(r=>r.id!==excludeId&&roomNameKey(r.name)===key);return match?.color||null}
+function ensureMatchingRoomColors(){const colors=new Map();state.rooms.forEach(r=>{const key=roomNameKey(r.name);if(!key)return;if(colors.has(key))r.color=colors.get(key);else colors.set(key,r.color)})}
 const blank=()=>({name:'Living Room',number:'R-'+String(state.rooms.length+1).padStart(2,'0'),width:5,length:4,color:'#dbeafe',floor:'Ground Floor',parentUnit:'Apartment A',wetArea:false,isRegular:true,boundaryOpacity:1,boundaryPrintable:true}); let draft=blank();
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function persistRecovery(){try{localStorage.setItem('azd_recovery_v35',JSON.stringify({savedAt:new Date().toISOString(),rooms:state.rooms,project:state.project,guides:state.guides,freeShapes:state.freeShapes,stories:state.stories,activeStoryId:state.activeStoryId}))}catch(e){}}
+function persistRecovery(){try{localStorage.setItem('azd_recovery_v35',JSON.stringify({savedAt:new Date().toISOString(),rooms:state.rooms,project:state.project,guides:state.guides,freeShapes:state.freeShapes,stories:state.stories,activeStoryId:state.activeStoryId,legend:state.legend}))}catch(e){}}
 function commit(fn){state.history.push(JSON.parse(JSON.stringify(state.rooms)));if(state.history.length>200)state.history.shift();state.future=[];state.rooms=fn(state.rooms);persistRecovery();render()}
 function download(content,name,type){const b=new Blob([content],{type:type||'text/plain'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),500)}
 function clearSnapVisuals(delay=450){
@@ -69,7 +80,71 @@ function keepSnapVisuals(){
 
 function formHtml(o,prefix){return `<div class="row"><div class="field"><label>Room name</label><input id="${prefix}name" value="${esc(o.name)}"></div><div class="field"><label>Room number</label><input id="${prefix}number" value="${esc(o.number)}"></div></div><div class="row"><div class="field"><label>Width (m)</label><input id="${prefix}width" type="number" min="0.1" step="0.1" value="${o.width}"></div><div class="field"><label>Length (m)</label><input id="${prefix}length" type="number" min="0.1" step="0.1" value="${o.length}"></div></div><div class="field"><label>Parent unit / section</label><input id="${prefix}parentUnit" value="${esc(o.parentUnit)}"></div><div class="row"><div class="field"><label>Floor / Story</label>${prefix==='s_'?`<select id="${prefix}storyId">${state.stories.map(s=>`<option value="${s.id}" ${(o.storyId||'story-1')===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select>`:`<input id="${prefix}floor" value="${esc(o.floor)}">`}</div><div class="field"><label>Color</label><input id="${prefix}color" type="color" value="${o.color}"></div></div><label class="check"><input id="${prefix}wetArea" type="checkbox" ${o.wetArea?'checked':''}> Wet area</label><label class="check"><input id="${prefix}isRegular" type="checkbox" ${o.isRegular?'checked':''}> Regular rectangle</label>${o.isRegular===false?'<div class="hint">Irregular room: drag blue vertex grips to reshape it. Use Add Vertex or Remove Vertex to change the number of corners. Draw a closed loop with Line/Chain Line, then use Lines → Room to replace the complete boundary.</div>':''}<div class="notice">Calculated area: ${area(o).toFixed(2)} m²</div>`}
 function readForm(prefix){return {name:$('#'+prefix+'name').value.trim(),number:$('#'+prefix+'number').value.trim(),width:+$('#'+prefix+'width').value,length:+$('#'+prefix+'length').value,parentUnit:$('#'+prefix+'parentUnit').value.trim(),floor:$('#'+prefix+'floor')?$('#'+prefix+'floor').value.trim():(activeStory()?.name||''),storyId:$('#'+prefix+'storyId')?$('#'+prefix+'storyId').value:undefined,color:$('#'+prefix+'color').value,wetArea:$('#'+prefix+'wetArea').checked,isRegular:$('#'+prefix+'isRegular').checked}}
-function captureScroll(){const out={windowX:window.scrollX,windowY:window.scrollY,elements:{}};document.querySelectorAll('[data-scroll-key]').forEach(el=>out.elements[el.dataset.scrollKey]={top:el.scrollTop,left:el.scrollLeft});return out}function restoreScroll(out){if(!out)return;requestAnimationFrame(()=>{window.scrollTo(out.windowX||0,out.windowY||0);document.querySelectorAll('[data-scroll-key]').forEach(el=>{const v=out.elements[el.dataset.scrollKey];if(v){el.scrollTop=v.top;el.scrollLeft=v.left}})})}function render(){const scroll=captureScroll();state.mode==='start'?renderStart():state.mode==='setup'?renderSetup():(renderDesign(),mountSwapDimensionsButton(),mountMultiRoomColorHint());restoreScroll(scroll)}
+function captureScroll(){const out={windowX:window.scrollX,windowY:window.scrollY,elements:{}};document.querySelectorAll('[data-scroll-key]').forEach(el=>out.elements[el.dataset.scrollKey]={top:el.scrollTop,left:el.scrollLeft});return out}function restoreScroll(out){if(!out)return;requestAnimationFrame(()=>{window.scrollTo(out.windowX||0,out.windowY||0);document.querySelectorAll('[data-scroll-key]').forEach(el=>{const v=out.elements[el.dataset.scrollKey];if(v){el.scrollTop=v.top;el.scrollLeft=v.left}})})}function render(){ensureMatchingRoomColors();const scroll=captureScroll();state.mode==='start'?renderStart():state.mode==='setup'?renderSetup():(renderDesign(),mountSelectionCursorTools(),mountFoldPanelControls(),mountCanvasLegend(),mountOutdoorBoundaryButton(),mountOutdoorBoundaryProperties(),mountAutoApplyRoomProperties(),mountSwapDimensionsButton(),mountMultiRoomColorHint(),mountBoundaryClassificationControl(),mountDedicatedBoundaryPropertiesPanel(),updateRoomSelectionHint());mountProjectFileControls();mountColorPickerTools();restoreScroll(scroll)}
+
+const ROOM_SELECT_CURSOR='url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M4 2l14 10-7 1 4 7-3 2-4-8-4 5z%22 fill=%22%23111827%22 stroke=%22white%22 stroke-width=%221%22/%3E%3C/svg%3E") 3 2, default';
+const BOUNDARY_SELECT_CURSOR='url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M4 2l14 10-7 1 4 7-3 2-4-8-4 5z%22 fill=%22white%22 stroke=%22%23111827%22 stroke-width=%221.5%22/%3E%3C/svg%3E") 3 2, default';
+const OUTDOOR_SELECT_CURSOR='url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M4 2l14 10-7 1 4 7-3 2-4-8-4 5z%22 fill=%22%23ede9fe%22 stroke=%22%237c3aed%22 stroke-width=%222%22/%3E%3C/svg%3E") 3 2, default';
+function mountSelectionCursorTools(){
+  const roomTool=document.querySelector('[data-tool="select"]'),boundaryTool=document.querySelector('[data-tool="edgeStyle"]');if(!roomTool||!boundaryTool)return;
+  document.querySelector('.toolbar')?.addEventListener('click',e=>{const tool=e.target.closest('[data-tool]');if(tool&&tool.dataset.tool!=='edgeStyle'){state.selectedBoundary=null;state.selectedBoundaries=[]}},true);
+  roomTool.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 2l14 10-7 1 4 7-3 2-4-8-4 5z" style="fill:#111827;stroke:#111827"/></svg>';roomTool.title='Selection Tool — Rooms';roomTool.setAttribute('aria-label',roomTool.title);
+  boundaryTool.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 2l14 10-7 1 4 7-3 2-4-8-4 5z" style="fill:#f8fafc;stroke:#475569;stroke-width:1.5"/></svg>';boundaryTool.title='Direct Selection Tool — Room Boundaries';boundaryTool.setAttribute('aria-label',boundaryTool.title);
+  roomTool.after(boundaryTool);
+  const outdoorTool=document.createElement('button');outdoorTool.className='btn tool '+(state.tool==='outdoorSelect'?'active':'');outdoorTool.dataset.tool='outdoorSelect';outdoorTool.title='Outdoor Boundary Selection Tool';outdoorTool.setAttribute('aria-label',outdoorTool.title);outdoorTool.innerHTML='<svg viewBox="0 0 24 24"><path d="M4 2l14 10-7 1 4 7-3 2-4-8-4 5z" style="fill:#ede9fe;stroke:#7c3aed;stroke-width:2"/><path d="M14 4h7v7" style="fill:none;stroke:#7c3aed;stroke-width:2"/></svg>';outdoorTool.onclick=()=>{state.tool='outdoorSelect';action=null;toolPoints=[];state.selectedBoundary=null;state.selectedBoundaries=[];state.selectedShapes=[];render()};boundaryTool.after(outdoorTool);
+  if(canvas){canvas.style.cursor=state.tool==='outdoorSelect'?OUTDOOR_SELECT_CURSOR:state.tool==='edgeStyle'?BOUNDARY_SELECT_CURSOR:state.tool==='select'?ROOM_SELECT_CURSOR:canvas.style.cursor;canvas.addEventListener('pointermove',e=>{if(action?.kind==='outdoorVertex'){moveOutdoorBoundaryVertex(e);return}if(action?.kind==='outdoorEdge'){moveOutdoorBoundaryEdge(e);return}if(action&&['boundarySelectionRect','outdoorSelectionRect'].includes(action.kind)){updateSpecialSelectionRect(e);return}if(action)return;if(state.tool==='outdoorSelect')canvas.style.cursor=OUTDOOR_SELECT_CURSOR;else if(state.tool==='edgeStyle')canvas.style.cursor=BOUNDARY_SELECT_CURSOR;else if(state.tool==='select'&&canvas.style.cursor==='default')canvas.style.cursor=ROOM_SELECT_CURSOR});canvas.addEventListener('pointerup',finishOutdoorBoundaryGrip);canvas.addEventListener('pointercancel',finishOutdoorBoundaryGrip);canvas.addEventListener('pointerup',finishSpecialSelectionRect);canvas.addEventListener('pointercancel',finishSpecialSelectionRect)}
+}
+function mountFoldPanelControls(){
+  const wrap=document.querySelector('.canvasWrap');if(!wrap)return;
+  const left=document.createElement('button');left.type='button';left.className='sideFold leftFold';left.textContent=state.leftOpen?'‹':'›';left.title=state.leftOpen?'Collapse Rooms panel':'Expand Rooms panel';left.setAttribute('aria-label',left.title);left.onclick=()=>{state.leftOpen=!state.leftOpen;render()};
+  const right=document.createElement('button');right.type='button';right.className='sideFold rightFold';right.textContent=state.rightOpen?'›':'‹';right.title=state.rightOpen?'Collapse Properties panel':'Expand Properties panel';right.setAttribute('aria-label',right.title);right.onclick=()=>{state.rightOpen=!state.rightOpen;render()};
+  wrap.append(left,right);
+}
+function mountCanvasLegend(){
+  state.legend=state.legend||{visible:true,x:18,y:62,width:230,height:280};const toggle=$('#toggleRight');if(toggle){const button=document.createElement('button');button.id='toggleLegend';button.className='btn panelToggle';button.textContent=state.legend.visible?'Hide Legend':'Show Legend';button.onclick=()=>{state.legend.visible=!state.legend.visible;persistRecovery();render()};toggle.after(button)}
+  if(!state.legend.visible)return;const wrap=document.querySelector('.canvasWrap');if(!wrap)return;
+  const rooms=new Map();roomsOnStory().forEach(r=>{const key=roomNameKey(r.name);if(key&&!rooms.has(key))rooms.set(key,{name:r.name||'Room',color:r.color||'#dbeafe'})});
+  const legend=document.createElement('div');legend.className='canvasLegend';const maxX=Math.max(0,wrap.clientWidth-190),maxY=Math.max(0,wrap.clientHeight-130);state.legend.x=Math.max(0,Math.min(maxX,state.legend.x||0));state.legend.y=Math.max(0,Math.min(maxY,state.legend.y||0));legend.style.left=state.legend.x+'px';legend.style.top=state.legend.y+'px';legend.style.width=Math.max(180,state.legend.width||230)+'px';legend.style.height=Math.max(120,state.legend.height||280)+'px';
+  const columns=state.legend.roomColumns===2?2:1,roomItems=[...rooms.values()].map(r=>'<div class="legendRoomItem"><div class="legendRoomSymbol"><span class="legendRoomSwatch" style="background:'+r.color+'"></span></div><div class="legendRoomName">'+esc(r.name)+'</div></div>').join('')||'<div class="legendRoomItem"><div class="legendRoomName" style="grid-column:1 / -1">No rooms on this story</div></div>';
+  legend.innerHTML='<table class="legendTable"><thead><tr><th colspan="2">Legend</th></tr></thead><tbody><tr class="legendSectionRow"><th colspan="2">Rooms <button type="button" class="legendSplitBtn" title="'+(columns===1?'Split rooms into two columns':'Return rooms to one column')+'" aria-label="Toggle room legend columns">✂</button></th></tr><tr><td colspan="2" class="roomsContainerCell"><div class="legendRoomsGrid '+(columns===2?'columns2':'')+'" style="--legend-columns:'+columns+'">'+roomItems+'</div></td></tr><tr class="legendSectionRow"><th colspan="2">Boundary lines</th></tr><tr><td class="legendSymbolCell"><span class="legendLine wall"></span></td><td>Wall</td></tr><tr><td class="legendSymbolCell"><span class="legendLine glazing"></span></td><td>Glazing</td></tr><tr><td class="legendSymbolCell"><span class="legendLine virtual"></span></td><td>Virtual / Open</td></tr><tr><td class="legendSymbolCell"><span class="legendLine outdoor"></span></td><td>Outdoor boundary</td></tr></tbody></table>';
+  wrap.appendChild(legend);const naturalHeight=legend.scrollHeight,stateHeight=Math.max(100,state.legend.height||0,naturalHeight);state.legend.height=stateHeight;legend.style.height=stateHeight+'px';const split=legend.querySelector('.legendSplitBtn');split.onclick=()=>{state.legend.roomColumns=columns===1?2:1;state.legend.width=columns===1?Math.max(400,state.legend.width||0):230;state.legend.height=100;persistRecovery();render()};const header=legend.querySelector('thead');header.onpointerdown=e=>{if(e.target.closest('button'))return;e.preventDefault();header.setPointerCapture(e.pointerId);const sx=e.clientX,sy=e.clientY,bx=state.legend.x,by=state.legend.y;header.onpointermove=ev=>{state.legend.x=Math.max(0,Math.min(wrap.clientWidth-legend.offsetWidth,bx+ev.clientX-sx));state.legend.y=Math.max(0,Math.min(wrap.clientHeight-legend.offsetHeight,by+ev.clientY-sy));legend.style.left=state.legend.x+'px';legend.style.top=state.legend.y+'px'};header.onpointerup=()=>{header.onpointermove=null;header.onpointerup=null;persistRecovery()}};
+  legend.onpointerup=()=>{state.legend.width=legend.offsetWidth;state.legend.height=legend.offsetHeight;persistRecovery()};
+}
+function mountProjectFileControls(){
+  const save=$('#save');if(save){save.onclick=saveProject;save.title=projectFileHandle?'Save changes to '+projectFileHandle.name:'Choose a file and save project';const saveAs=document.createElement('button');saveAs.id='saveAs';saveAs.className='btn';saveAs.textContent='Save As';saveAs.title='Save a copy to another file';saveAs.onclick=saveProjectAs;save.after(saveAs)}
+  const input=$('#open')||$('#startOpen');if(input){const label=input.parentElement;label.onclick=e=>{if(e.target===input)return;e.preventDefault();if(window.showOpenFilePicker)openProjectPicker();else{input.value='';input.click()}}}
+}
+function mountOutdoorBoundaryButton(){
+  const anchor=document.querySelector('[data-tool="roomByArea"]');if(!anchor||$('#createOutdoorBoundary'))return;
+  const button=document.createElement('button');button.id='createOutdoorBoundary';button.className='btn tool';button.title='Create Outdoor Building Boundary';button.setAttribute('aria-label',button.title);
+  button.innerHTML='<svg viewBox="0 0 24 24"><path d="M3 19V8l5-4 4 3 4-3 5 4v11z"/><path d="M7 19v-6h10v6"/></svg>';
+  button.onclick=createOutdoorBoundary;anchor.after(button);
+}
+function selectedOutdoorBoundaryIndices(){return state.selectedShapes.filter(s=>s.roomId==='__free__'&&state.freeShapes[s.index]?.outdoorBoundary).map(s=>s.index)}
+function mountOutdoorBoundaryProperties(){
+  const indices=selectedOutdoorBoundaryIndices(),panel=document.querySelector('.side.right');if(!indices.length||!panel)return;const first=state.freeShapes[indices[0]];
+  const section=document.createElement('div');section.className='section';section.innerHTML='<h3>Outdoor Boundary</h3><div class="field"><label>Color</label><input id="outdoorBoundaryColor" type="color"></div><div class="field"><label>Line weight</label><select id="outdoorBoundaryWeight"><option value="2">Thin</option><option value="4">Medium</option><option value="6">Heavy</option><option value="8">Extra heavy</option></select></div><div class="field"><label>Pattern</label><select id="outdoorBoundaryPattern"><option value="solid">Solid</option><option value="dashed">Dashed</option><option value="dotted">Dotted</option></select></div><label class="check"><input id="outdoorVisualOffsetEnabled" type="checkbox"> Enable graphical offset</label><div class="field"><label>Graphical offset (m)</label><input id="outdoorVisualOffset" type="number" min="0" step="0.05"></div><div class="hint" style="margin-bottom:8px">Display only. Real geometry and exports are not offset.</div><button id="rebuildOutdoorBoundary" class="btn" style="width:100%;margin-bottom:6px">Rebuild from Rooms</button><button id="deleteOutdoorBoundary" class="btn danger" style="width:100%">Delete Outdoor Boundary</button>';
+  panel.prepend(section);$('#outdoorBoundaryColor').value=first.color||'#7c3aed';$('#outdoorBoundaryWeight').value=String(first.weight||6);$('#outdoorBoundaryPattern').value=first.pattern||'solid';
+  $('#outdoorVisualOffsetEnabled').checked=first.visualOffsetEnabled!==false;$('#outdoorVisualOffset').value=first.visualOffset??0.2;
+  const update=(property,value)=>{const selected=new Set(indices);state.freeShapes=state.freeShapes.map((s,i)=>selected.has(i)?{...s,[property]:value}:s);persistRecovery();render()};
+  $('#outdoorBoundaryColor').onchange=e=>update('color',e.target.value);$('#outdoorBoundaryWeight').onchange=e=>update('weight',+e.target.value);$('#outdoorBoundaryPattern').onchange=e=>update('pattern',e.target.value);
+  $('#outdoorVisualOffsetEnabled').onchange=e=>update('visualOffsetEnabled',e.target.checked);$('#outdoorVisualOffset').onchange=e=>update('visualOffset',Math.max(0,+e.target.value||0));
+  $('#rebuildOutdoorBoundary').onclick=createOutdoorBoundary;$('#deleteOutdoorBoundary').onclick=()=>{const selected=new Set(indices);state.freeShapes=state.freeShapes.filter((_,i)=>!selected.has(i));state.selectedShapes=[];persistRecovery();render()};
+}
+const PRESET_COLORS=['#111827','#64748b','#ef4444','#f59e0b','#facc15','#22c55e','#06b6d4','#3b82f6','#8b5cf6','#ec4899','#ffffff'];
+function normalizeHexColor(value){const match=String(value||'').trim().match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/i);if(!match)return null;let hex=match[1];if(hex.length===3)hex=hex.split('').map(c=>c+c).join('');return'#'+hex.toLowerCase()}
+function applyColorInputValue(input,value){const color=normalizeHexColor(value);if(!color)return false;input.value=color;input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));return true}
+function mountColorPickerTools(){
+  document.querySelectorAll('input[type="color"]').forEach(input=>{
+    if(input.nextElementSibling?.classList.contains('colorTools'))return;
+    const tools=document.createElement('div');tools.className='colorTools';
+    PRESET_COLORS.forEach(color=>{const swatch=document.createElement('button');swatch.type='button';swatch.className='colorSwatch';swatch.style.background=color;swatch.title=color;swatch.setAttribute('aria-label','Use color '+color);swatch.onclick=()=>applyColorInputValue(input,color);tools.appendChild(swatch)});
+    const copy=document.createElement('button');copy.type='button';copy.className='colorMiniBtn';copy.textContent='Copy';copy.title='Copy color value';copy.onclick=async()=>{try{await navigator.clipboard.writeText(input.value)}catch(e){prompt('Copy color:',input.value)}};
+    const paste=document.createElement('button');paste.type='button';paste.className='colorMiniBtn';paste.textContent='Paste';paste.title='Paste a hex color';paste.onclick=async()=>{let value='';try{value=await navigator.clipboard.readText()}catch(e){value=prompt('Paste a hex color:',input.value)||''}if(!applyColorInputValue(input,value))alert('Enter a valid hex color such as #3b82f6.')};
+    tools.append(copy,paste);input.insertAdjacentElement('afterend',tools);
+  });
+}
+function mountAutoApplyRoomProperties(){const button=$('#applyRoomChanges');if(!button)return;const hint=button.nextElementSibling;if(hint?.classList.contains('hint'))hint.textContent='Changes save automatically. Press Enter or leave a text field to finish editing.';button.remove()}
 
 function mountSwapDimensionsButton(){
   const undoButton=$('#undo');
@@ -86,14 +161,32 @@ function mountMultiRoomColorHint(){
   if(!colorInput||count<2)return;
   const hint=document.createElement('div');
   hint.className='hint';
-  hint.textContent=`Color will apply to all ${count} selected rooms when you click Apply Changes.`;
+  hint.textContent=`Changing this color updates all ${count} selected rooms.`;
   colorInput.closest('.field')?.appendChild(hint);
 }
+function mountBoundaryClassificationControl(){
+  const resetButton=$('#clearEdgeStyle'),pick=state.selectedBoundary;if(!resetButton||!pick||$('#edgeClassification'))return;
+  const room=state.rooms.find(r=>r.id===pick.roomId);if(!room)return;
+  const count=boundarySelections().length,field=document.createElement('div');field.className='field';field.innerHTML='<label>'+(count>1?count+' selected boundaries':pick.shared?'Shared boundary classification':'Boundary classification')+'</label><select id="edgeClassification"><option value="">Unclassified</option><option value="wall">Wall</option><option value="glazing">Glazing</option><option value="virtual">Virtual / Open</option></select><div class="small">'+(count>1?'Changes apply to every selected boundary and both sides of shared segments. ':pick.shared?'Changes apply to both adjacent rooms. ':'')+'Wall: solid dark · Glazing: double blue · Virtual/Open: dashed green</div>';
+  resetButton.parentElement.insertBefore(field,resetButton);
+  const select=$('#edgeClassification');select.value=((room.boundaryStyles||[])[pick.edgeIndex]||{}).classification||'';
+  select.onchange=e=>{const value=e.target.value;if(value)updateSelectedBoundaryStyle({classification:value});else{const targets=selectedBoundaryTargets();commit(rs=>rs.map(r=>{const roomTargets=targets.filter(t=>t.roomId===r.id);if(!roomTargets.length)return r;const styles=[...(r.boundaryStyles||[])];roomTargets.forEach(t=>{const style={...(styles[t.edgeIndex]||{})};delete style.classification;styles[t.edgeIndex]=style});return{...r,boundaryStyles:styles}}))}};
+}
+function mountDedicatedBoundaryPropertiesPanel(){
+  const side=document.querySelector('.side.right'),pick=state.selectedBoundary,reset=$('#clearEdgeStyle');if(!side||!pick||!reset)return;
+  const selections=boundarySelections(),roomNames=[...new Set(selectedBoundaryTargets().map(t=>state.rooms.find(r=>r.id===t.roomId)?.name).filter(Boolean))],panel=document.createElement('div');panel.className='section boundaryPropertiesPanel';
+  panel.innerHTML='<h3>Boundary Properties</h3><div class="boundarySelectionSummary">'+selections.length+' segment'+(selections.length===1?'':'s')+' selected'+(roomNames.length?' · '+roomNames.map(esc).join(' / '):'')+'</div>';
+  const classification=$('#edgeClassification')?.closest('.field'),color=$('#edgeColor')?.closest('.field'),pattern=$('#edgePattern')?.closest('.field');
+  [classification,color,pattern,reset].filter(Boolean).forEach(element=>panel.appendChild(element));side.prepend(panel);
+}
+function updateRoomSelectionHint(){document.querySelectorAll('.hint').forEach(el=>{if(el.innerHTML.includes('Shift-drag: duplicate selected room(s)'))el.innerHTML=el.innerHTML.replace('Shift-drag: duplicate selected room(s)','Shift-click: add or remove rooms from selection<br>Ctrl+Alt-drag: duplicate selected room(s)')})}
 
 function resetProject(){
   state.rooms=[];state.guides=[];state.freeShapes=[];state.history=[];state.future=[];
-  state.selected=null;state.selectedIds=[];state.stories=[{id:'story-1',name:'Ground Floor',elevation:0}];
+  projectFileHandle=null;
+  state.selected=null;state.selectedIds=[];state.selectedBoundary=null;state.selectedBoundaries=[];state.stories=[{id:'story-1',name:'Ground Floor',elevation:0}];
   state.activeStoryId='story-1';state.project={maxArea:0};
+  state.legend={visible:true,x:18,y:62,width:230,height:280,roomColumns:1};
   state.print={showArea:true,paper:'A3',orientation:'landscape',mode:'fit',scale:100,originX:0,originY:0,marginMm:10};
   draft=blank();
 }
@@ -171,15 +264,24 @@ $('#deleteStory').onclick=deleteStory;$('#toggleLeft').onclick=()=>{state.leftOp
 $('#zoomIn').onclick=()=>zoomAt(canvas.clientWidth/2,canvas.clientHeight/2,state.zoom*1.2);$('#zoomOut').onclick=()=>zoomAt(canvas.clientWidth/2,canvas.clientHeight/2,state.zoom/1.2);$('#zoomFit').onclick=zoomFit;
 if(sel){
 const editingRoomId=sel.id;
+const applySelectedRoomColor=()=>{
+  const colorInput=$('#s_color'),ids=new Set(selectedRoomIds());
+  if(!colorInput||!ids.size)return;
+  const color=colorInput.value,keys=new Set(state.rooms.filter(r=>ids.has(r.id)).map(r=>roomNameKey(r.name)));
+  if(state.rooms.every(r=>!keys.has(roomNameKey(r.name))||r.color===color))return;
+  commit(rs=>rs.map(r=>keys.has(roomNameKey(r.name))?{...r,color}:r));
+};
 const applyRoomEdit=()=>{
   const current=state.rooms.find(r=>r.id===editingRoomId);
   if(!current)return;
   const p=readForm('s_');
   if(!p.name)return alert('Room name cannot be empty.');
   if(!Number.isFinite(p.width)||!Number.isFinite(p.length)||p.width<=0||p.length<=0)return alert('Width and length must be positive numbers.');
-  const selectedForColor=new Set(selectedRoomIds());
+  if(roomNameKey(p.name)!==roomNameKey(current.name))p.color=matchingRoomColor(p.name,current.id)||p.color;
+  const selectedForColor=new Set(selectedRoomIds()),colorNames=new Set(state.rooms.filter(r=>selectedForColor.has(r.id)).map(r=>roomNameKey(r.name)));
+  colorNames.add(roomNameKey(p.name));
   commit(rs=>rs.map(r=>{
-    if(r.id!==editingRoomId)return selectedForColor.has(r.id)?{...r,color:p.color}:r;
+    if(r.id!==editingRoomId)return colorNames.has(roomNameKey(r.name))?{...r,color:p.color}:r;
     let nr={...r,...p};
     if(p.storyId){nr.storyId=p.storyId;const st=state.stories.find(s=>s.id===p.storyId);if(st)nr.floor=st.name;}
     if(p.isRegular===false&&(!Array.isArray(r.vertices)||r.vertices.length<3))
@@ -193,7 +295,9 @@ const applyRoomEdit=()=>{
   warnArea();
 };
 $('#applyRoomChanges').onclick=applyRoomEdit;
+$('#s_color').onchange=applySelectedRoomColor;
 document.querySelectorAll('[id^="s_"]').forEach(el=>{
+  if(el.id!=='s_color')el.addEventListener('change',applyRoomEdit);
   el.addEventListener('keydown',e=>{
     if(e.key==='Enter'){
       e.preventDefault();e.stopPropagation();applyRoomEdit();
@@ -202,9 +306,9 @@ document.querySelectorAll('[id^="s_"]').forEach(el=>{
 });
 $('#delete').onclick=()=>{commit(rs=>rs.filter(r=>r.id!==sel.id));state.selected=null;state.selectedIds=[]};$('#clear').onclick=()=>commit(rs=>rs.map(r=>r.id===sel.id?{...r,shapes:[]}:r));$('#lineColor').onchange=e=>state.style.color=e.target.value;$('#lineWeight').onchange=e=>state.style.weight=+e.target.value;$('#linePattern').onchange=e=>state.style.pattern=e.target.value;$('#cornerSize').onchange=e=>state.cornerSize=Math.max(.01,+e.target.value||.3);$('#boundaryOpacity').oninput=e=>{sel.boundaryOpacity=+e.target.value;draw()};$('#boundaryPrintable').onchange=e=>sel.boundaryPrintable=e.target.checked;
 if($('#edgePattern'))$('#edgePattern').value=(((sel.boundaryStyles||[])[state.selectedBoundary.edgeIndex]||{}).pattern||'solid');
-if($('#edgeColor'))$('#edgeColor').oninput=e=>{const i=state.selectedBoundary.edgeIndex;sel.boundaryStyles=sel.boundaryStyles||[];sel.boundaryStyles[i]={...(sel.boundaryStyles[i]||{}),color:e.target.value};draw()};
-if($('#edgePattern'))$('#edgePattern').onchange=e=>{const i=state.selectedBoundary.edgeIndex;sel.boundaryStyles=sel.boundaryStyles||[];sel.boundaryStyles[i]={...(sel.boundaryStyles[i]||{}),pattern:e.target.value};draw()};
-if($('#clearEdgeStyle'))$('#clearEdgeStyle').onclick=()=>{const i=state.selectedBoundary.edgeIndex;sel.boundaryStyles=sel.boundaryStyles||[];sel.boundaryStyles[i]={};render()}
+if($('#edgeColor'))$('#edgeColor').onchange=e=>updateSelectedBoundaryStyle({color:e.target.value});
+if($('#edgePattern'))$('#edgePattern').onchange=e=>updateSelectedBoundaryStyle({pattern:e.target.value});
+if($('#clearEdgeStyle'))$('#clearEdgeStyle').onclick=()=>updateSelectedBoundaryStyle({},true)
 }
 if($('#maxProjectArea'))$('#maxProjectArea').onchange=e=>{state.project.maxArea=Math.max(0,+e.target.value||0);render()};if($('#propertyColor'))$('#propertyColor').onchange=e=>state.propertyColor=e.target.value;if($('#limitColor'))$('#limitColor').onchange=e=>state.limitColor=e.target.value;
 $('#printPaper').value=state.print.paper;$('#printOrientation').value=state.print.orientation;$('#printMode').value=state.print.mode;
@@ -229,7 +333,7 @@ const screen=p=>({x:p.x*SCALE*state.zoom+state.pan.x,y:p.y*SCALE*state.zoom+stat
 function roomTagWorld(r){const v=roomVertices(r),cx=v.reduce((a,p)=>a+p.x,0)/v.length,cy=v.reduce((a,p)=>a+p.y,0)/v.length,o=r.tagOffset||{x:0,y:0};return{x:cx+(+o.x||0),y:cy+(+o.y||0)}}
 function roomTagBox(r){const c=screen(roomTagWorld(r));ctx.save();ctx.font='600 13px Segoe UI,Arial';const nw=ctx.measureText(r.name||'Room').width;ctx.font='11px Segoe UI,Arial';const aw=ctx.measureText(area(r).toFixed(2)+' m²').width;ctx.restore();const w=Math.max(nw,aw)+18,h=42;return{room:r,left:c.x-w/2,right:c.x+w/2,top:c.y-h/2,bottom:c.y+h/2,cx:c.x,cy:c.y}}
 function hitRoomTag(e){if(!canvas||!ctx)return null;const b=canvas.getBoundingClientRect(),x=e.clientX-b.left,y=e.clientY-b.top,rooms=roomsOnStory();for(let i=rooms.length-1;i>=0;i--){const box=roomTagBox(rooms[i]);if(x>=box.left&&x<=box.right&&y>=box.top&&y<=box.bottom)return box}return null}
-function startRoomNameEditor(r){document.querySelector('.tagEditor')?.remove();const wrap=canvas.parentElement,c=screen(roomTagWorld(r)),input=document.createElement('input');input.className='tagEditor';input.value=r.name||'';input.style.left=c.x+'px';input.style.top=(c.y-8)+'px';wrap.appendChild(input);let done=false;const finish=save=>{if(done)return;done=true;const value=input.value.trim();input.remove();if(save&&value&&value!==r.name)commit(rs=>rs.map(x=>x.id===r.id?{...x,name:value}:x));else draw()};input.onkeydown=e=>{e.stopPropagation();if(e.key==='Enter'){e.preventDefault();finish(true)}else if(e.key==='Escape'){e.preventDefault();finish(false)}};input.onblur=()=>finish(true);requestAnimationFrame(()=>{input.focus();input.select()})}
+function startRoomNameEditor(r){document.querySelector('.tagEditor')?.remove();const wrap=canvas.parentElement,c=screen(roomTagWorld(r)),input=document.createElement('input');input.className='tagEditor';input.value=r.name||'';input.setAttribute('aria-label','Room name');input.title='Press Enter to finish';input.style.left=c.x+'px';input.style.top=(c.y-8)+'px';wrap.appendChild(input);let done=false;const finish=save=>{if(done)return;done=true;const value=input.value.trim();input.remove();if(save&&value&&value!==r.name){const color=matchingRoomColor(value,r.id)||r.color;commit(rs=>rs.map(x=>x.id===r.id?{...x,name:value,color}:x))}else draw()};input.onkeydown=e=>{e.stopPropagation();if(e.key==='Enter'){e.preventDefault();finish(true)}else if(e.key==='Escape'){e.preventDefault();finish(false)}};input.onblur=()=>finish(true);requestAnimationFrame(()=>{input.focus();input.select()})}
 function zoomAt(sx,sy,newZoom){newZoom=Math.max(.2,Math.min(5,newZoom));const wx=(sx-state.pan.x)/(SCALE*state.zoom),wy=(sy-state.pan.y)/(SCALE*state.zoom);state.zoom=newZoom;state.pan.x=sx-wx*SCALE*state.zoom;state.pan.y=sy-wy*SCALE*state.zoom;draw()}
 function wheel(e){e.preventDefault();const r=canvas.getBoundingClientRect();zoomAt(e.clientX-r.left,e.clientY-r.top,state.zoom*(e.deltaY<0?1.12:.89))}
 function zoomFit(){if(!state.rooms.length)return;const minX=Math.min(...state.rooms.map(r=>r.x)),minY=Math.min(...state.rooms.map(r=>r.y)),maxX=Math.max(...state.rooms.map(r=>r.x+r.width)),maxY=Math.max(...state.rooms.map(r=>r.y+r.length));const pad=60,w=maxX-minX,h=maxY-minY;state.zoom=Math.max(.2,Math.min(3,Math.min((canvas.clientWidth-pad*2)/(w*SCALE),(canvas.clientHeight-pad*2)/(h*SCALE))));state.pan={x:pad-minX*SCALE*state.zoom,y:pad-minY*SCALE*state.zoom};draw()}
@@ -258,9 +362,16 @@ function fitPrintAreaToStory(){
   state.print.originX=b.left-pad;state.print.originY=b.top-pad;
   render();
 }
+function legendWorldBounds(){if(!state.legend?.visible)return null;const scale=SCALE*state.zoom||SCALE;return{left:(state.legend.x-state.pan.x)/scale,top:(state.legend.y-state.pan.y)/scale,right:(state.legend.x+(state.legend.width||230)-state.pan.x)/scale,bottom:(state.legend.y+(state.legend.height||280)-state.pan.y)/scale}}
+function buildPrintLegendSVG(){
+  const box=legendWorldBounds();if(!box)return'';const scale=SCALE*state.zoom||SCALE,unit=1/scale,w=box.right-box.left,h=box.bottom-box.top,x=box.left,y=box.top,rooms=new Map();roomsOnStory().forEach(r=>{const key=roomNameKey(r.name);if(key&&!rooms.has(key))rooms.set(key,{name:r.name||'Room',color:r.color||'#dbeafe'})});let row=44*unit,content='';
+  const roomValues=[...rooms.values()],columns=state.legend.roomColumns===2?2:1;for(let i=0;i<roomValues.length;i+=columns){const cellWidth=w/columns;content+=`<rect x="${x}" y="${y+row-16*unit}" width="${w}" height="${22*unit}" fill="none" stroke="#64748b" stroke-width="${unit}"/>`;for(let column=0;column<columns;column++){const r=roomValues[i+column];if(!r)continue;const cellX=x+column*cellWidth;if(column)content+=`<line x1="${cellX}" y1="${y+row-16*unit}" x2="${cellX}" y2="${y+row+6*unit}" stroke="#64748b" stroke-width="${unit}"/>`;content+=`<line x1="${cellX+38*unit}" y1="${y+row-16*unit}" x2="${cellX+38*unit}" y2="${y+row+6*unit}" stroke="#64748b" stroke-width="${unit}"/><rect x="${cellX+8*unit}" y="${y+row-11*unit}" width="${22*unit}" height="${14*unit}" fill="${r.color}" stroke="#64748b" stroke-width="${unit}"/><text x="${cellX+44*unit}" y="${y+row}" font-family="Arial" font-size="${12*unit}" fill="#172033">${esc(r.name)}</text>`}row+=22*unit}
+  row+=8*unit;const lineEntries=[['#334155','',3,'Wall'],['#0284c7','',5,'Glazing'],['#16a34a',`${8*unit} ${5*unit}`,3,'Virtual / Open'],['#7c3aed','',5,'Outdoor boundary']];lineEntries.forEach(([color,dash,width,label])=>{content+=`<rect x="${x}" y="${y+row-16*unit}" width="${w}" height="${22*unit}" fill="none" stroke="#64748b" stroke-width="${unit}"/><line x1="${x+38*unit}" y1="${y+row-16*unit}" x2="${x+38*unit}" y2="${y+row+6*unit}" stroke="#64748b" stroke-width="${unit}"/><line x1="${x+7*unit}" y1="${y+row-4*unit}" x2="${x+31*unit}" y2="${y+row-4*unit}" stroke="${color}" stroke-width="${width*unit}" ${dash?`stroke-dasharray="${dash}"`:''}/><text x="${x+44*unit}" y="${y+row}" font-family="Arial" font-size="${12*unit}" fill="#172033">${label}</text>`;row+=22*unit});
+  return`<g><defs><clipPath id="legendPrintClip"><rect x="${x}" y="${y}" width="${w}" height="${h}"/></clipPath></defs><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="white" fill-opacity=".96" stroke="#64748b" stroke-width="${unit}"/><g clip-path="url(#legendPrintClip)"><rect x="${x}" y="${y}" width="${w}" height="${28*unit}" fill="#e2e8f0" stroke="#64748b" stroke-width="${unit}"/><text x="${x+10*unit}" y="${y+19*unit}" font-family="Arial" font-size="${13*unit}" font-weight="bold" fill="#172033">Legend</text>${content}</g></g>`;
+}
 function printViewBox(){
   if(state.print.mode==='fit'){
-    const b=activeStoryBounds(),pad=.5;
+    const b=activeStoryBounds(),legend=legendWorldBounds(),pad=.5;if(legend){b.left=Math.min(b.left,legend.left);b.top=Math.min(b.top,legend.top);b.right=Math.max(b.right,legend.right);b.bottom=Math.max(b.bottom,legend.bottom)}
     return {x:b.left-pad,y:b.top-pad,w:Math.max(1,b.right-b.left+pad*2),h:Math.max(1,b.bottom-b.top+pad*2)};
   }
   const p=printPageWorldSize();
@@ -276,6 +387,7 @@ function buildPrintSVG(){
     s+=`<text x="${cx}" y="${cy-vb.h/100}" text-anchor="middle" font-family="Arial" font-size="${vb.h/45}" fill="#172033">${esc(r.name)}</text>`;
     s+=`<text x="${cx}" y="${cy+vb.h/70}" text-anchor="middle" font-family="Arial" font-size="${vb.h/58}" fill="#475569">${area(r).toFixed(2)} m²</text>`;
   });
+  s+=buildPrintLegendSVG();
   s+='</svg>';return s;
 }
 function printProject(){
@@ -298,6 +410,15 @@ function roomVertices(r){if(r.isRegular===false&&Array.isArray(r.vertices)&&r.ve
 function drawGrips(r){grips(r).forEach((g,i)=>{const p=screen(g);ctx.fillStyle=g.kind==='vertex'?'#fff':'#2563eb';ctx.strokeStyle='#2563eb';ctx.lineWidth=2;ctx.fillRect(p.x-5,p.y-5,10,10);ctx.strokeRect(p.x-5,p.y-5,10,10)})}
 function drawGuide(g){ctx.save();ctx.strokeStyle=g.color;ctx.lineWidth=g.weight||3;ctx.setLineDash(g.type==='limit'?[12,7]:[5,5]);const a=screen(g.a),b=screen(g.b);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.restore()}
 function drawShape(s){ctx.save();ctx.strokeStyle=s.__selected?'#f59e0b':(s.color||state.style.color);ctx.lineWidth=s.__selected?4:(s.weight||state.style.weight);dash(s.pattern||state.style.pattern);ctx.beginPath();if(s.type==='arc'){const c=screen(s.center);ctx.arc(c.x,c.y,s.radius*SCALE*state.zoom,s.startAngle,s.endAngle,s.ccw||false)}else{const a=screen(s.a),b=screen(s.b);if(s.type==='line'){ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y)}else if(s.type==='rect'){ctx.rect(a.x,a.y,b.x-a.x,b.y-a.y)}else if(s.type==='circle'){ctx.arc(a.x,a.y,s.radius*SCALE*state.zoom,0,Math.PI*2)}}ctx.stroke();ctx.restore()}
+function outdoorBoundaryDisplaySegments(){
+  const shapes=[];(state.freeShapes||[]).forEach((s,index)=>{if(s.outdoorBoundary&&(!s.storyId||s.storyId===state.activeStoryId))shapes.push({s,index})});if(!shapes.length)return[];
+  const amount=shapes[0].s.visualOffsetEnabled===false?0:Math.max(0,+shapes[0].s.visualOffset||0);if(!amount)return shapes.map(x=>({...x.s,__index:x.index}));
+  const vertices=shapes.map(x=>x.s.a),signed=vertices.reduce((sum,p,i)=>{const q=vertices[(i+1)%vertices.length];return sum+p.x*q.y-q.x*p.y},0),direction=signed>=0?1:-1;
+  const shifted=shapes.map(({s})=>{const dx=s.b.x-s.a.x,dy=s.b.y-s.a.y,len=Math.hypot(dx,dy)||1,n={x:direction*dy/len*amount,y:-direction*dx/len*amount};return{a:{x:s.a.x+n.x,y:s.a.y+n.y},b:{x:s.b.x+n.x,y:s.b.y+n.y}}});
+  const points=shifted.map((edge,i)=>{const previous=shifted[(i-1+shifted.length)%shifted.length],intersection=lineIntersectionInfinite(previous,edge);return intersection?{x:intersection.x,y:intersection.y}:{...edge.a}});
+  return shapes.map(({s,index},i)=>({...s,a:points[i],b:points[(i+1)%points.length],__index:index}));
+}
+function drawOutdoorBoundaryDisplay(){outdoorBoundaryDisplaySegments().forEach(s=>drawShape(isShapeSelected('__free__',s.__index)?{...s,__selected:true}:s))}
 function pointInPolygon(p,v){let inside=false;for(let i=0,j=v.length-1;i<v.length;j=i++){const a=v[i],b=v[j];if(((a.y>p.y)!==(b.y>p.y))&&(p.x<(b.x-a.x)*(p.y-a.y)/((b.y-a.y)||1e-12)+a.x))inside=!inside}return inside}function hit(p){return [...roomsOnStory()].reverse().find(r=>pointInPolygon(p,roomVertices(r)))}
 function allSnapPoints(){
   const pts=[];
@@ -392,6 +513,28 @@ function nearestDraftShape(p){
   });
   return best&&best.d<Math.max(.18,10/(SCALE*state.zoom))?best:null;
 }
+function nearestOutdoorBoundary(p){
+  let best=null;outdoorBoundaryDisplaySegments().forEach(s=>{const index=s.__index,vx=s.b.x-s.a.x,vy=s.b.y-s.a.y,len2=vx*vx+vy*vy,t=Math.max(0,Math.min(1,((p.x-s.a.x)*vx+(p.y-s.a.y)*vy)/(len2||1))),q={x:s.a.x+t*vx,y:s.a.y+t*vy},d=Math.hypot(p.x-q.x,p.y-q.y);if(!best||d<best.d)best={index,d,q}});return best&&best.d<Math.max(.22,12/(SCALE*state.zoom))?best:null
+}
+function selectOutdoorBoundary(){state.selectedBoundary=null;state.selectedBoundaries=[];state.selectedShapes=[];(state.freeShapes||[]).forEach((s,index)=>{if(s.outdoorBoundary&&(!s.storyId||s.storyId===state.activeStoryId))state.selectedShapes.push({roomId:'__free__',index})})}
+function outdoorBoundaryVertices(){const vertices=[];(state.freeShapes||[]).forEach(s=>{if(!s.outdoorBoundary||s.storyId&&s.storyId!==state.activeStoryId)return;[s.a,s.b].forEach(p=>{if(!vertices.some(v=>nearPoint(v,p,1e-7)))vertices.push({...p})})});return vertices}
+function hitOutdoorBoundaryVertex(p){if(!selectedOutdoorBoundaryIndices().length)return null;const tolerance=Math.max(.16,10/(SCALE*state.zoom));let best=null;outdoorBoundaryVertices().forEach(v=>{const d=Math.hypot(v.x-p.x,v.y-p.y);if(d<=tolerance&&(!best||d<best.d))best={point:v,d}});return best}
+function outdoorBoundaryEdges(){const edges=[];(state.freeShapes||[]).forEach((s,index)=>{if(s.outdoorBoundary&&(!s.storyId||s.storyId===state.activeStoryId))edges.push({index,a:{...s.a},b:{...s.b},mid:{x:(s.a.x+s.b.x)/2,y:(s.a.y+s.b.y)/2}})});return edges}
+function hitOutdoorBoundaryEdgeGrip(p){if(!selectedOutdoorBoundaryIndices().length)return null;const tolerance=Math.max(.16,10/(SCALE*state.zoom));let best=null;outdoorBoundaryEdges().forEach(edge=>{const d=Math.hypot(edge.mid.x-p.x,edge.mid.y-p.y);if(d<=tolerance&&(!best||d<best.d))best={...edge,d}});return best}
+function drawOutdoorBoundaryVertices(){
+  if(!selectedOutdoorBoundaryIndices().length)return;ctx.save();outdoorBoundaryVertices().forEach(v=>{const p=screen(v);ctx.fillStyle='#ffffff';ctx.strokeStyle='#7c3aed';ctx.lineWidth=2.5;ctx.fillRect(p.x-6,p.y-6,12,12);ctx.strokeRect(p.x-6,p.y-6,12,12)});outdoorBoundaryEdges().forEach(edge=>{const p=screen(edge.mid);ctx.fillStyle='#7c3aed';ctx.strokeStyle='#ffffff';ctx.lineWidth=2;ctx.fillRect(p.x-5,p.y-5,10,10);ctx.strokeRect(p.x-5,p.y-5,10,10)});ctx.restore();
+}
+function moveOutdoorBoundaryVertex(e){
+  if(!action||action.kind!=='outdoorVertex')return;const p=world(e),target={x:snap(p.x),y:snap(p.y)},origin=action.origin;
+  state.freeShapes=JSON.parse(JSON.stringify(action.before));
+  state.freeShapes.forEach(s=>{if(!s.outdoorBoundary||s.storyId&&s.storyId!==state.activeStoryId)return;if(nearPoint(s.a,origin,1e-7))s.a={...target};if(nearPoint(s.b,origin,1e-7))s.b={...target}});draw();
+}
+function moveOutdoorBoundaryEdge(e){
+  if(!action||action.kind!=='outdoorEdge')return;const p=world(e),a=action.a,b=action.b,horizontal=Math.abs(a.y-b.y)<=Math.abs(a.x-b.x),ta=horizontal?{x:a.x,y:snap(p.y)}:{x:snap(p.x),y:a.y},tb=horizontal?{x:b.x,y:ta.y}:{x:ta.x,y:b.y};
+  state.freeShapes=JSON.parse(JSON.stringify(action.before));
+  state.freeShapes.forEach(s=>{if(!s.outdoorBoundary||s.storyId&&s.storyId!==state.activeStoryId)return;if(nearPoint(s.a,a,1e-7))s.a={...ta};else if(nearPoint(s.a,b,1e-7))s.a={...tb};if(nearPoint(s.b,a,1e-7))s.b={...ta};else if(nearPoint(s.b,b,1e-7))s.b={...tb}});draw();
+}
+function finishOutdoorBoundaryGrip(){if(!action||!['outdoorVertex','outdoorEdge'].includes(action.kind))return;action=null;persistRecovery();render()}
 function isShapeSelected(roomId,index){return state.selectedShapes.some(s=>s.roomId===roomId&&s.index===index)}
 function toggleShapeSelection(roomId,index){
   const k=state.selectedShapes.findIndex(s=>s.roomId===roomId&&s.index===index);
@@ -504,6 +647,19 @@ function duplicateSelectedRooms(){
   if(!copySelectedRooms())return false;
   return pasteRooms();
 }
+function beginRoomCopyDrag(r,p){
+  const sourceIds=isRoomSelected(r.id)?selectedRoomIds():[r.id];
+  state.history.push(JSON.parse(JSON.stringify(state.rooms)));state.future=[];
+  const newIds=[],origins={};
+  sourceIds.forEach(id=>{
+    const src=state.rooms.find(x=>x.id===id);if(!src)return;
+    const cp=JSON.parse(JSON.stringify(src));cp.id=uid();cp.name=nextCopyName(cp.name);cp.number=nextRoomNumber(cp.number);
+    state.rooms.push(cp);newIds.push(cp.id);origins[cp.id]=JSON.parse(JSON.stringify(cp));
+  });
+  state.selectedIds=newIds;state.selected=newIds[newIds.length-1]||null;
+  action={kind:newIds.length>1?'groupMove':'move',id:state.selected,ids:newIds,start:p,origins,origin:origins[state.selected]};
+  draw();
+}
 function deleteSelectedRooms(){
   const ids=new Set(selectedRoomIds());
   if(!ids.size)return false;
@@ -567,6 +723,7 @@ function rectContainsBounds(rect,b){
 function rectTouchesBounds(rect,b){
   return !(b.right<rect.left||b.left>rect.right||b.bottom<rect.top||b.top>rect.bottom);
 }
+function clearAllSelections(){state.selected=null;state.selectedIds=[];state.selectedBoundary=null;state.selectedBoundaries=[];state.selectedShapes=[]}
 function applySelectionWindow(a,b,additive){
   const rect={left:Math.min(a.x,b.x),right:Math.max(a.x,b.x),top:Math.min(a.y,b.y),bottom:Math.max(a.y,b.y)};
   const windowSelection=b.x>=a.x;
@@ -595,6 +752,14 @@ function applyLineSelectionWindow(a,b,additive){
   });
   state.selectedShapes=picked;
 }
+function applyBoundarySelectionWindow(a,b,additive){
+  const rect={left:Math.min(a.x,b.x),right:Math.max(a.x,b.x),top:Math.min(a.y,b.y),bottom:Math.max(a.y,b.y)},windowSelection=b.x>=a.x,selections=additive?[...boundarySelections()]:[];
+  roomsOnStory().forEach(r=>{const vertices=roomVertices(r);vertices.forEach((p,edgeIndex)=>{const q=vertices[(edgeIndex+1)%vertices.length],bounds={left:Math.min(p.x,q.x),right:Math.max(p.x,q.x),top:Math.min(p.y,q.y),bottom:Math.max(p.y,q.y)};if(!(windowSelection?rectContainsBounds(rect,bounds):rectTouchesBounds(rect,bounds)))return;const shared=sharedBoundaryMatches(r.id,edgeIndex)[0],pick={roomId:r.id,edgeIndex,shared:shared?{a:shared.a,b:shared.b}:null,linked:shared?[{roomId:r.id,edgeIndex},{roomId:shared.roomId,edgeIndex:shared.edgeIndex}]:null},key=boundarySelectionKey(pick);if(!selections.some(x=>boundarySelectionKey(x)===key))selections.push(pick)})});
+  state.selectedBoundaries=selections;state.selectedBoundary=selections[selections.length-1]||null;if(state.selectedBoundary)setSingleSelection(state.selectedBoundary.roomId)
+}
+function applyOutdoorSelectionWindow(a,b){const rect={left:Math.min(a.x,b.x),right:Math.max(a.x,b.x),top:Math.min(a.y,b.y),bottom:Math.max(a.y,b.y)},windowSelection=b.x>=a.x,segments=outdoorBoundaryDisplaySegments(),test=s=>{const bounds={left:Math.min(s.a.x,s.b.x),right:Math.max(s.a.x,s.b.x),top:Math.min(s.a.y,s.b.y),bottom:Math.max(s.a.y,s.b.y)};return windowSelection?rectContainsBounds(rect,bounds):rectTouchesBounds(rect,bounds)},hit=segments.length&&(windowSelection?segments.every(test):segments.some(test));if(hit)selectOutdoorBoundary();else state.selectedShapes=[]}
+function updateSpecialSelectionRect(e){if(!action||!['boundarySelectionRect','outdoorSelectionRect'].includes(action.kind))return;const p=world(e);if(Math.hypot(p.x-action.start.x,p.y-action.start.y)>.08)action.moved=true;action.current=p;draw()}
+function finishSpecialSelectionRect(){if(!action||!['boundarySelectionRect','outdoorSelectionRect'].includes(action.kind))return;const current=action,currentPoint=current.current||current.start;action=null;if(!current.moved){clearAllSelections();render();return}if(current.kind==='boundarySelectionRect')applyBoundarySelectionWindow(current.start,currentPoint,current.additive);else applyOutdoorSelectionWindow(current.start,currentPoint);render()}
 
 
 function hitGrip(p,r){const tol=8/(SCALE*state.zoom),gs=grips(r);let best=-1,bd=Infinity;gs.forEach((g,i)=>{const d=Math.hypot(g.x-p.x,g.y-p.y);if(d<=tol&&d<bd){best=i;bd=d}});return best}function gripCursor(i,r){const gs=grips(r),g=gs[i];if(!g)return 'default';if(g.kind==='vertex')return r.isRegular===false?'move':(i===0||i===2?'nwse-resize':'nesw-resize');const v=roomVertices(r),a=v[g.edge],b=v[(g.edge+1)%v.length],dx=Math.abs(b.x-a.x),dy=Math.abs(b.y-a.y);return dx>=dy?'ns-resize':'ew-resize'}
@@ -607,8 +772,42 @@ function closedLoop(lines){if(lines.length<3)return null;const unused=lines.map(
 function simplifyPolygon(v){if(!v||v.length<3)return v||[];const out=[];for(let i=0;i<v.length;i++){const a=v[(i-1+v.length)%v.length],b=v[i],c=v[(i+1)%v.length];const cross=(b.x-a.x)*(c.y-b.y)-(b.y-a.y)*(c.x-b.x);if(Math.abs(cross)>1e-8)out.push(b)}return out}
 function allDraftLines(){const lines=[];state.rooms.forEach(r=>(r.shapes||[]).forEach(s=>{if(s.type==='line')lines.push({a:s.a,b:s.b,roomId:r.id})}));(state.freeShapes||[]).forEach(s=>{if(s.type==='line')lines.push({a:s.a,b:s.b,roomId:'__free__'})});return lines}
 function extractClosedLoops(lines,tol=.08){const unused=lines.map(l=>({a:{...l.a},b:{...l.b}})),loops=[];while(unused.length){const first=unused.shift(),chain=[first.a,first.b];let guard=0;while(unused.length&&guard++<5000){const end=chain[chain.length-1];if(nearPoint(end,chain[0],tol)){chain.pop();break}let k=unused.findIndex(l=>nearPoint(l.a,end,tol)||nearPoint(l.b,end,tol));if(k<0)break;let n=unused.splice(k,1)[0];if(nearPoint(n.b,end,tol))n={a:n.b,b:n.a};chain.push(n.b)}if(chain.length>=3&&nearPoint(chain[chain.length-1],chain[0],tol))chain.pop();if(chain.length>=3&&nearPoint(chain[chain.length-1],chain[0],tol)===false){/* already closed by consumed last segment */}if(chain.length>=3)loops.push(simplifyPolygon(chain))}return loops.filter(v=>v.length>=3&&polygonArea(v)>.001)}
-function createRoomFromArea(p){const loops=extractClosedLoops(allDraftLines()).filter(v=>pointInPolygon(p,v));if(!loops.length)return alert('No closed boundary of connected lines was found around the clicked point.');loops.sort((a,b)=>polygonArea(a)-polygonArea(b));const verts=loops[0],name=prompt('Room name','New Room')||'New Room',number='R-'+String(state.rooms.length+1).padStart(2,'0'),id=uid();const base=state.rooms.find(r=>r.id===state.selected);commit(rs=>[...rs,syncBounds({id,name,number,x:0,y:0,width:0,length:0,color:'#fde68a',floor:base?.floor||'Ground Floor',parentUnit:base?.parentUnit||'Apartment A',wetArea:false,isRegular:false,vertices:verts,shapes:[],boundaryOpacity:1,boundaryPrintable:true})]);state.selected=id;state.tool='select';render();warnArea()}
+function enclosedGapPolygon(p){
+  const rooms=roomsOnStory();if(!rooms.length||rooms.some(r=>!isOrthogonal(roomVertices(r))))return null;
+  if(rooms.some(r=>pointInPolygon(p,roomVertices(r))))return null;
+  const xs=[...new Set(rooms.flatMap(r=>roomVertices(r).map(v=>+v.x.toFixed(8))))].sort((a,b)=>a-b),ys=[...new Set(rooms.flatMap(r=>roomVertices(r).map(v=>+v.y.toFixed(8))))].sort((a,b)=>a-b);
+  if(xs.length<3||ys.length<3)return null;
+  const ci=xs.findIndex((x,i)=>i<xs.length-1&&p.x>x-1e-8&&p.x<xs[i+1]+1e-8),cj=ys.findIndex((y,j)=>j<ys.length-1&&p.y>y-1e-8&&p.y<ys[j+1]+1e-8);if(ci<0||cj<0)return null;
+  const key=(i,j)=>i+','+j,empty=(i,j)=>{if(i<0||j<0||i>=xs.length-1||j>=ys.length-1)return false;const c={x:(xs[i]+xs[i+1])/2,y:(ys[j]+ys[j+1])/2};return !rooms.some(r=>pointInPolygon(c,roomVertices(r)))};
+  if(!empty(ci,cj))return null;
+  const region=new Set(),queue=[[ci,cj]];let open=false;
+  while(queue.length){const [i,j]=queue.shift(),k=key(i,j);if(region.has(k)||!empty(i,j))continue;region.add(k);if(i===0||j===0||i===xs.length-2||j===ys.length-2)open=true;[[i-1,j],[i+1,j],[i,j-1],[i,j+1]].forEach(n=>{if(!region.has(key(n[0],n[1]))&&empty(n[0],n[1]))queue.push(n)})}
+  if(open||!region.size)return null;
+  const edges=new Map(),pointKey=q=>q.x.toFixed(8)+','+q.y.toFixed(8),add=(a,b)=>{const k=pointKey(a)+'>'+pointKey(b),rk=pointKey(b)+'>'+pointKey(a);if(edges.has(rk))edges.delete(rk);else edges.set(k,{a,b})};
+  region.forEach(k=>{const [i,j]=k.split(',').map(Number),x1=xs[i],x2=xs[i+1],y1=ys[j],y2=ys[j+1];add({x:x1,y:y1},{x:x2,y:y1});add({x:x2,y:y1},{x:x2,y:y2});add({x:x2,y:y2},{x:x1,y:y2});add({x:x1,y:y2},{x:x1,y:y1})});
+  const remaining=[...edges.values()],loops=[];while(remaining.length){const e=remaining.shift(),loop=[e.a,e.b];let guard=0;while(guard++<10000&&!nearPoint(loop[loop.length-1],loop[0],1e-6)){const end=loop[loop.length-1],i=remaining.findIndex(x=>nearPoint(x.a,end,1e-6));if(i<0)break;loop.push(remaining.splice(i,1)[0].b)}if(nearPoint(loop[loop.length-1],loop[0],1e-6))loop.pop();if(loop.length>=3)loops.push(simplifyPolygon(loop))}
+  loops.sort((a,b)=>polygonArea(b)-polygonArea(a));return loops[0]||null;
+}
+function createRoomFromArea(p){const loops=extractClosedLoops(allDraftLines()).filter(v=>pointInPolygon(p,v));loops.sort((a,b)=>polygonArea(a)-polygonArea(b));const verts=loops[0]||enclosedGapPolygon(p);if(!verts)return alert('No enclosed empty area was found. The gap must be completely surrounded by orthogonal room boundaries, or by connected drafting lines.');const name=prompt('Room name','New Room')||'New Room',number='R-'+String(state.rooms.length+1).padStart(2,'0'),id=uid();const base=state.rooms.find(r=>r.id===state.selected);commit(rs=>[...rs,syncBounds({id,name,number,storyId:state.activeStoryId,x:0,y:0,width:0,length:0,color:'#fde68a',floor:activeStory()?.name||base?.floor||'Ground Floor',parentUnit:base?.parentUnit||'Apartment A',wetArea:false,isRegular:false,vertices:verts,shapes:[],boundaryOpacity:1,boundaryPrintable:true})]);setSingleSelection(id);state.tool='select';render();warnArea()}
 function isOrthogonal(v){return v.every((p,i)=>{const q=v[(i+1)%v.length];return Math.abs(p.x-q.x)<1e-8||Math.abs(p.y-q.y)<1e-8})}
+function activeStoryOuterOutline(){
+  const rooms=roomsOnStory();if(!rooms.length)return null;if(rooms.some(r=>!isOrthogonal(roomVertices(r))))return false;
+  const xs=[...new Set(rooms.flatMap(r=>roomVertices(r).map(v=>+v.x.toFixed(8))))].sort((a,b)=>a-b),ys=[...new Set(rooms.flatMap(r=>roomVertices(r).map(v=>+v.y.toFixed(8))))].sort((a,b)=>a-b),edges=new Map();
+  const pointKey=p=>p.x.toFixed(8)+','+p.y.toFixed(8),add=(a,b)=>{const k=pointKey(a)+'>'+pointKey(b),rk=pointKey(b)+'>'+pointKey(a);if(edges.has(rk))edges.delete(rk);else edges.set(k,{a,b})};
+  for(let i=0;i<xs.length-1;i++)for(let j=0;j<ys.length-1;j++){
+    const x1=xs[i],x2=xs[i+1],y1=ys[j],y2=ys[j+1],c={x:(x1+x2)/2,y:(y1+y2)/2};if(!rooms.some(r=>pointInPolygon(c,roomVertices(r))))continue;
+    add({x:x1,y:y1},{x:x2,y:y1});add({x:x2,y:y1},{x:x2,y:y2});add({x:x2,y:y2},{x:x1,y:y2});add({x:x1,y:y2},{x:x1,y:y1});
+  }
+  const remaining=[...edges.values()],loops=[];while(remaining.length){const e=remaining.shift(),loop=[e.a,e.b];let guard=0;while(guard++<10000&&!nearPoint(loop[loop.length-1],loop[0],1e-6)){const end=loop[loop.length-1],i=remaining.findIndex(x=>nearPoint(x.a,end,1e-6));if(i<0)break;loop.push(remaining.splice(i,1)[0].b)}if(nearPoint(loop[loop.length-1],loop[0],1e-6))loop.pop();if(loop.length>=3)loops.push(simplifyPolygon(loop))}
+  loops.sort((a,b)=>polygonArea(b)-polygonArea(a));return loops[0]||null;
+}
+function createOutdoorBoundary(){
+  const outline=activeStoryOuterOutline();if(outline===null)return alert('Add rooms to the active story before creating an outdoor boundary.');if(outline===false)return alert('Automatic outdoor boundaries currently require rectangular or orthogonal room shapes.');if(!outline.length)return alert('Could not detect a closed outer room outline.');
+  const previous=(state.freeShapes||[]).find(s=>s.outdoorBoundary&&s.storyId===state.activeStoryId),style=previous?{color:previous.color||'#7c3aed',weight:previous.weight||6,pattern:previous.pattern||'solid',visualOffsetEnabled:previous.visualOffsetEnabled!==false,visualOffset:previous.visualOffset??0.2}:{color:'#7c3aed',weight:6,pattern:'solid',visualOffsetEnabled:true,visualOffset:0.2};
+  state.freeShapes=(state.freeShapes||[]).filter(s=>!(s.outdoorBoundary&&s.storyId===state.activeStoryId));
+  for(let i=0;i<outline.length;i++)state.freeShapes.push({type:'line',a:outline[i],b:outline[(i+1)%outline.length],storyId:state.activeStoryId,outdoorBoundary:true,...style});
+  selectOutdoorBoundary();persistRecovery();render();
+}
 function booleanOrthogonal(a,b,op){const av=roomVertices(a),bv=roomVertices(b);if(!isOrthogonal(av)||!isOrthogonal(bv))return null;const xs=[...new Set([...av,...bv].map(p=>+p.x.toFixed(8)))].sort((x,y)=>x-y),ys=[...new Set([...av,...bv].map(p=>+p.y.toFixed(8)))].sort((x,y)=>x-y);const edges=new Map(),key=p=>p.x.toFixed(8)+','+p.y.toFixed(8),add=(p1,p2)=>{const k=key(p1)+'>'+key(p2),rk=key(p2)+'>'+key(p1);if(edges.has(rk))edges.delete(rk);else edges.set(k,{a:p1,b:p2})};for(let i=0;i<xs.length-1;i++)for(let j=0;j<ys.length-1;j++){const x1=xs[i],x2=xs[i+1],y1=ys[j],y2=ys[j+1];if(x2-x1<1e-9||y2-y1<1e-9)continue;const c={x:(x1+x2)/2,y:(y1+y2)/2},ina=pointInPolygon(c,av),inb=pointInPolygon(c,bv),inside=op==='union'?(ina||inb):(ina&&!inb);if(inside){add({x:x1,y:y1},{x:x2,y:y1});add({x:x2,y:y1},{x:x2,y:y2});add({x:x2,y:y2},{x:x1,y:y2});add({x:x1,y:y2},{x:x1,y:y1})}}const remaining=[...edges.values()],loops=[];while(remaining.length){const e=remaining.shift(),loop=[e.a,e.b];let guard=0;while(guard++<10000){const end=loop[loop.length-1];if(nearPoint(end,loop[0],1e-6)){loop.pop();break}const k=remaining.findIndex(x=>nearPoint(x.a,end,1e-6));if(k<0)break;loop.push(remaining.splice(k,1)[0].b)}if(loop.length>=3)loops.push(simplifyPolygon(loop))}loops.sort((x,y)=>polygonArea(y)-polygonArea(x));return loops}
 function beginRoomBoolean(kind,p){const r=hit(p);if(!r)return alert('Click inside a room.');if(!toolPoints.length){toolPoints=[{roomId:r.id,q:p}];state.selected=r.id;draw();return}const first=state.rooms.find(x=>x.id===toolPoints[0].roomId);if(!first||first.id===r.id){toolPoints=[];return alert('Select a different second room.')}const loops=booleanOrthogonal(first,r,kind==='mergeRooms'?'union':'difference');if(!loops)return alert('This operation currently supports rectangular and orthogonal irregular room boundaries.');if(!loops.length){toolPoints=[];return alert(kind==='subtractRoom'?'The subtraction removes the complete first room.':'The rooms do not produce a valid merged boundary.')}if(loops.length>1)alert('The operation produced multiple regions or a hole. The largest resulting region will be retained.');const verts=loops[0],newName=kind==='mergeRooms'?[first.name,r.name].filter(Boolean).join(' + '):first.name,newId=kind==='mergeRooms'?uid():first.id;commit(rs=>{const nr=syncBounds({...first,id:newId,name:newName,isRegular:false,vertices:verts,shapes:[]});return kind==='mergeRooms'?[...rs.filter(x=>x.id!==first.id&&x.id!==r.id),nr]:rs.map(x=>x.id===first.id?nr:x)});state.selected=newId;toolPoints=[];state.tool='select';render();warnArea()}
 
@@ -678,29 +877,43 @@ function draw(){
   }
   (state.freeShapes||[]).forEach((s,i)=>{
     if(s.storyId&&s.storyId!==state.activeStoryId)return;
+    if(s.outdoorBoundary)return;
     drawShape(isShapeSelected('__free__',i)?{...s,__selected:true}:s);
   });
   roomsOnStory().forEach(r=>{
-    const v=roomVertices(r),pts=v.map(screen);
+    const v=roomVertices(r),pts=v.map(screen),selectedRoom=isRoomSelected(r.id);
     ctx.save();
     ctx.globalAlpha=Math.max(.1,Math.min(1,r.boundaryOpacity??1));
-    ctx.fillStyle=r.color||'#dbeafe';ctx.strokeStyle='#334155';ctx.lineWidth=isRoomSelected(r.id)?3:1.5;ctx.setLineDash([]);
-    ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i].x,pts[i].y);ctx.closePath();ctx.fill();ctx.restore();
+    ctx.fillStyle=r.color||'#dbeafe';ctx.setLineDash([]);
+    ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i].x,pts[i].y);ctx.closePath();ctx.fill();
+    if(selectedRoom){ctx.globalAlpha=.28;ctx.fillStyle='#2563eb';ctx.fill()}
+    ctx.restore();
     const edgeStyles=r.boundaryStyles||[];
     for(let i=0;i<pts.length;i++){
-      const a=pts[i],b=pts[(i+1)%pts.length],st=edgeStyles[i]||{};
-      ctx.save();ctx.strokeStyle=st.color||'#334155';ctx.lineWidth=isRoomSelected(r.id)?3:1.5;
-      ctx.setLineDash(st.pattern==='dashed'?[10,6]:st.pattern==='dotted'?[2,5]:[]);
-      if(state.selectedBoundary&&state.selectedBoundary.roomId===r.id&&state.selectedBoundary.edgeIndex===i){ctx.strokeStyle='#f59e0b';ctx.lineWidth=4}
-      ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.restore();
+      const a=pts[i],b=pts[(i+1)%pts.length],st=edgeStyles[i]||{},classification=st.classification||'',edgeSelected=isBoundaryEdgeSelected(r.id,i);
+      ctx.save();
+      ctx.strokeStyle=classification==='wall'?'#334155':classification==='glazing'?'#0284c7':classification==='virtual'?'#16a34a':selectedRoom?'#2563eb':(st.color||'#334155');
+      ctx.lineWidth=classification==='glazing'?6:classification?3:selectedRoom?4:1.5;
+      ctx.setLineDash(classification==='virtual'?[12,7]:st.pattern==='dashed'?[10,6]:st.pattern==='dotted'?[2,5]:[]);
+      if(edgeSelected){ctx.strokeStyle='#f59e0b';ctx.lineWidth=5;ctx.setLineDash([])}
+      ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+      if(edgeSelected){
+        ctx.fillStyle='#f59e0b';ctx.strokeStyle='#ffffff';ctx.lineWidth=2;
+        [a,b].forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,7,0,Math.PI*2);ctx.fill();ctx.stroke()});
+      }
+      if(classification==='glazing'&&!edgeSelected){ctx.strokeStyle='#e0f2fe';ctx.lineWidth=2;ctx.setLineDash([]);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}
+      ctx.restore();
     }
     (r.shapes||[]).forEach((s,i)=>drawShape(isShapeSelected(r.id,i)?{...s,__selected:true}:s));
     const tag=screen(roomTagWorld(r)),cx=tag.x,cy=tag.y;
     ctx.save();ctx.fillStyle='#172033';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='600 13px Segoe UI,Arial';ctx.fillText(r.name||'Room',cx,cy-8);ctx.font='11px Segoe UI,Arial';ctx.fillStyle='#475569';ctx.fillText(area(r).toFixed(2)+' m²',cx,cy+9);ctx.restore();
     if(r.id===state.selected&&state.tool==='select')drawGrips(r);
   });
+  boundarySelections().filter(p=>p.shared).forEach(pick=>{const a=screen(pick.shared.a),b=screen(pick.shared.b);ctx.save();ctx.strokeStyle='#f59e0b';ctx.fillStyle='#f59e0b';ctx.lineWidth=5;ctx.setLineDash([]);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.strokeStyle='#fff';ctx.lineWidth=2;[a,b].forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,7,0,Math.PI*2);ctx.fill();ctx.stroke()});ctx.restore()});
+  drawOutdoorBoundaryDisplay();
+  if(state.tool==='outdoorSelect')drawOutdoorBoundaryVertices();
   snapGuides.forEach(g=>{ctx.save();ctx.strokeStyle='#ef4444';ctx.lineWidth=1;ctx.setLineDash([6,4]);const a=screen(g.a),b=screen(g.b);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.restore()});
-  if(action&&(action.kind==='selectionRect'||action.kind==='lineSelectionRect')){
+  if(action&&['selectionRect','lineSelectionRect','boundarySelectionRect','outdoorSelectionRect'].includes(action.kind)){
     const a=screen(action.start),b=screen(action.current||action.start),left=Math.min(a.x,b.x),top=Math.min(a.y,b.y),w=Math.abs(b.x-a.x),h=Math.abs(b.y-a.y),cross=(action.current||action.start).x<action.start.x;
     ctx.save();
     ctx.fillStyle=cross?'rgba(34,197,94,.10)':'rgba(37,99,235,.10)';
@@ -730,7 +943,13 @@ function down(e){
   if(state.tool==='select'){
     const tagHit=hitRoomTag(e);
     if(tagHit){
-      const r=tagHit.room;if(!isRoomSelected(r.id))setSingleSelection(r.id);
+      const r=tagHit.room,now=performance.now();
+      if(e.ctrlKey&&e.altKey){e.preventDefault();lastTagClick={roomId:null,time:0};beginRoomCopyDrag(r,raw);return;}
+      if(e.shiftKey||e.ctrlKey||e.metaKey){e.preventDefault();lastTagClick={roomId:null,time:0};toggleSelection(r.id);render();return;}
+      if(lastTagClick.roomId===r.id&&now-lastTagClick.time<450){
+        e.preventDefault();action=null;lastTagClick={roomId:null,time:0};setSingleSelection(r.id);startRoomNameEditor(r);return;
+      }
+      lastTagClick={roomId:r.id,time:now};if(!isRoomSelected(r.id))setSingleSelection(r.id);
       state.history.push(JSON.parse(JSON.stringify(state.rooms)));state.future=[];
       action={kind:'tagMove',id:r.id,start:raw,origin:{...(r.tagOffset||{x:0,y:0})}};
       canvas.setPointerCapture?.(e.pointerId);draw();return;
@@ -761,11 +980,18 @@ function down(e){
   if(state.tool==='makeIrregular'){makeSelectedIrregular();return}
   if(state.tool==='addVertex'){addBoundaryVertex(p);return}
   if(state.tool==='removeVertex'){removeBoundaryVertex(p);return}
+  if(state.tool==='outdoorSelect'){
+    const vertex=hitOutdoorBoundaryVertex(raw);if(vertex){action={kind:'outdoorVertex',origin:{...vertex.point},before:JSON.parse(JSON.stringify(state.freeShapes))};canvas.setPointerCapture?.(e.pointerId);canvas.style.cursor='move';return}
+    const edgeGrip=hitOutdoorBoundaryEdgeGrip(raw);if(edgeGrip){action={kind:'outdoorEdge',a:{...edgeGrip.a},b:{...edgeGrip.b},before:JSON.parse(JSON.stringify(state.freeShapes))};canvas.setPointerCapture?.(e.pointerId);canvas.style.cursor=Math.abs(edgeGrip.a.y-edgeGrip.b.y)<=Math.abs(edgeGrip.a.x-edgeGrip.b.x)?'ns-resize':'ew-resize';return}
+    if(!nearestOutdoorBoundary(raw)){action={kind:'outdoorSelectionRect',start:raw,current:raw,moved:false};if(!e.shiftKey)state.selectedShapes=[];draw();return}
+    selectOutdoorBoundary();render();return;
+  }
   if(state.tool==='edgeStyle'){
     const edge=nearestBoundaryEdge(raw);
-    if(!edge)return alert('Click close to a room boundary edge.');
-    state.selectedBoundary={roomId:edge.roomId,edgeIndex:edge.edgeIndex};
-    setSingleSelection(edge.roomId);
+    if(!edge){action={kind:'boundarySelectionRect',start:raw,current:raw,additive:e.shiftKey,moved:false};if(!e.shiftKey){state.selectedBoundary=null;state.selectedBoundaries=[]}draw();return}
+    const pick={roomId:edge.roomId,edgeIndex:edge.edgeIndex,shared:edge.shared||null,linked:edge.linked||null},key=boundarySelectionKey(pick);
+    if(e.shiftKey){const selections=[...boundarySelections()],index=selections.findIndex(x=>boundarySelectionKey(x)===key);if(index>=0)selections.splice(index,1);else selections.push(pick);state.selectedBoundaries=selections;state.selectedBoundary=selections[selections.length-1]||null}else{state.selectedBoundaries=[pick];state.selectedBoundary=pick}
+    if(state.selectedBoundary)setSingleSelection(state.selectedBoundary.roomId);
     render();return;
   }
   if(state.tool==='convert'){convertLinesToRoom();return}
@@ -781,25 +1007,14 @@ function down(e){
       else state.selectedShapes=[{roomId:n.roomId,index:n.index}];
       draw();return;
     }
-    if(!e.shiftKey)state.selectedShapes=[];
+    if(!e.shiftKey)clearAllSelections();
     action={kind:'lineSelectionRect',start:raw,current:raw,additive:e.shiftKey,moved:false};draw();return;
   }
   if(state.tool==='select'){
     const r=hit(p);
     if(r){
-      if(e.shiftKey){
-        const sourceIds=isRoomSelected(r.id)?selectedRoomIds():[r.id];
-        state.history.push(JSON.parse(JSON.stringify(state.rooms)));state.future=[];
-        const newIds=[],origins={};
-        sourceIds.forEach(id=>{
-          const src=state.rooms.find(x=>x.id===id);if(!src)return;
-          const cp=JSON.parse(JSON.stringify(src));cp.id=uid();cp.name=nextCopyName(cp.name);cp.number=nextRoomNumber(cp.number);
-          state.rooms.push(cp);newIds.push(cp.id);origins[cp.id]=JSON.parse(JSON.stringify(cp));
-        });
-        state.selectedIds=newIds;state.selected=newIds[newIds.length-1]||null;
-        action={kind:newIds.length>1?'groupMove':'move',id:state.selected,ids:newIds,start:p,origins,origin:origins[state.selected]};
-        draw();return;
-      }
+      if(e.ctrlKey&&e.altKey){e.preventDefault();beginRoomCopyDrag(r,p);return;}
+      if(e.shiftKey||e.ctrlKey||e.metaKey){e.preventDefault();toggleSelection(r.id);render();return;}
       if(!isRoomSelected(r.id))setSingleSelection(r.id);
       const ids=selectedRoomIds();
       state.history.push(JSON.parse(JSON.stringify(state.rooms)));state.future=[];
@@ -807,7 +1022,7 @@ function down(e){
       draw();return;
     }
     action={kind:'selectionRect',start:raw,current:raw,additive:e.shiftKey,moved:false};
-    if(!e.shiftKey){state.selected=null;state.selectedIds=[]}
+    if(!e.shiftKey)clearAllSelections();
     draw();return;
   }
   if(state.tool==='line'||state.tool==='chain'||state.tool==='property'||state.tool==='limit'){
@@ -883,8 +1098,19 @@ function nearestBoundaryEdge(p){
       if(!best||d<best.d)best={roomId:r.id,edgeIndex:i,d,q};
     });
   });
-  return best&&best.d<Math.max(.18,10/(SCALE*state.zoom))?best:null;
+  if(!best||best.d>=Math.max(.18,10/(SCALE*state.zoom)))return null;
+  const shared=sharedBoundaryMatches(best.roomId,best.edgeIndex).map(match=>{const vx=match.b.x-match.a.x,vy=match.b.y-match.a.y,len2=vx*vx+vy*vy,t=Math.max(0,Math.min(1,((p.x-match.a.x)*vx+(p.y-match.a.y)*vy)/(len2||1))),q={x:match.a.x+t*vx,y:match.a.y+t*vy};return{...match,d:Math.hypot(p.x-q.x,p.y-q.y)}}).sort((a,b)=>a.d-b.d)[0];
+  return shared&&shared.d<Math.max(.18,10/(SCALE*state.zoom))?{...best,shared:{a:shared.a,b:shared.b},linked:[{roomId:best.roomId,edgeIndex:best.edgeIndex},{roomId:shared.roomId,edgeIndex:shared.edgeIndex}]}:best;
 }
+function sharedBoundaryMatches(roomId,edgeIndex){
+  const room=state.rooms.find(r=>r.id===roomId);if(!room)return[];const vertices=roomVertices(room),a=vertices[edgeIndex],b=vertices[(edgeIndex+1)%vertices.length],horizontal=Math.abs(a.y-b.y)<1e-7,vertical=Math.abs(a.x-b.x)<1e-7;if(!horizontal&&!vertical)return[];const matches=[];
+  roomsOnStory().forEach(other=>{if(other.id===roomId)return;const ov=roomVertices(other);ov.forEach((c,i)=>{const d=ov[(i+1)%ov.length];if(horizontal&&Math.abs(c.y-d.y)<1e-7&&Math.abs(c.y-a.y)<1e-7){const lo=Math.max(Math.min(a.x,b.x),Math.min(c.x,d.x)),hi=Math.min(Math.max(a.x,b.x),Math.max(c.x,d.x));if(hi-lo>1e-7)matches.push({roomId:other.id,edgeIndex:i,a:{x:lo,y:a.y},b:{x:hi,y:a.y}})}else if(vertical&&Math.abs(c.x-d.x)<1e-7&&Math.abs(c.x-a.x)<1e-7){const lo=Math.max(Math.min(a.y,b.y),Math.min(c.y,d.y)),hi=Math.min(Math.max(a.y,b.y),Math.max(c.y,d.y));if(hi-lo>1e-7)matches.push({roomId:other.id,edgeIndex:i,a:{x:a.x,y:lo},b:{x:a.x,y:hi}})}})});return matches
+}
+function boundarySelections(){return state.selectedBoundaries?.length?state.selectedBoundaries:(state.selectedBoundary?[state.selectedBoundary]:[])}
+function boundarySelectionKey(pick){if(pick.shared){const points=[pick.shared.a,pick.shared.b].map(p=>p.x.toFixed(7)+','+p.y.toFixed(7)).sort();return'shared:'+points.join('|')}return pick.roomId+':'+pick.edgeIndex}
+function selectedBoundaryTargets(){const targets=[];boundarySelections().forEach(pick=>(pick.linked?.length?pick.linked:[{roomId:pick.roomId,edgeIndex:pick.edgeIndex}]).forEach(target=>{if(!targets.some(t=>t.roomId===target.roomId&&t.edgeIndex===target.edgeIndex))targets.push(target)}));return targets}
+function isBoundaryEdgeSelected(roomId,edgeIndex){return boundarySelections().some(p=>!p.shared&&p.roomId===roomId&&p.edgeIndex===edgeIndex)}
+function updateSelectedBoundaryStyle(patch,clear=false){const targets=selectedBoundaryTargets();if(!targets.length)return;commit(rs=>rs.map(r=>{const roomTargets=targets.filter(t=>t.roomId===r.id);if(!roomTargets.length)return r;const styles=[...(r.boundaryStyles||[])];roomTargets.forEach(t=>styles[t.edgeIndex]=clear?{}:{...(styles[t.edgeIndex]||{}),...patch});return{...r,boundaryStyles:styles}}))}
 
 function snapRoomPosition(room,nx,ny,id){keepSnapVisuals();const threshold=Math.max(0.08,12/(SCALE*state.zoom)),w=room.width,h=room.length;nx=state.snap?snap(nx):nx;ny=state.snap?snap(ny):ny;let bestX=nx,bestY=ny,dxBest=threshold+1,dyBest=threshold+1,xTarget=null,yTarget=null;const moving={left:nx,right:nx+w,top:ny,bottom:ny+h};state.rooms.forEach(o=>{if(o.id===id)return;const b={left:o.x,right:o.x+o.width,top:o.y,bottom:o.y+o.length};[[moving.left,b.left],[moving.left,b.right],[moving.right,b.left],[moving.right,b.right]].forEach(([a,t])=>{const d=Math.abs(a-t);if(d<dxBest&&d<=threshold){dxBest=d;bestX=nx+(t-a);xTarget=t}});[[moving.top,b.top],[moving.top,b.bottom],[moving.bottom,b.top],[moving.bottom,b.bottom]].forEach(([a,t])=>{const d=Math.abs(a-t);if(d<dyBest&&d<=threshold){dyBest=d;bestY=ny+(t-a);yTarget=t}})});snapGuides=[];if(xTarget!==null)snapGuides.push({a:{x:xTarget,y:-1000},b:{x:xTarget,y:1000}});if(yTarget!==null)snapGuides.push({a:{x:-1000,y:yTarget},b:{x:1000,y:yTarget}});return{x:bestX,y:bestY}}
 function move(e){let raw=world(e),p=(state.tool==='line'||state.tool==='chain'||state.tool==='property'||state.tool==='limit')?snapDrawingPoint(raw):((action&&['rectResize','edgeResize','vertex'].includes(action.kind))?snapResizePoint(raw,action.id):{x:snap(raw.x),y:snap(raw.y)});cursor=p;$('#status').textContent=`X ${p.x.toFixed(2)} m  Y ${p.y.toFixed(2)} m`;if(!action){if(state.tool==='select'){const rr=state.rooms.find(r=>r.id===state.selected),gi=rr?hitGrip(raw,rr):-1;canvas.style.cursor=gi>=0?gripCursor(gi,rr):hitRoomTag(e)?'grab':hit(raw)?'move':'default'}else canvas.style.cursor='crosshair';return}if(action.kind==='pan'){state.pan={x:action.pan.x+e.clientX-action.sx,y:action.pan.y+e.clientY-action.sy};draw();return}if(action.kind==='selectionRect'||action.kind==='lineSelectionRect'){if(Math.hypot(raw.x-action.start.x,raw.y-action.start.y)>.08)action.moved=true;action.current=raw;draw();return}if(action.kind==='tagMove'){const r=state.rooms.find(x=>x.id===action.id);if(r)r.tagOffset={x:action.origin.x+(raw.x-action.start.x),y:action.origin.y+(raw.y-action.start.y)};canvas.style.cursor='grabbing';draw();return}if(action.kind==='commandMove'){const dx=p.x-action.start.x,dy=p.y-action.start.y;action.current=p;action.ids.forEach(id=>{const r=state.rooms.find(x=>x.id===id),o=action.origins[id];if(!r||!o)return;r.x=o.x+dx;r.y=o.y+dy;if(o.vertices)r.vertices=o.vertices.map(v=>({x:v.x+dx,y:v.y+dy}))});canvas.style.cursor='crosshair';draw();return}if(action.kind==='groupMove'){const dx=p.x-action.start.x,dy=p.y-action.start.y;action.ids.forEach(id=>{const r=state.rooms.find(x=>x.id===id),o=action.origins[id];if(!r||!o)return;r.x=o.x+dx;r.y=o.y+dy;if(r.isRegular===false&&o.vertices)r.vertices=o.vertices.map(v=>({x:v.x+dx,y:v.y+dy}))});draw();return}if(action.kind==='move'){const dx=p.x-action.start.x,dy=p.y-action.start.y,r=state.rooms.find(x=>x.id===action.id);let nx=action.origin.x+dx,ny=action.origin.y+dy;const pos=snapRoomPosition(r,nx,ny,action.id);r.x=pos.x;r.y=pos.y;if(r.isRegular===false&&action.origin.vertices){const odx=pos.x-action.origin.x,ody=pos.y-action.origin.y;r.vertices=action.origin.vertices.map(v=>({x:v.x+odx,y:v.y+ody}))}draw();return}if(action.kind==='vertex'){const r=state.rooms.find(x=>x.id===action.id),gd=grips(action.origin)[action.grip];r.vertices[gd.vertex]={x:p.x,y:p.y};syncBounds(r);draw();return}if(action.kind==='edgeResize'){const r=state.rooms.find(x=>x.id===action.id),ov=roomVertices(action.origin),gd=grips(action.origin)[action.grip],i=gd.edge,j=(i+1)%ov.length,a=ov[i],b=ov[j];r.vertices=ov.map(v=>({...v}));if(Math.abs(a.y-b.y)<Math.abs(a.x-b.x)){r.vertices[i].y=p.y;r.vertices[j].y=p.y}else{r.vertices[i].x=p.x;r.vertices[j].x=p.x}syncBounds(r);draw();return}if(action.kind==='rectResize'){const r=state.rooms.find(x=>x.id===action.id),o=action.origin,gd=action.gripData,min=.1,L=o.x,R=o.x+o.width,T=o.y,B=o.y+o.length;if(gd.kind==='vertex'){const i=gd.vertex;if(i===0){r.x=Math.min(p.x,R-min);r.y=Math.min(p.y,B-min);r.width=R-r.x;r.length=B-r.y}else if(i===1){r.y=Math.min(p.y,B-min);r.width=Math.max(min,p.x-L);r.length=B-r.y}else if(i===2){r.width=Math.max(min,p.x-L);r.length=Math.max(min,p.y-T)}else{r.x=Math.min(p.x,R-min);r.width=R-r.x;r.length=Math.max(min,p.y-T)}}else{const edge=gd.edge;if(edge===0){r.y=Math.min(p.y,B-min);r.length=B-r.y}else if(edge===1){r.width=Math.max(min,p.x-L)}else if(edge===2){r.length=Math.max(min,p.y-T)}else if(edge===3){r.x=Math.min(p.x,R-min);r.width=R-r.x}}draw();return}if(action.preview){action.preview.b=p;if(action.preview.type==='circle')action.preview.radius=Math.hypot(p.x-action.preview.a.x,p.y-action.preview.a.y);draw()}}
@@ -902,7 +1128,33 @@ function keyDown(e){
 }
 function nextRoomNumber(base){const m=String(base||'R-01').match(/^(.*?)(\d+)$/);if(!m)return base+'-COPY';let n=1;while(state.rooms.some(r=>r.number===m[1]+String(+m[2]+n).padStart(m[2].length,'0')))n++;return m[1]+String(+m[2]+n).padStart(m[2].length,'0')}function warnArea(){const total=state.rooms.reduce((a,r)=>a+area(r),0);if(state.project.maxArea&&total>state.project.maxArea)alert('Warning: total room area '+total.toFixed(2)+' m² exceeds the project maximum of '+state.project.maxArea.toFixed(2)+' m².')}
 function undo(){if(!state.history.length)return;state.future.unshift(JSON.parse(JSON.stringify(state.rooms)));state.rooms=state.history.pop();persistRecovery();render()}function redo(){if(!state.future.length)return;state.history.push(JSON.parse(JSON.stringify(state.rooms)));state.rooms=state.future.shift();persistRecovery();render()}
-function saveJSON(){download(JSON.stringify({version:11,rooms:state.rooms,project:state.project,guides:state.guides},null,2),'architectural-zoning.json','application/json')}function openJSON(e){const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const x=JSON.parse(rd.result);state.rooms=Array.isArray(x)?x:x.rooms||[];state.project=x.project||state.project;state.guides=x.guides||[];setSingleSelection(state.rooms[0]?.id||null);render()}catch(err){alert('Invalid project file')}};rd.readAsText(f)}
+function projectFileContent(){return JSON.stringify({version:14,rooms:state.rooms,project:state.project,guides:state.guides,freeShapes:state.freeShapes,stories:state.stories,activeStoryId:state.activeStoryId,print:state.print,legend:state.legend},null,2)}
+async function writeProjectFile(handle){const writable=await handle.createWritable();await writable.write(projectFileContent());await writable.close();persistRecovery()}
+async function saveProject(){if(!projectFileHandle)return saveProjectAs();try{await writeProjectFile(projectFileHandle)}catch(err){if(err.name!=='AbortError')alert('Could not save project: '+err.message)}}
+async function saveProjectAs(){
+  if(!window.showSaveFilePicker){download(projectFileContent(),'architectural-zoning.json','application/json');return}
+  try{const handle=await window.showSaveFilePicker({suggestedName:projectFileHandle?.name||'architectural-zoning.json',types:[{description:'Architectural Zone Designer project',accept:{'application/json':['.json']}}]});await writeProjectFile(handle);projectFileHandle=handle;render()}catch(err){if(err.name!=='AbortError')alert('Could not save project: '+err.message)}
+}
+function saveJSON(){saveProject()}
+function loadProjectData(x){
+  const rooms=Array.isArray(x)?x:x.rooms;if(!Array.isArray(rooms))throw new Error('The project has no rooms array.');
+  state.rooms=rooms;state.project=(!Array.isArray(x)&&x.project)||{maxArea:0};state.guides=(!Array.isArray(x)&&Array.isArray(x.guides))?x.guides:[];state.freeShapes=(!Array.isArray(x)&&Array.isArray(x.freeShapes))?x.freeShapes:[];
+  state.stories=(!Array.isArray(x)&&Array.isArray(x.stories)&&x.stories.length)?x.stories:[{id:'story-1',name:'Ground Floor',elevation:0}];state.activeStoryId=(!Array.isArray(x)&&state.stories.some(s=>s.id===x.activeStoryId))?x.activeStoryId:state.stories[0].id;if(!Array.isArray(x)&&x.print)state.print={...state.print,...x.print};state.legend=(!Array.isArray(x)&&x.legend)?{...state.legend,...x.legend}:{visible:true,x:18,y:62,width:230,height:280,roomColumns:1};
+  state.history=[];state.future=[];state.selectedShapes=[];state.selectedBoundary=null;state.selectedBoundaries=[];state.mode='design';const first=roomsOnStory()[0]||state.rooms[0];setSingleSelection(first?.id||null);persistRecovery();render();
+}
+async function openProjectPicker(){try{const handles=await window.showOpenFilePicker({multiple:false,types:[{description:'Architectural Zone Designer project',accept:{'application/json':['.json']}}]});if(!handles.length)return;const handle=handles[0],file=await handle.getFile(),x=JSON.parse(await file.text());loadProjectData(x);projectFileHandle=handle;render()}catch(err){if(err.name!=='AbortError')alert('Could not open project: '+err.message)}}
+function openJSON(e){
+  const input=e.target,f=input.files&&input.files[0];if(!f)return;
+  const rd=new FileReader();
+  rd.onload=()=>{
+    try{
+      loadProjectData(JSON.parse(rd.result));projectFileHandle=null;
+    }catch(err){alert('Could not open project: '+err.message)}
+    finally{input.value=''}
+  };
+  rd.onerror=()=>{alert('Could not read the selected project file.');input.value=''};
+  rd.readAsText(f);
+}
 function exportCSV(){const rows=[['Room Number','Room Name','Width (m)','Length (m)','Area (m²)','Floor','Parent Unit','Wet Area']];state.rooms.forEach(r=>rows.push([r.number,r.name,r.width,r.length,area(r).toFixed(2),r.floor,r.parentUnit,r.wetArea?'Yes':'No']));download('\ufeff'+rows.map(x=>x.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n'),'room-schedule.csv','text/csv;charset=utf-8')}
 function exportSVG(){let s='<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="-2 -2 32 20"><rect x="-2" y="-2" width="32" height="20" fill="white"/>';state.guides.filter(g=>g.printable!==false).forEach(g=>{s+=`<line x1="${g.a.x}" y1="${g.a.y}" x2="${g.b.x}" y2="${g.b.y}" stroke="${g.color}" stroke-width=".06" stroke-dasharray=".2 .12"/>`});state.rooms.forEach(r=>{const v=roomVertices(r),pts=v.map(p=>p.x+','+p.y).join(' '),cx=v.reduce((a,p)=>a+p.x,0)/v.length,cy=v.reduce((a,p)=>a+p.y,0)/v.length;s+=`${r.boundaryPrintable===false?'':`<polygon points="${pts}" fill="${r.color}" stroke="#334155" stroke-width=".04"/>`}<text x="${cx}" y="${cy}" text-anchor="middle" font-size=".32">${esc(r.name)}</text>`});s+='</svg>';download(s,'architectural-zoning.svg','image/svg+xml')}
 function exportDXF(){let d='0\nSECTION\n2\nENTITIES\n';const clean=t=>String(t??'').replace(/[\r\n]/g,' ').replace(/[^\x20-\x7E]/g,' '),ln=(a,b,l)=>`0\nLINE\n8\n${l}\n10\n${a.x}\n20\n${-a.y}\n30\n0\n11\n${b.x}\n21\n${-b.y}\n31\n0\n`,tx=(p,text,height,layer)=>`0\nTEXT\n8\n${layer}\n10\n${p.x}\n20\n${-p.y}\n30\n0\n40\n${height}\n1\n${clean(text)}\n7\nSTANDARD\n72\n1\n73\n2\n11\n${p.x}\n21\n${-p.y}\n31\n0\n`;state.guides.forEach((g,i)=>d+=ln(g.a,g.b,(g.type+'_'+i).toUpperCase()));state.rooms.forEach(r=>{const l=('ROOM_'+r.number).replace(/[^A-Za-z0-9_-]/g,'_'),v=roomVertices(r);for(let i=0;i<v.length;i++)d+=ln(v[i],v[(i+1)%v.length],l);const c={x:v.reduce((s,p)=>s+p.x,0)/v.length,y:v.reduce((s,p)=>s+p.y,0)/v.length};d+=tx({x:c.x,y:c.y-.16},r.name||r.number,.28,'ROOM_NAMES');d+=tx({x:c.x,y:c.y+.16},area(r).toFixed(2)+' sqm',.22,'ROOM_AREAS')});d+='0\nENDSEC\n0\nEOF\n';download(d,'architectural-zoning.dxf','application/dxf')}
