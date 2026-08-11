@@ -1,5 +1,10 @@
 # Architectural Zone Designer — Development Roadmap
 
+Checklist convention:
+
+- `[x]` Implemented in the current prototype
+- `[ ]` Not yet implemented or only partially implemented
+
 ## Project Vision
 
 Architectural Zone Designer is a lightweight, canvas-first architectural
@@ -64,19 +69,19 @@ The eventual goal is a lightweight offline desktop application.
 
 Desired characteristics:
 
-- Very fast startup
-- Lightweight installation
-- Offline operation
-- Minimal interface
-- Canvas-first workflow
-- Native file open/save
-- Drag-and-drop
-- Clipboard integration
-- Autosave/recovery
-- Recent projects
-- No mandatory cloud dependency
-- No mandatory account/login
-- Minimal visual clutter
+- [x] Very fast startup
+- [ ] Lightweight installation (desktop packaging not started)
+- [x] Offline operation
+- [x] Minimal interface
+- [x] Canvas-first workflow
+- [x] Native file open/save where supported by the browser
+- [ ] General project-file drag-and-drop
+- [x] Clipboard integration for room copy/paste
+- [x] Autosave/recovery data
+- [x] Recent projects
+- [x] No mandatory cloud dependency
+- [x] No mandatory account/login
+- [x] Minimal visual clutter
 
 The mature HTML/JavaScript application may eventually be packaged using an
 appropriate lightweight desktop technology.
@@ -123,42 +128,59 @@ Continue improving the existing room-planning workflow.
 
 Features include:
 
-- Create rooms
-- Move rooms
-- Multi-selection
-- Resize rooms
-- Rename rooms
-- Move room tags independently
-- Duplicate rooms
-- Undo/Redo
-- Room properties
-- Room colors
-- Room schedules
-- Story management
-- Project save/open
+- [x] Create rooms
+- [x] Move rooms
+- [x] Multi-selection
+- [x] Resize rooms
+- [x] Rename rooms
+- [x] Move room tags independently
+- [x] Adjustable multiline room-tag width
+- [x] Duplicate rooms
+- [x] Undo/Redo for core room and boundary workflows
+- [x] Room properties
+- [x] Room colors
+- [x] Room schedules
+- [x] Story management
+- [x] Project Save, Save As, Open, recent files and last-used location
+- [x] Restore saved canvas zoom and pan
+- [x] Free-canvas line, chain, rectangle and circle drafting with live previews
+- [x] Shift-constrained 45-degree drafting, including horizontal and vertical
+- [x] Multi-select, move, endpoint-edit, delete, copy/paste and duplicate drafting lines
+- [x] Drafting-line context-menu commands and Undo/Redo
 
 Additional editing improvements:
 
-- Swap Width / Length
-- Multi-room Width / Length swap
-- Architectural color swatches
-- Apply color to multiple selected rooms
-- Custom/favorite color swatches
-- Room transparency
-- Lock room dimensions
-- Alignment tools
-- Distribution tools
-- Match properties
-- Match room size
-- Rotate rectangular rooms
-- Mirror rooms
-- Duplicate-in-place
+- [x] Swap Width / Length
+- [x] Multi-room Width / Length swap
+- [x] Architectural color swatches
+- [x] Apply color to multiple selected rooms
+- [ ] Custom/favorite color swatches
+- [ ] Room fill transparency
+- [ ] Lock room dimensions
+- [ ] Alignment tools
+- [ ] Distribution tools
+- [ ] Match properties
+- [ ] Match room size
+- [ ] Rotate rectangular rooms
+- [ ] Mirror rooms
+- [x] Duplicate-in-place
 
 These should remain lightweight and CAD-like.
 
 ---
 
 # 2. ROOM CATEGORIES
+
+**Status: Initial scope implemented.**
+
+- [x] Store Room Category separately from Room Name
+- [x] Provide standard architectural categories plus Other/custom values
+- [x] Assign categories to one or multiple selected rooms
+- [x] Show categories in the room schedule
+- [x] Include categories in CSV export
+- [x] Save/Open category data with older-project fallback
+- [x] Undo/Redo category assignment
+- [ ] Category-driven styles, rules, calculations and analysis
 
 Introduce formal Room Categories.
 
@@ -209,6 +231,29 @@ This allows differently named rooms to inherit the same rules.
 ---
 
 # 3. SEMANTIC ROOM BOUNDARIES
+
+**Status: Initial scope implemented.**
+
+- [x] Select individual boundary segments
+- [x] Multi-select boundary segments with Shift and window/crossing selection
+- [x] Unified hover-aware selection for rooms, boundaries, drafting lines and outdoor boundaries
+- [x] Collapsible Story / Apartment-Department room tree with quick room placement
+- [x] Show room count and total area for each Apartment / Department tree group
+- [x] Split the left sidebar into separate Rooms and Settings panels
+- [x] Generic Rotate Selected command beside Move
+- [x] Toolbar selection filter by element type
+- [x] Directional cursor feedback when hovering manipulation grips
+- [x] Include unlocked reference images in unified selection and provide Lock / Unlock
+- [x] Multi-select unlocked reference images by Shift-click or window/crossing selection
+- [x] Assign Wall, Glazing or Virtual / Open
+- [x] Visually distinguish boundary types
+- [x] Synchronize both sides of shared room boundaries
+- [x] Preserve partial shared-segment conditions without styling the entire edge
+- [x] Split edge hover and selection at adjacent-room intersection points
+- [x] Save/Open boundary semantics as project data
+- [x] Undo/Redo boundary changes
+- [x] Show boundary types in the printable canvas legend
+- [x] Scale the legend with the drawing and provide font-size controls plus draggable corner width grips
 
 Room boundaries should become individually identifiable architectural objects.
 
@@ -262,6 +307,8 @@ different line styles.
 
 # 4. ROOM ENTRANCES
 
+**Status: Not started.**
+
 Allow symbolic entrances to be placed on room boundaries.
 
 A room may have:
@@ -299,6 +346,8 @@ Future uses:
 
 # 5. REFERENCE IMAGE / TRACING SYSTEM
 
+**Status: Initial placement and editing scope implemented.**
+
 Provide a lightweight architectural tracing workflow.
 
 Users should be able to insert reference images into the design canvas.
@@ -315,15 +364,21 @@ Reference images may include:
 
 ## Basic Reference Image Features
 
-- Insert image
-- Move image
-- Delete image
-- Show / Hide
+- [x] Insert image
+- [x] Move image
+- [x] Resize image with corner grips
+- [x] Delete image
+- [x] Show / Hide
+- [x] View and replace image source using a pasted path or file browser
 - Lock / Unlock
 - Freeze / Unfreeze
 - Opacity control
-- Per-story reference images
-- Save reference-image settings with project
+- [x] Per-story reference images
+- [x] Save reference-image settings with project
+
+Placement, movement, resizing, visibility, story assignment and deletion support
+Undo/Redo. Calibration, rotation, locking, freezing, opacity and cropping remain
+future work.
 
 Frozen images should remain visible but should not interfere with room
 selection.
@@ -331,6 +386,8 @@ selection.
 ---
 
 # 6. REFERENCE IMAGE CALIBRATION
+
+**Status: Initial scaling and two-point calibration implemented.**
 
 Provide a simple CAD-like scale calibration workflow.
 
@@ -345,11 +402,12 @@ Example:
 
 Additional capabilities:
 
-- Free resizing using grips
-- Preserve aspect ratio
-- Numeric scaling
-- Rotation
-- Numeric rotation
+- [x] Proportional resizing using corner grips
+- [x] Preserve aspect ratio
+- [x] Numeric percentage and width scaling
+- [x] Two-point known-distance calibration
+- [x] Rotation, including convenient 90-degree left/right commands
+- [x] Numeric rotation
 - Position controls
 
 The workflow should remain simple enough for rapid tracing.
@@ -357,6 +415,8 @@ The workflow should remain simple enough for rapid tracing.
 ---
 
 # 7. ROOM TRANSPARENCY
+
+**Status: Not started. Existing boundary visibility is not room-fill transparency.**
 
 Allow room fills to have adjustable transparency.
 
@@ -372,6 +432,8 @@ unreadable.
 
 # 8. REFERENCE IMAGE CROPPING / MASKING
 
+**Status: Initial rectangular and polygonal masking implemented.**
+
 Advanced reference-image functionality.
 
 Allow users to isolate only useful portions of reference images.
@@ -379,6 +441,16 @@ Allow users to isolate only useful portions of reference images.
 Prefer non-destructive cropping/masking.
 
 The original image should remain available.
+
+Implemented capabilities:
+
+- [x] Non-destructive rectangular crop
+- [x] Non-destructive polygonal crop
+- [x] Live ghost lines and close-loop feedback
+- [x] Zoom and pan without cancelling an unfinished crop
+- [x] Crop-fitted manipulation bounds
+- [x] Clear crop to restore the original image
+- [x] Undo/Redo and project persistence
 
 Example:
 
@@ -391,15 +463,20 @@ image.
 
 # 9. HYBRID REFERENCE COMPOSITIONS
 
+**Status: Initial duplication and cross-story copy/paste implemented.**
+
 Support multiple reference images or cropped image fragments on the same
 canvas.
 
 Users should be able to:
 
 - Position fragments
-- Rotate fragments
+- [x] Rotate fragments
+- [x] Mirror fragments horizontally or vertically
 - Scale fragments
-- Duplicate fragments
+- [x] Duplicate fragments
+- [x] Copy/paste fragments on the active story
+- [x] Reference-image commands in the canvas context menu
 - Combine fragments
 - Lock fragments
 - Hide fragments
@@ -919,6 +996,18 @@ Project-level area summaries should also be exportable.
 
 # 30. BUILDING / EXTERNAL BOUNDARY
 
+**Status: Initial scope implemented.**
+
+- [x] Derive an outdoor/building boundary from outer room geometry
+- [x] Select the outdoor boundary with a dedicated tool
+- [x] Edit vertices and offset individual segments
+- [x] Change visual style or delete/rebuild the boundary
+- [x] Apply a display-only graphical offset
+- [x] Save/Open outdoor-boundary data
+- [x] Undo/Redo outdoor-boundary changes
+- [ ] Manually draw a semantic building envelope independent of room geometry
+- [ ] Use the external boundary for exposure/environmental analysis
+
 Allow the building envelope or qualifying external boundaries to be
 identified.
 
@@ -1084,11 +1173,11 @@ Recommended sequence:
 
 ## Phase A — Room Intelligence
 
-1. Room categories
-2. Boundary semantics
-3. Room entrances
-4. Improved room editing
-5. Room transparency
+1. [x] Room categories (initial scope)
+2. [x] Boundary semantics (initial scope)
+3. [ ] Room entrances
+4. [x] Improved room editing (initial scope; further tools remain above)
+5. [ ] Room transparency
 
 ## Phase B — Conceptual Structure
 
@@ -1100,7 +1189,7 @@ Recommended sequence:
 
 ## Phase C — Reference / Tracing
 
-11. Reference images
+11. [x] Reference images (initial placement/editing scope)
 12. Image calibration
 13. Freeze/visibility/opacity
 14. Cropping/masking
