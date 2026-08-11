@@ -155,7 +155,7 @@ Additional editing improvements:
 - [x] Architectural color swatches
 - [x] Apply color to multiple selected rooms
 - [ ] Custom/favorite color swatches
-- [ ] Room fill transparency
+- [x] Room fill transparency
 - [ ] Lock room dimensions
 - [ ] Alignment tools
 - [ ] Distribution tools
@@ -416,7 +416,11 @@ The workflow should remain simple enough for rapid tracing.
 
 # 7. ROOM TRANSPARENCY
 
-**Status: Not started. Existing boundary visibility is not room-fill transparency.**
+**Status: Initial scope implemented.**
+
+- [x] Global room-fill opacity slider in View settings
+- [x] Preserve full-opacity room boundaries, tags and selection cues
+- [x] Save and restore opacity with the project view
 
 Allow room fills to have adjustable transparency.
 

@@ -4,7 +4,7 @@ Single-file HTML architectural space planning application.
 
 ## Current Version
 
-v37 with additional work tracked under **Unreleased** in `CHANGELOG.md`.
+v38 with additional work tracked under **Unreleased** in `CHANGELOG.md`.
 
 ## Goals
 - Single HTML application
@@ -20,6 +20,7 @@ v37 with additional work tracked under **Unreleased** in `CHANGELOG.md`.
 - Printable drawing-space legend with adjustable text size and draggable corner width grips
 - Contextual status bar and multiline room tags
 - Per-story reference images with move, resize and visibility controls
+- Global room-fill opacity control for clearer reference-image tracing
 - Proportional reference-image scaling and known-distance calibration
 - Reference-image replacement through a visible source field or file browser
 - Reference-image duplication, cross-story copy/paste and non-destructive cropping

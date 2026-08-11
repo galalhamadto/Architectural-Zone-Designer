@@ -8,6 +8,7 @@ version section when a release/version is intentionally created.
 
 ### Added
 
+- Saved View slider for global room-fill opacity, allowing reference images to remain visible beneath rooms without fading boundaries or tags
 - Toolbar selection filter for rooms, room edges, drafting lines, outdoor boundaries and images
 - Generic Rotate Selected command for rooms, drafting lines, outdoor boundaries and unlocked images
 - Shift-click and window/crossing multi-selection for unlocked reference images, including group move/delete
@@ -57,7 +58,7 @@ version section when a release/version is intentionally created.
   rather than the complete room edge
 - Room-property changes apply automatically without an Apply button
 - Room duplication drag shortcut changed to Ctrl+Alt to avoid Shift-selection conflicts
-- Project file data advanced to version 37 while retaining older-project fallbacks
+- Project file data advanced to version 38 while retaining older-project fallbacks
 
 ### Fixed
 
