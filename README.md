@@ -4,7 +4,7 @@ Single-file HTML architectural space planning application.
 
 ## Current Version
 
-v38 with additional work tracked under **Unreleased** in `CHANGELOG.md`.
+v51 with additional work tracked under **Unreleased** in `CHANGELOG.md`.
 
 ## Goals
 - Single HTML application
@@ -21,6 +21,9 @@ v38 with additional work tracked under **Unreleased** in `CHANGELOG.md`.
 - Contextual status bar and multiline room tags
 - Per-story reference images with move, resize and visibility controls
 - Global room-fill opacity control for clearer reference-image tracing
+- Persistent room groups with toolbar/context-menu creation, thumbnails and group duplication
+- Linked group instances with collective selection/movement and isolated Save/Discard group editing
+- Group-aware selection filtering, double-click editing and group branches in the Rooms tree
 - Proportional reference-image scaling and known-distance calibration
 - Reference-image replacement through a visible source field or file browser
 - Reference-image duplication, cross-story copy/paste and non-destructive cropping
@@ -33,6 +36,10 @@ v38 with additional work tracked under **Unreleased** in `CHANGELOG.md`.
 - Collapsible story/department room tree with quick pointer placement
 - Separate Rooms and Settings tabs in the left sidebar
 - Generic selection-center rotation for rooms, lines, outdoor boundaries and images
+- Generic horizontal/vertical mirroring for mixed selections, including groups and images
+- Standard Undo/Redo shortcuts and a generic mixed-selection Delete toolbar command
+- Prepared SVG icon pack integrated across toolbar and reference-image controls
+- Canvas image-file drag-and-drop with live, proportionally sized placement feedback
 - Toolbar selection filters shared by hover, click and window/crossing selection
 - Directional cursor feedback for corner, midpoint and endpoint manipulation grips
 

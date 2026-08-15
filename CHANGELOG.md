@@ -8,6 +8,22 @@ version section when a release/version is intentionally created.
 
 ### Added
 
+- Shared advanced line-pattern library with double-dash, dash-dot, dash-dot-dot, long-dash and center-line styles, plus precise negative-cross thickness and dash-size controls
+- Saved negative-room cross-line color, weight and solid/dashed/dotted pattern controls in Settings
+- Persistent negative rooms for voids, shafts, lifts and other deductions, with white default fill, corner-cross graphics, signed area schedules/exports and net project-area checks
+- Connected-loop property boundaries with shared vertex editing, individually controlled setback distances, clickable per-segment dimensions, double-click floating numeric editing, linked setback regeneration, site-line styles, grouped movement and optional neighbour/street labels
+- Line-to-Curve drafting command with graphical signed peak-offset preview, click-to-commit, Escape cancellation, persistence and Undo/Redo
+- Interactive Fillet and Chamfer workflow for room boundaries and free/room drafting lines, with unified line picking, live graphical preview, floating numeric entry, click-to-apply, Enter confirmation and Escape cancellation
+- Drag-and-drop reference-image placement directly on the canvas, with a live image footprint, drop-point marker and filename feedback
+- Standard Ctrl/Cmd+Z Undo, Ctrl/Cmd+Y Redo and Ctrl/Cmd+Shift+Z Redo shortcuts
+- Generic Delete Selected toolbar command for rooms, groups, drafting lines, outdoor boundaries and reference images
+- Generic Mirror Selected toolbar command with horizontal and vertical choices for rooms, groups, drafting lines, outdoor boundaries and unlocked reference images
+- Room Groups selection-filter category, group-wide hover feedback and double-click entry into Edit Group mode
+- Story → Groups → Group Instance → Room hierarchy in the Rooms tree; grouped rooms no longer duplicate under department branches
+- Revit-style linked group instances: grouped rooms select and move together, while Edit Group isolates member editing and Save propagates changes to every instance
+- Discard Group Edit restores the complete pre-edit room state; saved group-edit sessions remain a single Undo/Redo operation
+- Persistent room groups created from multi-selection through the toolbar or context menu
+- Room Groups management panel with selectable layout thumbnails, group duplication and ungrouping
 - Saved View slider for global room-fill opacity, allowing reference images to remain visible beneath rooms without fading boundaries or tags
 - Toolbar selection filter for rooms, room edges, drafting lines, outdoor boundaries and images
 - Generic Rotate Selected command for rooms, drafting lines, outdoor boundaries and unlocked images
@@ -47,6 +63,7 @@ version section when a release/version is intentionally created.
 
 ### Changed
 
+- Replaced available generated toolbar symbols with the prepared SVG icon pack, including mirror direction choices and reference calibration/cropping controls
 - Hovering manipulation grips now shows directional resize or move cursors
 - The left sidebar is split into focused Rooms and Settings tabs
 - Apartment/Department tree rows now show both room count and total room area
@@ -58,7 +75,7 @@ version section when a release/version is intentionally created.
   rather than the complete room edge
 - Room-property changes apply automatically without an Apply button
 - Room duplication drag shortcut changed to Ctrl+Alt to avoid Shift-selection conflicts
-- Project file data advanced to version 38 while retaining older-project fallbacks
+- Project file data advanced to version 45 while retaining older-project fallbacks
 
 ### Fixed
 

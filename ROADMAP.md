@@ -137,6 +137,9 @@ Features include:
 - [x] Adjustable multiline room-tag width
 - [x] Duplicate rooms
 - [x] Undo/Redo for core room and boundary workflows
+- [x] Standard Undo/Redo keyboard shortcuts
+- [x] Generic Delete Selected toolbar command
+- [x] Replace placeholder toolbar symbols with the prepared SVG icon pack
 - [x] Room properties
 - [x] Room colors
 - [x] Room schedules
@@ -147,6 +150,8 @@ Features include:
 - [x] Shift-constrained 45-degree drafting, including horizontal and vertical
 - [x] Multi-select, move, endpoint-edit, delete, copy/paste and duplicate drafting lines
 - [x] Drafting-line context-menu commands and Undo/Redo
+- [x] Interactive Fillet and Chamfer for room boundaries and drafting lines
+- [x] Convert a drafting line to a curve using a graphical peak offset
 
 Additional editing improvements:
 
@@ -156,6 +161,7 @@ Additional editing improvements:
 - [x] Apply color to multiple selected rooms
 - [ ] Custom/favorite color swatches
 - [x] Room fill transparency
+- [x] Negative rooms for void, shaft, lift and other area deductions
 - [ ] Lock room dimensions
 - [ ] Alignment tools
 - [ ] Distribution tools
@@ -241,6 +247,7 @@ This allows differently named rooms to inherit the same rules.
 - [x] Show room count and total area for each Apartment / Department tree group
 - [x] Split the left sidebar into separate Rooms and Settings panels
 - [x] Generic Rotate Selected command beside Move
+- [x] Generic horizontal/vertical Mirror Selected command beside Rotate
 - [x] Toolbar selection filter by element type
 - [x] Directional cursor feedback when hovering manipulation grips
 - [x] Include unlocked reference images in unified selection and provide Lock / Unlock
@@ -374,6 +381,7 @@ Reference images may include:
 - Freeze / Unfreeze
 - Opacity control
 - [x] Per-story reference images
+- [x] Drag image files onto the canvas with live placement feedback
 - [x] Save reference-image settings with project
 
 Placement, movement, resizing, visibility, story assignment and deletion support
@@ -499,6 +507,22 @@ This is intended as a design-thinking tool, not an image editor.
 ---
 
 # 10. REUSABLE ROOM GROUPS / DESIGN MODULES
+
+**Status: Basic room grouping implemented; reusable module types remain future work.**
+
+- [x] Create a named group from selected rooms
+- [x] Group command in the toolbar and room context menu
+- [x] Room Groups management panel with layout thumbnails
+- [x] Select, duplicate and ungroup groups
+- [x] Save/Open group membership and support Undo/Redo
+- [x] Select and move each group instance as one object
+- [x] Isolated group-editing mode with Save/Discard
+- [x] Propagate saved room edits to every linked group instance
+- [x] Treat duplicated groups as linked instances of one type
+- [x] Add groups to selection filters with group-wide hover feedback
+- [x] Enter group editing by double-clicking a group
+- [x] Nest grouped rooms beneath group-instance branches in the Rooms tree
+- [ ] Support adding entirely new member rooms while inside group-editing mode
 
 Allow collections of rooms and associated planning objects to become reusable
 design modules.
@@ -878,6 +902,10 @@ code or standard.
 
 # 24. SETBACK SYSTEM
 
+- [x] Connected-loop property lines with shared vertex editing and per-segment neighbour/street labels
+- [x] Linked graphical setback offsets with editable distance and group movement
+- [x] Configurable property-line and setback-line styles
+
 Allow project setbacks to be defined.
 
 Setbacks may eventually derive from:
@@ -1202,7 +1230,7 @@ Recommended sequence:
 
 ## Phase D — Modular Planning
 
-17. Basic room grouping
+17. [x] Basic room grouping
 18. Named module types
 19. Module instances
 20. Dynamic module updates
